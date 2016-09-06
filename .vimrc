@@ -92,10 +92,6 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let mapleader = ","
 
-" unmap F1 help
-nmap <F1> <nop>
-imap <F1> <nop>
-
 if exists('+colorcolumn')
     set colorcolumn=80
 endif
@@ -151,35 +147,51 @@ function ToggleHex()
     let &modifiable=l:oldmodifiable
 endfunction
 
-map <silent> <leader>h :Hexmode<CR>
-map <silent> <leader>q :wq<CR>
+let paste_mode = 0
+func! Toggle_paste()
+    if g:paste_mode == 0
+        set paste
+        let g:paste_mode = 1
+    else
+        set nopaste
+        let g:paste_mode = 0
+    endif
+    return
+endfunc
 
 colorscheme solarized
-
 
 map <C-k> ~
 map <Down> <Nop>
 map <Left> <Nop>
 map <Right> <Nop>
 map <Up> <Nop>
-map <leader>cd :cd %:p:h<cr>:pwd<cr> " switch CWD to dir of current buffer
-map <silent> <leader><cr> :nohl<cr>
+map <leader>cd :cd %:p:h<cr>:pwd<cr>
 map <silent> <leader>P :set nopaste<cr>
 map <silent> <leader>T :NERDTreeClose<cr>
-map <silent> <leader>n :nohl<cr>
-map <silent> <leader>n :set background=dark<CR>
-map <silent> <leader>p :set paste<cr>
-map <silent> <leader>t :NERDTree<cr>
-map <silent> <leader>t :set background=light<CR>
+map <silent> <leader>p :call Toggle_paste()<cr>
 map Q @q
 map T ^
-map Y y$ " Y yanks until end of line, not ==yy. More logical, but no-compat.
+map Y y$
 
 nmap <Tab> :call SwitchBuffer()<CR>
-nmap <leader>w :w!<cr>
+nmap <F1> <nop>
 
+imap <F1> <nop>
+imap inim if __name__ == '__main__':<cr>
+
+" set very magic
+nnoremap / /\v
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+nnoremap <silent> <leader><cr> :nohl<cr>
+nnoremap <silent> <leader>d :set background=dark<CR>
+nnoremap <silent> <leader>h :Hexmode<CR>
+nnoremap <silent> <leader>l :set background=light<CR>
+nnoremap <silent> <leader>t :NERDTree<cr>
 nnoremap YQ ZQ
 nnoremap YY ZZ
 
+" set very magic
+cnoremap %s/ %s/\v
 vnoremap <Space> zf
+vnoremap <leader>s :sort<cr>
