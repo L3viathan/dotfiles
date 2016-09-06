@@ -1,42 +1,10 @@
 " .vimrc
-set encoding=utf-8
-
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-
-Plugin 'oblitum/rainbow'
-
-Plugin 'mattn/webapi-vim'
-Plugin 'altercation/vim-colors-solarized'
-
-Plugin 'cirla/vim-giphy'
-
-Plugin 'tmhedberg/SimpylFold'
-Plugin 'kien/ctrlp.vim'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-fugitive' " git stuff
-
-Plugin 'bling/vim-airline'
-
-Plugin 'scrooloose/nerdtree'
-Plugin 'ervandew/supertab'
-Plugin 'tpope/vim-commentary'
-
-call vundle#end()            " required
-filetype plugin indent on    " required
-syntax on
-
 set autoindent
 set background=light
 set backspace=2
 set backupdir=~/.vim/backup
 set cul
+set encoding=utf-8
 set expandtab
 set foldmethod=syntax
 set hlsearch
@@ -46,6 +14,7 @@ set lazyredraw
 set list listchars=tab:»·,trail:·
 set magic
 set nobackup
+set nocompatible              " be iMproved, required
 set noerrorbells
 set noswapfile
 set novisualbell
@@ -65,6 +34,29 @@ set tm=500
 set wildignore=*.o,*~,*.pyc
 set wildmenu
 set wildmode=list:longest,full
+
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+Plugin 'oblitum/rainbow'
+Plugin 'mattn/webapi-vim'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'cirla/vim-giphy'
+Plugin 'tmhedberg/SimpylFold'
+Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-fugitive' " git stuff
+Plugin 'bling/vim-airline'
+Plugin 'scrooloose/nerdtree'
+Plugin 'ervandew/supertab'
+Plugin 'tpope/vim-commentary'
+call vundle#end()            " required
+filetype plugin indent on    " required
+syntax on
 
 highlight clear SignColumn
 highlight VertSplit    ctermbg=236
@@ -96,6 +88,8 @@ let g:ctrlp_working_path_mode = 0
 let g:mapleader = ","
 let g:rainbow_active = 1
 
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let mapleader = ","
 
 " unmap F1 help
@@ -106,33 +100,13 @@ if exists('+colorcolumn')
     set colorcolumn=80
 endif
 
-map Q @q
-map T ^
-map <C-k> ~
-nmap <Tab> :call SwitchBuffer()<CR>
-nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
-vnoremap <Space> zf
-nmap <leader>w :w!<cr>
-map <silent> <leader>n :nohl<cr>
-map <silent> <leader><cr> :nohl<cr>
-
 function SwitchBuffer()
     b#
 endfunction
 
-
-
-" switch CWD to dir of current buffer
-map <leader>cd :cd %:p:h<cr>:pwd<cr>
-map <silent> <leader>p :set paste<cr>
-map <silent> <leader>P :set nopaste<cr>
-map <silent> <leader>t :NERDTree<cr>
-map <silent> <leader>T :NERDTreeClose<cr>
-
 " save folds
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview
-
 
 " ex command for toggling hex mode - define mapping if desired
 command -bar Hexmode call ToggleHex()
@@ -180,24 +154,32 @@ endfunction
 map <silent> <leader>h :Hexmode<CR>
 map <silent> <leader>q :wq<CR>
 
-"let ITERM_PROFILE=$ITERM_PROFILE
-"if ITERM_PROFILE == 'Tagsüber'
-"    set background=light
-"endif
 colorscheme solarized
 
-" change cursor in insert mode (iTerm2)
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
+map <C-k> ~
+map <Down> <Nop>
 map <Left> <Nop>
 map <Right> <Nop>
 map <Up> <Nop>
-map <Down> <Nop>
-map <silent> <leader>t :set background=light<CR>
+map <leader>cd :cd %:p:h<cr>:pwd<cr> " switch CWD to dir of current buffer
+map <silent> <leader><cr> :nohl<cr>
+map <silent> <leader>P :set nopaste<cr>
+map <silent> <leader>T :NERDTreeClose<cr>
+map <silent> <leader>n :nohl<cr>
 map <silent> <leader>n :set background=dark<CR>
-nnoremap YY ZZ
-nnoremap YQ ZQ
+map <silent> <leader>p :set paste<cr>
+map <silent> <leader>t :NERDTree<cr>
+map <silent> <leader>t :set background=light<CR>
+map Q @q
+map T ^
+map Y y$ " Y yanks until end of line, not ==yy. More logical, but no-compat.
 
-" map Y to yank until end of line instead of yy. More logical, but no-compat.
-map Y y$
+nmap <Tab> :call SwitchBuffer()<CR>
+nmap <leader>w :w!<cr>
+
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+nnoremap YQ ZQ
+nnoremap YY ZZ
+
+vnoremap <Space> zf
