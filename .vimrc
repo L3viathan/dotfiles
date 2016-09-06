@@ -151,9 +151,11 @@ let paste_mode = 0
 func! Toggle_paste()
     if g:paste_mode == 0
         set paste
+        set nonu norelativenumber
         let g:paste_mode = 1
     else
         set nopaste
+        set nu relativenumber
         let g:paste_mode = 0
     endif
     return
