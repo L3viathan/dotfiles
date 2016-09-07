@@ -13,6 +13,7 @@ set laststatus=2
 set lazyredraw
 set list listchars=tab:»·,trail:·
 set magic
+set makeprg=python3\ %
 set nobackup
 set nocompatible              " be iMproved, required
 set noerrorbells
@@ -186,6 +187,7 @@ imap inim if __name__ == '__main__':<cr>
 
 " set very magic
 nnoremap / /\v
+nnoremap <C-P> :make<cr>
 nnoremap <leader>/ /def 
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 nnoremap <silent> <leader><cr> :nohl<cr>
