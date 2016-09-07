@@ -44,6 +44,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'oblitum/rainbow'
 Plugin 'mattn/webapi-vim'
+Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'cirla/vim-giphy'
 Plugin 'tmhedberg/SimpylFold'
@@ -53,6 +54,7 @@ Plugin 'tpope/vim-fugitive' " git stuff
 Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'ervandew/supertab'
+Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tpope/vim-commentary'
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -184,6 +186,7 @@ imap inim if __name__ == '__main__':<cr>
 
 " set very magic
 nnoremap / /\v
+nnoremap <leader>/ /def 
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 nnoremap <silent> <leader><cr> :nohl<cr>
 nnoremap <silent> <leader>d :set background=dark<CR>
@@ -195,5 +198,8 @@ nnoremap YY ZZ
 
 " set very magic
 cnoremap %s/ %s/\v
+cnoremap <C-A> <Home>
+cnoremap <C-E> <End>
+
 vnoremap <Space> zf
 vnoremap <leader>s :sort<cr>
