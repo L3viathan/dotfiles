@@ -3,7 +3,7 @@ set autoindent
 set background=light
 set backspace=2
 set backupdir=~/.vim/backup
-set cul
+set cul " highlight cursor line
 set encoding=utf-8
 set expandtab
 set foldmethod=syntax
@@ -13,7 +13,6 @@ set laststatus=2
 set lazyredraw
 set list listchars=tab:»·,trail:·
 set magic
-set makeprg=python3\ %
 set nobackup
 set nocompatible              " be iMproved, required
 set noerrorbells
@@ -43,20 +42,18 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
-Plugin 'oblitum/rainbow'
-Plugin 'mattn/webapi-vim'
-Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'cirla/vim-giphy'
-Plugin 'tmhedberg/SimpylFold'
-Plugin 'kien/ctrlp.vim'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-fugitive' " git stuff
 Plugin 'bling/vim-airline'
-Plugin 'scrooloose/nerdtree'
 Plugin 'ervandew/supertab'
+Plugin 'kien/ctrlp.vim'
+Plugin 'michaeljsmith/vim-indent-object'
+Plugin 'oblitum/rainbow'
+Plugin 'scrooloose/nerdtree'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'tmhedberg/SimpylFold'
 Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-fugitive' " git stuff
+Plugin 'tpope/vim-surround'
 call vundle#end()            " required
 filetype plugin indent on    " required
 syntax on
@@ -187,7 +184,7 @@ imap inim if __name__ == '__main__':<cr>
 
 " set very magic
 nnoremap / /\v
-nnoremap <C-P> :make<cr>
+nnoremap <C-P> :!python3 %<cr>
 nnoremap <leader>/ /def 
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 nnoremap <silent> <leader><cr> :nohl<cr>
@@ -197,6 +194,7 @@ nnoremap <silent> <leader>l :set background=light<CR>
 nnoremap <silent> <leader>t :NERDTree<cr>
 nnoremap YQ ZQ
 nnoremap YY ZZ
+nnoremap q: :q
 
 " set very magic
 cnoremap %s/ %s/\v
