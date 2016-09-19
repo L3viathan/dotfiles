@@ -43,6 +43,7 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'bassnode/vim-google-play'
 Plugin 'bling/vim-airline'
 Plugin 'ervandew/supertab'
 Plugin 'kien/ctrlp.vim'
@@ -164,7 +165,7 @@ endfunc
 
 colorscheme solarized
 
-map <C-k> ~
+map <C-c> ~
 map <Down> <Nop>
 map <Left> <Nop>
 map <Right> <Nop>
@@ -186,6 +187,8 @@ imap inim if __name__ == '__main__':<cr>
 " set very magic
 nnoremap / /\v
 nnoremap <C-P> :!python3 %<cr>
+nnoremap <C-j> 3<C-e>
+nnoremap <C-k> 3<C-y>
 nnoremap <leader>/ /def 
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 nnoremap <silent> <leader><cr> :nohl<cr>
@@ -196,6 +199,7 @@ nnoremap <silent> <leader>t :NERDTree<cr>
 nnoremap YQ ZQ
 nnoremap YY ZZ
 nnoremap q: :q
+nnoremap ' `
 
 " set very magic
 cnoremap %s/ %s/\v
