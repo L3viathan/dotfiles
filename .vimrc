@@ -30,6 +30,7 @@ set smarttab
 set softtabstop=0
 set t_vb=
 set tabstop=4
+set timeoutlen=1000 " for @sarnthil
 set tm=500
 set wildignore=*.o,*~,*.pyc
 set wildmenu
@@ -55,6 +56,7 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive' " git stuff
+Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 call vundle#end()            " required
 filetype plugin indent on    " required
