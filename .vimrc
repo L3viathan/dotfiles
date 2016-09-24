@@ -13,7 +13,6 @@ set laststatus=2
 set lazyredraw
 set list listchars=tab:»·,trail:·
 set magic
-set mouse=a
 set nobackup
 set nocompatible              " be iMproved, required
 set noerrorbells
@@ -78,10 +77,6 @@ highlight SpellBad     ctermbg=0   ctermfg=1
 " highlight trailing spaces in annoying red
 highlight ExtraWhitespace ctermbg=1 guibg=red
 match ExtraWhitespace /\s\+$/
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
 
 " set leader key to comma
 let g:airline_powerline_fonts = 1
@@ -101,13 +96,12 @@ if exists('+colorcolumn')
     set colorcolumn=80
 endif
 
+let hostname = substitute(system('hostname'), '\n', '', '')
+
 function SwitchBuffer()
     b#
 endfunction
 
-" save folds
-autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview
 
 " ex command for toggling hex mode - define mapping if desired
 command -bar Hexmode call ToggleHex()
@@ -166,6 +160,26 @@ func! Toggle_paste()
     return
 endfunc
 
+let mouse_mode = 0
+func! Toggle_mouse()
+    if g:mouse_mode == 0
+        set mouse=a
+        let g:mouse_mode = 1
+    else
+        set mouse=
+        let g:mouse_mode = 0
+    endif
+    return
+endfunc
+
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter *.* silent loadview
+autocmd BufWinLeave * call clearmatches()
+autocmd BufWinLeave *.* mkview
+
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+
 autocmd filetype crontab setlocal nobackup nowritebackup
 
 colorscheme solarized
@@ -178,6 +192,7 @@ map <Up> <Nop>
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 map <silent> <leader>P :set nopaste<cr>
 map <silent> <leader>T :NERDTreeClose<cr>
+map <silent> <leader>m :call Toggle_mouse()<cr>
 map <silent> <leader>p :call Toggle_paste()<cr>
 map Q @q
 map T ^
@@ -190,11 +205,13 @@ imap <F1> <nop>
 imap inim if __name__ == '__main__':<cr>
 
 " set very magic
+nnoremap ' `
+nnoremap + <C-A>
+nnoremap - <C-X>
 nnoremap / /\v
 nnoremap <C-P> :!python3 %<cr>
 nnoremap <C-j> 3<C-e>
 nnoremap <C-k> 3<C-y>
-nnoremap <leader>/ /def 
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 nnoremap <silent> <leader><cr> :nohl<cr>
 nnoremap <silent> <leader>d :set background=dark<CR>
@@ -204,7 +221,6 @@ nnoremap <silent> <leader>t :NERDTree<cr>
 nnoremap YQ ZQ
 nnoremap YY ZZ
 nnoremap q: :q
-nnoremap ' `
 
 " set very magic
 cnoremap %s/ %s/\v

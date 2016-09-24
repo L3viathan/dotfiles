@@ -82,7 +82,6 @@ alias -s tar.gz="tar tfz"
 alias -s tgz="tar tfz"
 
 avaliable(){whois $* |grep AVAILABLE }
-bibtex(){scholar.py -c 1 --phrase "$*" --citation bt }
 alias please='sudo $(fc -ln -1)'
 
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
