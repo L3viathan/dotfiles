@@ -13,6 +13,7 @@ set laststatus=2
 set lazyredraw
 set list listchars=tab:»·,trail:·
 set magic
+set mouse=a
 set nobackup
 set nocompatible              " be iMproved, required
 set noerrorbells
@@ -164,6 +165,8 @@ func! Toggle_paste()
     endif
     return
 endfunc
+
+autocmd filetype crontab setlocal nobackup nowritebackup
 
 colorscheme solarized
 

@@ -2,8 +2,8 @@
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="l3vi2"
 CASE_SENSITIVE="true"
-export EDITOR="vi"
-export VISUAL="vi"
+export EDITOR="vim"
+export VISUAL="vim"
 COMPLETION_WAITING_DOTS="true"
 unsetopt correct_all #disable auto correction
 plugins=(git python osx battery zsh-syntax-highlighting tmux pip mosh sublime zshmarks dirhistory)
