@@ -24,6 +24,7 @@ set ruler
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 set scrolloff=2
 set shiftwidth=4
+set shortmess=filmnrxsToOI
 set showcmd
 set showmatch
 set smarttab
