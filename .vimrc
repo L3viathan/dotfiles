@@ -71,6 +71,10 @@ highlight ExtraWhitespace ctermbg=1 guibg=red
 match ExtraWhitespace /\s\+$/
 
 " set leader key to comma
+let g:airline#extensions#tabline#left_sep = ''
+let g:airline#extensions#tabline#right_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = ''
+let g:airline#extensions#hunks#non_zero_only = 0
 let g:airline_powerline_fonts = 1
 let g:ctrlp_map = '<leader>f'
 let g:ctrlp_match_window_reversed = 0
@@ -181,8 +185,8 @@ colorscheme solarized
 
 map <C-c> ~
 map <Down> <Nop>
-map <Left> <Nop>
-map <Right> <Nop>
+map <silent> <Left> :bprevious<cr>
+map <silent> <Right> :bnext<cr>
 map <Up> <Nop>
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 map <silent> <leader>P :set nopaste<cr>
