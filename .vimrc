@@ -32,6 +32,7 @@ set softtabstop=0
 set t_vb=
 set tabstop=4
 set timeoutlen=1000 " for @sarnthil
+set ttimeoutlen=10
 set tm=500
 set wildignore=*.o,*~,*.pyc
 set wildmenu
@@ -48,7 +49,6 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'bassnode/vim-google-play'
 Plugin 'bling/vim-airline'
-Plugin 'bling/vim-bufferline'
 Plugin 'ervandew/supertab'
 Plugin 'kien/ctrlp.vim'
 Plugin 'mattn/emmet-vim'
@@ -79,6 +79,7 @@ let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 let g:ctrlp_working_path_mode = 0
 let g:mapleader = ","
 let g:rainbow_active = 1
+let g:airline#extensions#tabline#enabled = 1
 
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
