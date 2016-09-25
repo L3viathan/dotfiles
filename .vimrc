@@ -44,9 +44,11 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'bassnode/vim-google-play'
 Plugin 'bling/vim-airline'
+Plugin 'bling/vim-bufferline'
 Plugin 'ervandew/supertab'
 Plugin 'kien/ctrlp.vim'
 Plugin 'mattn/emmet-vim'
@@ -152,10 +154,12 @@ func! Toggle_paste()
     if g:paste_mode == 0
         set paste
         set nonu norelativenumber
+        GitGutterSignsDisable
         let g:paste_mode = 1
     else
         set nopaste
         set nu relativenumber
+        GitGutterSignsEnable
         let g:paste_mode = 0
     endif
     return
