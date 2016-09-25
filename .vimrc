@@ -70,12 +70,26 @@ syntax on
 highlight ExtraWhitespace ctermbg=1 guibg=red
 match ExtraWhitespace /\s\+$/
 
-" set leader key to comma
 let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#right_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = ''
 let g:airline#extensions#hunks#non_zero_only = 0
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_mode_map = {
+  \ '__' : '-',
+  \ 'n'  : 'N',
+  \ 'i'  : 'I',
+  \ 'R'  : 'R',
+  \ 'c'  : 'C',
+  \ 'v'  : 'V',
+  \ 'V'  : 'V',
+  \ '' : 'V',
+  \ 's'  : 'S',
+  \ 'S'  : 'S',
+  \ '' : 'S',
+  \ }
+let g:gitgutter_sign_removed = '-'
 let g:ctrlp_map = '<leader>f'
 let g:ctrlp_match_window_reversed = 0
 let g:ctrlp_max_height = 30
@@ -83,17 +97,15 @@ let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 let g:ctrlp_working_path_mode = 0
 let g:mapleader = ","
 let g:rainbow_active = 1
-let g:airline#extensions#tabline#enabled = 1
 
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let hostname = substitute(system('hostname'), '\n', '', '')
 let mapleader = ","
 
 if exists('+colorcolumn')
     set colorcolumn=80
 endif
-
-let hostname = substitute(system('hostname'), '\n', '', '')
 
 function SwitchBuffer()
     b#
