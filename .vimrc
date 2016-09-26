@@ -9,10 +9,12 @@ set expandtab
 set foldmethod=syntax
 set hlsearch
 set incsearch
+set nojs " single space after .!?
 set laststatus=2
 set lazyredraw
 set list listchars=tab:»·,trail:·
 set magic
+set mouse=h
 set nobackup
 set nocompatible              " be iMproved, required
 set noerrorbells
@@ -177,7 +179,7 @@ func! Toggle_mouse()
         set mouse=a
         let g:mouse_mode = 1
     else
-        set mouse=
+        set mouse=h
         let g:mouse_mode = 0
     endif
     return
@@ -208,7 +210,6 @@ map <silent> <leader>p :call Toggle_paste()<cr>
 map Q @q
 map T ^
 map Y y$
-
 nmap <Tab> :call SwitchBuffer()<CR>
 nmap <F1> <nop>
 
