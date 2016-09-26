@@ -213,13 +213,12 @@ nmap <Tab> :call SwitchBuffer()<CR>
 nmap <F1> <nop>
 
 imap <F1> <nop>
-imap inim if __name__ == '__main__':<cr>
+imap <C-A> <esc>0i
+imap <C-E> <esc>$a
 
-" set very magic
 nnoremap ' `
 nnoremap + <C-A>
 nnoremap - <C-X>
-nnoremap / /\v
 nnoremap <C-P> :!python3 %<cr>
 nnoremap <C-j> 3<C-e>
 nnoremap <C-k> 3<C-y>
@@ -231,10 +230,7 @@ nnoremap <silent> <leader>l :set background=light<CR>
 nnoremap <silent> <leader>t :NERDTree<cr>
 nnoremap YQ ZQ
 nnoremap YY ZZ
-nnoremap q: :q
 
-" set very magic
-cnoremap %s/ %s/\v
 cnoremap <C-A> <Home>
 cnoremap <C-E> <End>
 
