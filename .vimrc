@@ -80,18 +80,20 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_mode_map = {
   \ '__' : '-',
-  \ 'n'  : 'N',
-  \ 'i'  : 'I',
-  \ 'R'  : 'R',
-  \ 'c'  : 'C',
-  \ 'v'  : 'V',
-  \ 'V'  : 'V',
-  \ '' : 'V',
-  \ 's'  : 'S',
-  \ 'S'  : 'S',
-  \ '' : 'S',
+  \ 'n'  : '𝐍',
+  \ 'i'  : '𝐈',
+  \ 'R'  : '𝐑',
+  \ 'c'  : '𝐂',
+  \ 'v'  : '𝐕',
+  \ 'V'  : '𝐕',
+  \ '' : '𝐕',
+  \ 's'  : '𝐒',
+  \ 'S'  : '𝐒',
+  \ '' : '𝐒',
   \ }
-let g:gitgutter_sign_removed = '-'
+let g:gitgutter_sign_added = '⊕'
+let g:gitgutter_sign_removed = '⊖'
+let g:gitgutter_sign_modified = '⊙'
 let g:ctrlp_map = '<leader>f'
 let g:ctrlp_match_window_reversed = 0
 let g:ctrlp_max_height = 30
