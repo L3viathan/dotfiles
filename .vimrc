@@ -51,6 +51,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'bassnode/vim-google-play'
 Plugin 'bling/vim-airline'
+Plugin 'davidhalter/jedi-vim'
 Plugin 'ervandew/supertab'
 Plugin 'kien/ctrlp.vim'
 Plugin 'mattn/emmet-vim'
@@ -99,6 +100,14 @@ let g:ctrlp_match_window_reversed = 0
 let g:ctrlp_max_height = 30
 let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 let g:ctrlp_working_path_mode = 0
+let g:jedi#popup_on_dot = 0
+let g:jedi#goto_command = "<leader>jc"
+let g:jedi#goto_assignments_command = "<leader>ja"
+let g:jedi#goto_definitions_command = "<leader>jd"
+let g:jedi#documentation_command = ""
+let g:jedi#usages_command = "<leader>ju"
+let g:jedi#completions_command = "<C-Space>"
+let g:jedi#rename_command = "<leader>jr"
 let g:mapleader = ","
 let g:rainbow_active = 1
 
@@ -216,8 +225,6 @@ nmap <Tab> :call SwitchBuffer()<CR>
 nmap <F1> <nop>
 
 imap <F1> <nop>
-imap <C-A> <esc>0i
-imap <C-E> <esc>$a
 
 nnoremap ' `
 nnoremap + <C-A>
