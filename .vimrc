@@ -57,6 +57,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'mattn/emmet-vim'
 Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'oblitum/rainbow'
+Plugin 'severin-lemaignan/vim-minimap'
 Plugin 'scrooloose/nerdtree'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tmhedberg/SimpylFold'
@@ -76,7 +77,7 @@ match ExtraWhitespace /\s\+$/
 let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#right_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = ''
-let g:airline#extensions#hunks#non_zero_only = 0
+let g:airline#extensions#hunks#non_zero_only = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_mode_map = {
@@ -217,6 +218,7 @@ map <leader>cd :cd %:p:h<cr>:pwd<cr>
 map <silent> <leader>P :set nopaste<cr>
 map <silent> <leader>T :NERDTreeClose<cr>
 map <silent> <leader>m :call Toggle_mouse()<cr>
+map <silent> <leader>M :MinimapToggle<cr>
 map <silent> <leader>p :call Toggle_paste()<cr>
 map Q @q
 map T ^
