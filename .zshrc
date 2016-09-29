@@ -100,3 +100,5 @@ p() {
         python3 -q $*
     fi
 }
+
+alias google="googler --np -n 3 -lang en"
