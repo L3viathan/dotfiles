@@ -219,7 +219,6 @@ map <silent> <Left> :bprevious<cr>
 map <silent> <Right> :bnext<cr>
 map <Up> <Nop>
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
-map <silent> <leader>P :set nopaste<cr>
 map <silent> <leader>T :NERDTreeClose<cr>
 map <silent> <leader>m :call Toggle_mouse()<cr>
 map <silent> <leader>M :MinimapToggle<cr>
