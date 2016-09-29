@@ -54,6 +54,7 @@ Plugin 'bling/vim-airline'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'ervandew/supertab'
 Plugin 'kien/ctrlp.vim'
+Plugin 'lervag/vimtex'
 Plugin 'mattn/emmet-vim'
 Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'oblitum/rainbow'
@@ -109,6 +110,7 @@ let g:jedi#documentation_command = ""
 let g:jedi#usages_command = "<leader>ju"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = "<leader>jr"
+let g:vimtex_latexmk_enabled = 0
 let g:mapleader = ","
 let g:rainbow_active = 1
 
