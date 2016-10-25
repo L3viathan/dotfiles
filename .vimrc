@@ -12,11 +12,13 @@ set incsearch
 set nojs " single space after .!?
 set laststatus=2
 set lazyredraw
-set list listchars=tab:»·,trail:·
+set list
+set listchars=tab:▶\ ,trail:·,nbsp:⎵
 set magic
 set mouse=h
+set mps+=«:»,“:”
 set nobackup
-set nocompatible              " be iMproved, required
+set nocompatible
 set noerrorbells
 set noswapfile
 set novisualbell
