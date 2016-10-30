@@ -252,9 +252,18 @@ nnoremap <silent> <leader>l :set background=light<CR>
 nnoremap <silent> <leader>t :NERDTree<cr>
 nnoremap YQ ZQ
 nnoremap YY ZZ
+nnoremap ö [
+nnoremap ä ]
+nnoremap Ö {
+nnoremap Ä }
+nnoremap ü :
+nnoremap Ü ;
 
 cnoremap <C-A> <Home>
 cnoremap <C-E> <End>
 
 vnoremap <Space> zf
 vnoremap <leader>s :sort<cr>
+
+call arpeggio#load()
+Arpeggio inoremap jk <esc>
