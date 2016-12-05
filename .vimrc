@@ -231,6 +231,7 @@ map T ^
 map Y y$
 nmap <Tab> :call SwitchBuffer()<CR>
 nmap <F1> <nop>
+cmap w!! w !sudo tee % > /dev/null
 
 imap <F1> <nop>
 
