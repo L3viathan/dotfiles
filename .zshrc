@@ -27,6 +27,7 @@ alias ls='ls -F'
 alias lg='ls -l| egrep --color=never'
 alias ly='ls -l| egrep --color=never "(mp4|webm|flv|m4v|3gp|mkv|avi)$"'
 alias lm='ls -l| egrep --color=never "(mp3|ogg|flac|wav|m4a|wma)$"'
+alias lsd='ls -F| grep /'
 alias howami="curl -L api.l3vi.de/mood.json 2>/dev/null | jq -r '.mood'"
 alias lati="curl -L api.l3vi.de/location.json 2>/dev/null | jq .lat"
 alias lon="curl -L api.l3vi.de/location.json 2>/dev/null | jq .lon"

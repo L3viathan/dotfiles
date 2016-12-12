@@ -235,10 +235,6 @@ cmap w!! w !sudo tee % > /dev/null
 
 imap <F1> <nop>
 
-inoremap tit \textit{}<esc>i
-inoremap ttt \texttt{}<esc>i
-inoremap tbf \textbf{}<esc>i
-
 nnoremap ' `
 nnoremap + <C-A>
 nnoremap - <C-X>
