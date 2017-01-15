@@ -23,10 +23,11 @@ alias -9="kill -9" c="cat" rf="rm -rf" v="vim" s="ssh" o="open"
 alias :q="exit"
 alias ≤="git pull" ≥="git push"
 alias youtube-dl='youtube-dl -o "%(title)s.%(ext)s" --restrict-filenames'
+alias livestreamer='livestreamer --http-header Client-ID=jzkbprff40iqj646a697cyrvl0zt2m6 --player /usr/local/bin/mpv'
 alias ls='ls -F'
 alias lg='ls -l| egrep --color=never'
-alias ly='ls -l| egrep --color=never "(mp4|webm|flv|m4v|3gp|mkv|avi)$"'
-alias lm='ls -l| egrep --color=never "(mp3|ogg|flac|wav|m4a|wma)$"'
+alias ly='ls| egrep --color=never "(mp4|webm|flv|m4v|3gp|mkv|avi)$"'
+alias lm='ls| egrep --color=never "(mp3|ogg|flac|wav|m4a|wma)$"'
 alias lsd='ls -F| grep /'
 alias howami="curl -L api.l3vi.de/mood.json 2>/dev/null | jq -r '.mood'"
 alias lati="curl -L api.l3vi.de/location.json 2>/dev/null | jq .lat"
@@ -40,7 +41,8 @@ alias ccat='pygmentize -g'
 alias l3vi='mosh l3vi -- tmux attach -d'
 alias rosay='say -v Ioana' uksay='say -v Daniel' desay='say -v Anna'
 alias lock='/System/Library/CoreServices/"Menu Extras"/User.menu/Contents/Resources/CGSession -suspend'
-alias mplayer=mpv
+alias mplayer=mpv vi=vim
+alias -g °='~/.zshrc' √='~/.vimrc'
 
 # custom functions
 +(){while true; do; say "ping" && ping -oc 100000 8.8.8.8 > /dev/null && say "pong"; done}
