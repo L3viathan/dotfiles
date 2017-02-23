@@ -15,7 +15,7 @@ set lazyredraw
 set list
 set listchars=tab:▶\ ,trail:·,nbsp:⎵
 set magic
-set mouse=h
+set mouse=a
 set mps+=«:»,“:”
 set nobackup
 set nocompatible
@@ -36,6 +36,10 @@ set softtabstop=0
 set t_vb=
 set tabstop=4
 set timeoutlen=1000 " for @sarnthil
+if &term =~ '^screen'
+    " tmux knows the extended mouse mode
+    set ttymouse=xterm2
+endif
 set ttimeoutlen=10
 set tm=500
 set wildignore=*.o,*~,*.pyc
@@ -192,7 +196,7 @@ func! Toggle_paste()
     return
 endfunc
 
-let mouse_mode = 0
+let mouse_mode = 1
 func! Toggle_mouse()
     if g:mouse_mode == 0
         set mouse=a
