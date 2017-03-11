@@ -74,6 +74,8 @@ Plugin 'tpope/vim-fugitive' " git stuff
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'L3viathan/vim-cute-python'
 call vundle#end()            " required
 filetype plugin indent on    " required
 syntax on
@@ -217,6 +219,8 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 
 autocmd filetype crontab setlocal nobackup nowritebackup
+
+autocmd CursorHoldI * stopinsert " automatically go to normal mode after 4s
 
 colorscheme solarized
 
