@@ -2,11 +2,13 @@
 set autoindent
 set background=light
 set backspace=2
-set backupdir=~/.vim/backup
+set nobackup
+set nocompatible
 set cul " highlight cursor line
 set encoding=utf-8
+set noerrorbells
 set expandtab
-set foldmethod=syntax
+set foldmethod=manual
 set hlsearch
 set incsearch
 set nojs " single space after .!?
@@ -17,11 +19,6 @@ set listchars=tab:▶\ ,trail:·,nbsp:⎵
 set magic
 set mouse=a
 set mps+=«:»,“:”
-set nobackup
-set nocompatible
-set noerrorbells
-set noswapfile
-set novisualbell
 set number
 set relativenumber
 set ruler
@@ -33,7 +30,7 @@ set showcmd
 set showmatch
 set smarttab
 set softtabstop=0
-set t_vb=
+set noswapfile
 set tabstop=4
 set timeoutlen=1000 " for @sarnthil
 if &term =~ '^screen'
@@ -42,6 +39,8 @@ if &term =~ '^screen'
 endif
 set ttimeoutlen=10
 set tm=500
+set visualbell
+set t_vb=
 set wildignore=*.o,*~,*.pyc
 set wildmenu
 set wildmode=list:longest,full
@@ -55,7 +54,6 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'bassnode/vim-google-play'
 Plugin 'bling/vim-airline'
 Plugin 'ervandew/supertab'
 Plugin 'kana/vim-arpeggio'
@@ -67,11 +65,11 @@ Plugin 'oblitum/rainbow'
 Plugin 'severin-lemaignan/vim-minimap'
 Plugin 'scrooloose/nerdtree'
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'tmhedberg/SimpylFold'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive' " git stuff
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
+Plugin 'tweekmonster/braceless.vim'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'L3viathan/vim-cute-python'
@@ -96,11 +94,11 @@ let g:airline_mode_map = {
   \ 'R'  : '𝐑',
   \ 'c'  : '𝐂',
   \ 'v'  : '𝐕',
-  \ 'V'  : '𝐕',
-  \ '' : '𝐕',
+  \ 'V'  : '𝐕𝐋',
+  \ '' : '𝐕𝐁',
   \ 's'  : '𝐒',
-  \ 'S'  : '𝐒',
-  \ '' : '𝐒',
+  \ 'S'  : '𝐒𝐋',
+  \ '' : '𝐒𝐁',
   \ }
 let g:gitgutter_sign_added = '⊕'
 let g:gitgutter_sign_removed = '⊖'
@@ -110,16 +108,6 @@ let g:ctrlp_match_window_reversed = 0
 let g:ctrlp_max_height = 30
 let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 let g:ctrlp_working_path_mode = 0
-let g:jedi#popup_on_dot = 0
-let g:jedi#goto_command = "<leader>jc"
-let g:jedi#goto_assignments_command = "<leader>ja"
-let g:jedi#goto_definitions_command = "<leader>jd"
-let g:jedi#documentation_command = "<leader>jD"
-let g:jedi#usages_command = "<leader>ju"
-let g:jedi#completions_command = "<C-Space>"
-let g:jedi#rename_command = "<leader>jr"
-let g:jedi#completions_enabled = 0
-let g:jedi#show_call_signatures = 2
 let g:vimtex_latexmk_enabled = 0
 let g:mapleader = ","
 let g:rainbow_active = 1
@@ -221,6 +209,8 @@ autocmd filetype crontab setlocal nobackup nowritebackup
 
 autocmd CursorHoldI * stopinsert " automatically go to normal mode after 4s
 
+autocmd FileType python BracelessEnable +indent +fold +highlight
+
 colorscheme solarized
 
 map <C-c> ~
@@ -248,7 +238,7 @@ nnoremap - <C-X>
 nnoremap <C-P> :!python3 %<cr>
 nnoremap <C-j> 3<C-e>
 nnoremap <C-k> 3<C-y>
-nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+nnoremap <silent> <Space> za
 nnoremap <silent> <leader><cr> :nohl<cr>
 nnoremap <silent> <leader>d :set background=dark<CR>
 nnoremap <silent> <leader>h :Hexmode<CR>
