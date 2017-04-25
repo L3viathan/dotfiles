@@ -20,7 +20,6 @@ set magic
 set mouse=a
 set mps+=«:»,“:”
 set number
-set relativenumber
 set ruler
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 set scrolloff=2
@@ -69,10 +68,10 @@ Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive' " git stuff
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
-Plugin 'tweekmonster/braceless.vim'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'L3viathan/vim-cute-python'
+Plugin 'matze/vim-move'
 call vundle#end()            " required
 filetype plugin indent on    " required
 syntax on
@@ -110,6 +109,7 @@ let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 let g:ctrlp_working_path_mode = 0
 let g:vimtex_latexmk_enabled = 0
 let g:mapleader = ","
+let g:move_key_modifier = 'C'
 let g:rainbow_active = 1
 
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
@@ -185,6 +185,18 @@ func! Toggle_paste()
     return
 endfunc
 
+let conceal_mode = 1
+func! Toggle_conceal()
+    if g:conceal_mode == 0
+        set conceallevel=1
+        let g:conceal_mode = 1
+    else
+        set conceallevel=0
+        let g:conceal_mode = 0
+    endif
+    return
+endfunc
+
 let mouse_mode = 1
 func! Toggle_mouse()
     if g:mouse_mode == 0
@@ -207,9 +219,9 @@ autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 
 autocmd filetype crontab setlocal nobackup nowritebackup
 
-autocmd CursorHoldI * stopinsert " automatically go to normal mode after 4s
+" autocmd CursorHoldI * stopinsert " automatically go to normal mode after 4s
 
-autocmd FileType python BracelessEnable +indent +fold +highlight
+" autocmd FileType python BracelessEnable +indent +fold +highlight
 
 colorscheme solarized
 
@@ -223,6 +235,7 @@ map <silent> <leader>T :NERDTreeClose<cr>
 map <silent> <leader>m :call Toggle_mouse()<cr>
 map <silent> <leader>M :MinimapToggle<cr>
 map <silent> <leader>p :call Toggle_paste()<cr>
+map <silent> <leader>c :call Toggle_conceal()<cr>
 map Q @q
 map T ^
 map Y y$
