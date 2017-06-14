@@ -4,6 +4,7 @@ set background=light
 set backspace=2
 set nobackup
 set nocompatible
+set conceallevel=0
 set cul " highlight cursor line
 set encoding=utf-8
 set noerrorbells
@@ -185,7 +186,7 @@ func! Toggle_paste()
     return
 endfunc
 
-let conceal_mode = 1
+let conceal_mode = 0
 func! Toggle_conceal()
     if g:conceal_mode == 0
         set conceallevel=1
