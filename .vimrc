@@ -4,7 +4,6 @@ set background=light
 set backspace=2
 set nobackup
 set nocompatible
-set conceallevel=0
 set cul " highlight cursor line
 set encoding=utf-8
 set noerrorbells
@@ -71,7 +70,6 @@ Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'easymotion/vim-easymotion'
-Plugin 'L3viathan/vim-cute-python'
 Plugin 'matze/vim-move'
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -182,18 +180,6 @@ func! Toggle_paste()
         set nu relativenumber
         GitGutterSignsEnable
         let g:paste_mode = 0
-    endif
-    return
-endfunc
-
-let conceal_mode = 0
-func! Toggle_conceal()
-    if g:conceal_mode == 0
-        set conceallevel=1
-        let g:conceal_mode = 1
-    else
-        set conceallevel=0
-        let g:conceal_mode = 0
     endif
     return
 endfunc
