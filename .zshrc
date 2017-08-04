@@ -58,7 +58,7 @@ then
 fi}
 vol() {osascript -e "set volume $1"}
 show() {osascript -e "tell application \"$1\" to activate"}
-mkcd() {mkdir $1 && cd $1}
+mkcd() {echo "Use take instead"}
 compdef srsly='sudo' #autocompletion like sudo
 compdef shutup='sudo' #autocompletion like sudo
 compdef maybe='sudo' #autocompletion like sudo
@@ -94,6 +94,7 @@ focus() { echo -e "\033]50;StealFocus\a" }
 alias crep='grep --color=yes'
 alias T='it2prof Tagsüber' N='it2prof Nachts'
 alias a='open -a'
+alias socks1234='ssh -fND 1234 root@5.45.107.241'
 
 p() {
     if [ -z "$*" ]
