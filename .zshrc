@@ -17,6 +17,7 @@ export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_102.jdk/Contents/Ho
 unset MAILCHECK
 
 # Aliasses and custom functions
+alias ls=exa
 alias such='git' very='git' many='git' so='git' wow='git status' ql="quick-look"
 alias yolo='git commit -am "DEAL WITH IT" && git push -f origin master'
 alias -9="kill -9" c="cat" rf="rm -rf" v="vim" s="ssh" o="open"
@@ -24,7 +25,6 @@ alias :q="exit"
 alias ≤="git pull" ≥="git push"
 alias youtube-dl='youtube-dl -o "%(title)s.%(ext)s" --restrict-filenames'
 alias livestreamer='livestreamer --http-header Client-ID=jzkbprff40iqj646a697cyrvl0zt2m6 --player /usr/local/bin/mpv'
-alias ls='ls -F'
 alias lg='ls -l| egrep --color=never'
 alias ly='ls| egrep --color=never "(mp4|webm|flv|m4v|3gp|mkv|avi)$"'
 alias lm='ls| egrep --color=never "(mp3|ogg|flac|wav|m4a|wma)$"'
