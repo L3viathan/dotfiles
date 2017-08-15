@@ -18,6 +18,7 @@ unset MAILCHECK
 
 # Aliasses and custom functions
 alias ls='exa --group-directories-first'
+alias l='exa --group-directories-first --git -ahl'
 alias such='git' very='git' many='git' so='git' wow='git status' ql="quick-look"
 alias yolo='git commit -am "DEAL WITH IT" && git push -f origin master'
 alias -9="kill -9" c="cat" rf="rm -rf" v="vim" s="ssh" o="open"
@@ -34,7 +35,7 @@ alias lati="curl -L api.l3vi.de/location.json 2>/dev/null | jq .lat"
 alias lon="curl -L api.l3vi.de/location.json 2>/dev/null | jq .lon"
 alias whereami="curl -L http://api.l3vi.de/location.json 2>/dev/null| jq -r '.address'"
 alias jsc='/System/Library/Frameworks/JavaScriptCore.framework/Versions/Current/Resources/jsc'
-alias play="osascript -e 'tell application \"iTunes\"' -e \"play\" -e \"end tell\"" pause="osascript -e 'tell application \"iTunes\"' -e \"pause\" -e \"end tell\"" next="osascript -e 'tell application \"iTunes\"' -e \"next\" -e \"end tell\"" prev="osascript -e 'tell application \"iTunes\"' -e \"prev\" -e \"end tell\""
+alias play="mpc play" pause="mpc pause" next="mpc next" prev="mpc prev"
 alias wifi-on="networksetup -setairportpower en0 on" wifi-off="networksetup -setairportpower en0 off" wifi-fix="networksetup -setairportpower en0 off && sleep 5 && networksetup -setairportpower en0 on" wifi-brechstange="while true;do;networksetup -setairportpower en0 on;networksetup -setairportpower en0 off;sleep 1;done"
 alias oneline='while read -r line;do;echo -n "\r$line";done'
 alias ccat='pygmentize -g'
