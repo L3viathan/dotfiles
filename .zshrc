@@ -88,14 +88,13 @@ alias -s tgz="tar tfz"
 avaliable(){whois $* |grep AVAILABLE }
 alias please='sudo $(fc -ln -1)'
 
-test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
 alias whendidirunthelastcommand='date -r$(tail -n 2 ~/.zsh_history|head -n 1 | cut -d ":" -f 2 | tr -d " ")'
-it2prof() { echo -e "\033]50;SetProfile=$1\a" }
-focus() { echo -e "\033]50;StealFocus\a" }
 alias crep='grep --color=yes'
-alias T='it2prof Tagsüber' N='it2prof Nachts'
 alias a='open -a'
 alias socks1234='ssh -fND 1234 root@5.45.107.241'
+alias pbpush='pbpaste | ssh vizuina "cat | pbcopy"'
+alias pbpull='ssh vizuina "pbpaste" | pbcopy'
+alias bu='brew upgrade && brew cleanup'
 
 p() {
     if [ -z "$*" ]
@@ -105,5 +104,3 @@ p() {
         python3 -q $*
     fi
 }
-
-alias google="googler --np -n 3 -lang en"

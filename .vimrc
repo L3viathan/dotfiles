@@ -2,7 +2,8 @@
 set autoindent
 set background=light
 set backspace=2
-set nobackup
+" set nobackup
+set backupdir=~/.vim/backup
 set nocompatible
 set cul " highlight cursor line
 set encoding=utf-8
@@ -29,7 +30,7 @@ set showcmd
 set showmatch
 set smarttab
 set softtabstop=0
-set noswapfile
+" set noswapfile
 set tabstop=4
 set timeoutlen=1000 " for @sarnthil
 if &term =~ '^screen'
@@ -71,6 +72,8 @@ Plugin 'tpope/vim-surround'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'matze/vim-move'
+Plugin 'shinokada/dragvisuals.vim'
+Plugin 'drzel/vim-line-no-indicator'
 call vundle#end()            " required
 filetype plugin indent on    " required
 syntax on
@@ -98,6 +101,7 @@ let g:airline_mode_map = {
   \ 'S'  : '𝐒𝐋',
   \ '' : '𝐒𝐁',
   \ }
+let g:airline_section_z = '%{LineNoIndicator()} %l:%c'
 let g:gitgutter_sign_added = '⊕'
 let g:gitgutter_sign_removed = '⊖'
 let g:gitgutter_sign_modified = '⊙'
@@ -218,6 +222,8 @@ map <silent> <Left> :bprevious<cr>
 map <silent> <Right> :bnext<cr>
 map <Up> <Nop>
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
+map <leader>l Lzt
+map <leader>h Hzb
 map <silent> <leader>T :NERDTreeClose<cr>
 map <silent> <leader>m :call Toggle_mouse()<cr>
 map <silent> <leader>M :MinimapToggle<cr>
@@ -229,6 +235,12 @@ map Y y$
 nmap <Tab> :call SwitchBuffer()<CR>
 nmap <F1> <nop>
 cmap w!! w !sudo tee % > /dev/null
+vmap <expr> <left> DVB_Drag('left')
+vmap <expr> <right> DVB_Drag('right')
+vmap <expr> <up> DVB_Drag('up')
+vmap <expr> <down> DVB_Drag('down')
+vmap <expr> D DVB_Duplicate()
+let g:DVB_TrimWS = 1
 
 imap <F1> <nop>
 
@@ -240,9 +252,7 @@ nnoremap <C-j> 3<C-e>
 nnoremap <C-k> 3<C-y>
 nnoremap <silent> <Space> za
 nnoremap <silent> <leader><cr> :nohl<cr>
-nnoremap <silent> <leader>d :set background=dark<CR>
-nnoremap <silent> <leader>h :Hexmode<CR>
-nnoremap <silent> <leader>l :set background=light<CR>
+nnoremap <silent> <leader>H :Hexmode<CR>
 nnoremap <silent> <leader>t :NERDTree<cr>
 nnoremap YQ ZQ
 nnoremap YY ZZ
