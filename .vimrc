@@ -2,7 +2,6 @@
 set autoindent
 set background=light
 set backspace=2
-" set nobackup
 set backupdir=~/.vim/backup
 set nocompatible
 set cul " highlight cursor line
@@ -30,7 +29,6 @@ set showcmd
 set showmatch
 set smarttab
 set softtabstop=0
-" set noswapfile
 set tabstop=4
 set timeoutlen=1000 " for @sarnthil
 if &term =~ '^screen'
@@ -56,9 +54,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'bling/vim-airline'
 Plugin 'ervandew/supertab'
-Plugin 'kana/vim-arpeggio'
 Plugin 'kien/ctrlp.vim'
-Plugin 'lervag/vimtex'
 Plugin 'mattn/emmet-vim'
 Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'oblitum/rainbow'
@@ -110,7 +106,6 @@ let g:ctrlp_match_window_reversed = 0
 let g:ctrlp_max_height = 30
 let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 let g:ctrlp_working_path_mode = 0
-let g:vimtex_latexmk_enabled = 0
 let g:mapleader = ","
 let g:move_key_modifier = 'C'
 let g:rainbow_active = 1
@@ -210,10 +205,6 @@ autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 
 autocmd filetype crontab setlocal nobackup nowritebackup
 
-" autocmd CursorHoldI * stopinsert " automatically go to normal mode after 4s
-
-" autocmd FileType python BracelessEnable +indent +fold +highlight
-
 colorscheme solarized
 
 map <C-c> ~
@@ -228,7 +219,6 @@ map <silent> <leader>T :NERDTreeClose<cr>
 map <silent> <leader>m :call Toggle_mouse()<cr>
 map <silent> <leader>M :MinimapToggle<cr>
 map <silent> <leader>p :call Toggle_paste()<cr>
-map <silent> <leader>c :call Toggle_conceal()<cr>
 map Q @q
 map T ^
 map Y y$
@@ -268,6 +258,3 @@ cnoremap <C-E> <End>
 
 vnoremap <Space> zf
 vnoremap <leader>s :sort<cr>
-
-call arpeggio#load()
-Arpeggio inoremap jk <esc>
