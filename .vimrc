@@ -1,51 +1,54 @@
 " .vimrc
-set autoindent
-set background=light
-set backspace=2
-set backupdir=~/.vim/backup
+" Header stuff
 set nocompatible
+let mapleader = ","
+
+" Options
+set autoindent
+set background=dark
+set backspace=2
+set colorcolumn=80
 set cul " highlight cursor line
 set encoding=utf-8
-set noerrorbells
 set expandtab
 set foldmethod=manual
 set hlsearch
 set incsearch
-set nojs " single space after .!?
 set laststatus=2
 set lazyredraw
 set list
-set listchars=tab:▶\ ,trail:·,nbsp:⎵
+set listchars=tab:▶\ ,trail:·,nbsp:⍽
 set magic
 set mouse=a
 set mps+=«:»,“:”
+set noerrorbells
 set number
 set ruler
-set runtimepath^=~/.vim/bundle/ctrlp.vim
 set scrolloff=2
 set shiftwidth=4
 set shortmess=filmnrxsToOI
 set showcmd
 set showmatch
+set noshowmode
 set smarttab
 set softtabstop=0
+set splitbelow
+set splitright
 set tabstop=4
-set timeoutlen=1000 " for @sarnthil
+set ttimeoutlen=10
+set tm=500
 if &term =~ '^screen'
     " tmux knows the extended mouse mode
     set ttymouse=xterm2
 endif
-set ttimeoutlen=10
-set tm=500
-set visualbell
 set t_vb=
+set visualbell
 set wildignore=*.o,*~,*.pyc
 set wildmenu
 set wildmode=list:longest,full
 
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
+" Plugins
+filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " let Vundle manage Vundle, required
@@ -53,31 +56,34 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'bling/vim-airline'
+Plugin 'drzel/vim-line-no-indicator'
+Plugin 'easymotion/vim-easymotion'
 Plugin 'ervandew/supertab'
-Plugin 'kien/ctrlp.vim'
+Plugin 'junegunn/fzf'
+Plugin 'lfv89/vim-interestingwords'
 Plugin 'mattn/emmet-vim'
+Plugin 'matze/vim-move'
 Plugin 'michaeljsmith/vim-indent-object'
+Plugin 'mileszs/ack.vim'
 Plugin 'oblitum/rainbow'
-Plugin 'severin-lemaignan/vim-minimap'
+Plugin 'rhysd/committia.vim'
 Plugin 'scrooloose/nerdtree'
+Plugin 'severin-lemaignan/vim-minimap'
+Plugin 'shinokada/dragvisuals.vim'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'tommcdo/vim-exchange'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive' " git stuff
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'matze/vim-move'
-Plugin 'shinokada/dragvisuals.vim'
-Plugin 'drzel/vim-line-no-indicator'
+Plugin 'w0rp/ale'
 call vundle#end()            " required
 filetype plugin indent on    " required
 syntax on
 
-" highlight trailing spaces in annoying red
-highlight ExtraWhitespace ctermbg=1 guibg=red
-match ExtraWhitespace /\s\+$/
-
+" Plugin options
+let g:ackprg = 'ag --vimgrep'
 let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#right_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = ''
@@ -97,37 +103,88 @@ let g:airline_mode_map = {
   \ 'S'  : '𝐒𝐋',
   \ '' : '𝐒𝐁',
   \ }
+let g:ale_sign_error = ""
+let g:ale_sign_warning = ""
 let g:airline_section_z = '%{LineNoIndicator()} %l:%c'
-let g:gitgutter_sign_added = '⊕'
-let g:gitgutter_sign_removed = '⊖'
-let g:gitgutter_sign_modified = '⊙'
-let g:ctrlp_map = '<leader>f'
-let g:ctrlp_match_window_reversed = 0
-let g:ctrlp_max_height = 30
-let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-let g:ctrlp_working_path_mode = 0
-let g:mapleader = ","
+let g:DVB_TrimWS = 1
+let g:gitgutter_sign_added = '●'
+let g:gitgutter_sign_removed = '●'
+let g:gitgutter_sign_removed_first_line = '▲'
+let g:gitgutter_sign_modified = '●'
+let g:gitgutter_sign_modified_removed = '●'
+let g:interestingWordsTermColors = ['154', '211']
+let g:line_no_indicator_chars = [' ', '⠁', '⠉', '⠋', '⠛', '⠟', '⠿', '⡿', '⣿']
 let g:move_key_modifier = 'C'
 let g:rainbow_active = 1
+let g:rainbow_ctermfgs = [1,2,3,4,5,6,9]
 
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let hostname = substitute(system('hostname'), '\n', '', '')
-let mapleader = ","
-
-if exists('+colorcolumn')
-    set colorcolumn=80
-endif
-
+" Mappings
+" command mode
+cnoremap <C-A> <Home>
+cnoremap <C-E> <End>
+cnoremap w!! w !sudo tee % > /dev/null
+" normal mode
+nnoremap ' `
+nnoremap + <C-A>
+nnoremap - <C-X>
+nnoremap <C-P> :!python3 %<cr>
+nnoremap <C-c> ~
+nnoremap <C-j> 3<C-e>
+nnoremap <C-k> 3<C-y>
+nnoremap <Down> <Nop>
+nnoremap <F1> <nop>
+nnoremap <Up> <Nop>
+nnoremap <leader>cd :cd %:p:h<cr>:pwd<cr>
+nnoremap <silent> <Left> :bprevious<cr>
+nnoremap <silent> <Right> :bnext<cr>
+nnoremap <silent> <Space> za
+nnoremap <silent> <Tab> :call SwitchBuffer()<CR>
+nnoremap <silent> <leader><cr> :nohl<cr>
+nnoremap <silent> <leader>F :call AckAg()<cr>
+nnoremap <silent> <leader>H :call ToggleHex()<CR>
+nnoremap <silent> <leader>I :call UncolorAllWords()<cr>
+nnoremap <silent> <leader>M :MinimapToggle<cr>
+nnoremap <silent> <leader>T :NERDTreeClose<cr>
+nnoremap <silent> <leader>f :FZF<cr>
+nnoremap <silent> <leader>i :call InterestingWords('n')<cr>
+nnoremap <silent> <leader>n :ALENextWrap<cr>
+nnoremap <silent> <leader>N :ALEPreviousWrap<cr>
+nnoremap <silent> <leader>m :call Toggle_mouse()<cr>
+nnoremap <silent> <leader>p :call Toggle_paste()<cr>
+nnoremap <silent> <leader>t :NERDTree<cr>
+nnoremap <silent> <leader>d :bd<cr>
+nnoremap Q @q
+nnoremap Y y$
+nnoremap YQ ZQ
+nnoremap YY ZZ
+nnoremap Ä }
+nnoremap Ö {
+nnoremap Ü ;
+nnoremap ä ]
+nnoremap ö [
+nnoremap ü :
+nmap cxgv `<cx`>
+" visual mode
+vnoremap <Space> zf
+vnoremap <expr> <down> DVB_Drag('down')
+vnoremap <expr> <left> DVB_Drag('left')
+vnoremap <expr> <right> DVB_Drag('right')
+vnoremap <expr> <up> DVB_Drag('up')
+vnoremap <expr> D DVB_Duplicate()
+vnoremap <leader>s :sort<cr>
+vmap cx <esc>cxgv
+" Functions
 function SwitchBuffer()
     b#
 endfunction
 
+function AckAg()
+    call inputsave()
+    let search = input('> ')
+    call inputrestore()
+    execute 'Ack!' search
+endfunction
 
-" ex command for toggling hex mode - define mapping if desired
-command -bar Hexmode call ToggleHex()
-
-" helper function to toggle hex mode
 function ToggleHex()
     " hex mode should be considered a read-only operation
     " save values for modified and read-only for restoration later,
@@ -144,7 +201,7 @@ function ToggleHex()
         " set new options
         setlocal binary " make sure it overrides any textwidth, etc.
         silent :e " this will reload the file without trickeries
-                  "(DOS line endings will be shown entirely )
+        "(DOS line endings will be shown entirely )
         let &ft="xxd"
         " set status
         let b:editHex=1
@@ -154,7 +211,7 @@ function ToggleHex()
         " restore old options
         let &ft=b:oldft
         if !b:oldbin
-          setlocal nobinary
+            setlocal nobinary
         endif
         " set status
         let b:editHex=0
@@ -167,9 +224,8 @@ function ToggleHex()
     let &modifiable=l:oldmodifiable
 endfunction
 
-let paste_mode = 0
 func! Toggle_paste()
-    if g:paste_mode == 0
+    if !exists("g:paste_mode") || g:paste_mode == 0
         set paste
         set nonu norelativenumber
         GitGutterSignsDisable
@@ -183,9 +239,8 @@ func! Toggle_paste()
     return
 endfunc
 
-let mouse_mode = 1
 func! Toggle_mouse()
-    if g:mouse_mode == 0
+    if !exists("g:mouse_mode") || g:mouse_mode == 0
         set mouse=a
         let g:mouse_mode = 1
     else
@@ -195,66 +250,19 @@ func! Toggle_mouse()
     return
 endfunc
 
+" Autocmds
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd BufWinEnter *.* silent loadview
 autocmd BufWinLeave * call clearmatches()
 autocmd BufWinLeave *.* mkview
-
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-
 autocmd filetype crontab setlocal nobackup nowritebackup
 
+
+" Highlights
+highlight ExtraWhitespace ctermbg=1 guibg=red
+match ExtraWhitespace /\s\+$/
+
+" Misc
 colorscheme solarized
-
-map <C-c> ~
-map <Down> <Nop>
-map <silent> <Left> :bprevious<cr>
-map <silent> <Right> :bnext<cr>
-map <Up> <Nop>
-map <leader>cd :cd %:p:h<cr>:pwd<cr>
-map <leader>l Lzt
-map <leader>h Hzb
-map <silent> <leader>T :NERDTreeClose<cr>
-map <silent> <leader>m :call Toggle_mouse()<cr>
-map <silent> <leader>M :MinimapToggle<cr>
-map <silent> <leader>p :call Toggle_paste()<cr>
-map Q @q
-map T ^
-map Y y$
-nmap <Tab> :call SwitchBuffer()<CR>
-nmap <F1> <nop>
-cmap w!! w !sudo tee % > /dev/null
-vmap <expr> <left> DVB_Drag('left')
-vmap <expr> <right> DVB_Drag('right')
-vmap <expr> <up> DVB_Drag('up')
-vmap <expr> <down> DVB_Drag('down')
-vmap <expr> D DVB_Duplicate()
-let g:DVB_TrimWS = 1
-
-imap <F1> <nop>
-
-nnoremap ' `
-nnoremap + <C-A>
-nnoremap - <C-X>
-nnoremap <C-P> :!python3 %<cr>
-nnoremap <C-j> 3<C-e>
-nnoremap <C-k> 3<C-y>
-nnoremap <silent> <Space> za
-nnoremap <silent> <leader><cr> :nohl<cr>
-nnoremap <silent> <leader>H :Hexmode<CR>
-nnoremap <silent> <leader>t :NERDTree<cr>
-nnoremap YQ ZQ
-nnoremap YY ZZ
-nnoremap ö [
-nnoremap ä ]
-nnoremap Ö {
-nnoremap Ä }
-nnoremap ü :
-nnoremap Ü ;
-
-cnoremap <C-A> <Home>
-cnoremap <C-E> <End>
-
-vnoremap <Space> zf
-vnoremap <leader>s :sort<cr>
