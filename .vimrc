@@ -21,7 +21,6 @@ set mouse=a
 set mps+=«:»,“:”
 set number
 set ruler
-set runtimepath^=~/.vim/bundle/ctrlp.vim
 set scrolloff=2
 set shiftwidth=4
 set shortmess=filmnrxsToOI
@@ -37,6 +36,7 @@ if &term =~ '^screen'
 endif
 set ttimeoutlen=10
 set tm=500
+set undofile
 set visualbell
 set t_vb=
 set wildignore=*.o,*~,*.pyc
@@ -54,11 +54,11 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'bling/vim-airline'
 Plugin 'ervandew/supertab'
-Plugin 'kien/ctrlp.vim'
+Plugin 'junegunn/fzf'
+Plugin 'w0rp/ale'
 Plugin 'mattn/emmet-vim'
 Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'oblitum/rainbow'
-Plugin 'severin-lemaignan/vim-minimap'
 Plugin 'scrooloose/nerdtree'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tpope/vim-commentary'
@@ -69,6 +69,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'matze/vim-move'
 Plugin 'shinokada/dragvisuals.vim'
+Plugin 'tommcdo/vim-exchange'
 Plugin 'drzel/vim-line-no-indicator'
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -101,17 +102,12 @@ let g:airline_section_z = '%{LineNoIndicator()} %l:%c'
 let g:gitgutter_sign_added = '⊕'
 let g:gitgutter_sign_removed = '⊖'
 let g:gitgutter_sign_modified = '⊙'
-let g:ctrlp_map = '<leader>f'
-let g:ctrlp_match_window_reversed = 0
-let g:ctrlp_max_height = 30
-let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-let g:ctrlp_working_path_mode = 0
 let g:mapleader = ","
 let g:move_key_modifier = 'C'
 let g:rainbow_active = 1
 
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+" let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+" let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let hostname = substitute(system('hostname'), '\n', '', '')
 let mapleader = ","
 
@@ -167,22 +163,6 @@ function ToggleHex()
     let &modifiable=l:oldmodifiable
 endfunction
 
-let paste_mode = 0
-func! Toggle_paste()
-    if g:paste_mode == 0
-        set paste
-        set nonu norelativenumber
-        GitGutterSignsDisable
-        let g:paste_mode = 1
-    else
-        set nopaste
-        set nu relativenumber
-        GitGutterSignsEnable
-        let g:paste_mode = 0
-    endif
-    return
-endfunc
-
 let mouse_mode = 1
 func! Toggle_mouse()
     if g:mouse_mode == 0
@@ -215,10 +195,11 @@ map <Up> <Nop>
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 map <leader>l Lzt
 map <leader>h Hzb
+map <silent> <leader>f :FZF<cr>
 map <silent> <leader>T :NERDTreeClose<cr>
 map <silent> <leader>m :call Toggle_mouse()<cr>
 map <silent> <leader>M :MinimapToggle<cr>
-map <silent> <leader>p :call Toggle_paste()<cr>
+map <leader>p "+p
 map Q @q
 map T ^
 map Y y$
@@ -230,6 +211,7 @@ vmap <expr> <right> DVB_Drag('right')
 vmap <expr> <up> DVB_Drag('up')
 vmap <expr> <down> DVB_Drag('down')
 vmap <expr> D DVB_Duplicate()
+vmap cx <esc>cxgv
 let g:DVB_TrimWS = 1
 
 imap <F1> <nop>
@@ -252,9 +234,13 @@ nnoremap Ö {
 nnoremap Ä }
 nnoremap ü :
 nnoremap Ü ;
+" quick rot13 all
+nnoremap ?? ggg?G``
+nmap cxgv `<cx`>
 
 cnoremap <C-A> <Home>
 cnoremap <C-E> <End>
 
 vnoremap <Space> zf
 vnoremap <leader>s :sort<cr>
+let g:airline#extensions#ale#enabled = 1

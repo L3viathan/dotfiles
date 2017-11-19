@@ -6,12 +6,11 @@ export EDITOR="vim"
 export VISUAL="vim"
 COMPLETION_WAITING_DOTS="true"
 unsetopt correct_all #disable auto correction
-plugins=(git python osx battery zsh-syntax-highlighting tmux pip mosh sublime zshmarks dirhistory)
+plugins=(git python osx battery zsh-syntax-highlighting pip mosh sublime zshmarks dirhistory)
 source $ZSH/oh-my-zsh.sh
 #</oh-my-zsh_stuff>
 
 # PATH adjustments: add scripts and wd
-export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:/bin:/usr/sbin:/sbin:/usr/bin:/usr/local/git/bin:/opt/local/bin:.
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_102.jdk/Contents/Home"
 
 unset MAILCHECK
@@ -64,6 +63,7 @@ compdef srsly='sudo' #autocompletion like sudo
 compdef shutup='sudo' #autocompletion like sudo
 compdef maybe='sudo' #autocompletion like sudo
 export MOSH_TITLE_NOPREFIX=1
+export MOSH_SERVER_NETWORK_TMOUT=604800
 lookup() {dig -x `dig +short $*`}
 export PYTHONPATH="./.pip:$PYTHONPATH:$HOME"
 
@@ -84,6 +84,7 @@ alias -s zip="unzip -l"
 alias -s tar="tar tf"
 alias -s tar.gz="tar tfz"
 alias -s tgz="tar tfz"
+alias -s mid="timidity"
 
 avaliable(){whois $* |grep AVAILABLE }
 alias please='sudo $(fc -ln -1)'
