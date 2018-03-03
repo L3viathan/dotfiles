@@ -1,123 +1,100 @@
 " .vimrc
-set autoindent
-set background=light
-set backspace=2
-set backupdir=~/.vim/backup
-set nocompatible
-set cul " highlight cursor line
-set encoding=utf-8
-set noerrorbells
-set expandtab
-set foldmethod=manual
-set hlsearch
-set incsearch
-set nojs " single space after .!?
-set laststatus=2
-set lazyredraw
-set list
-set listchars=tab:▶\ ,trail:·,nbsp:⎵
-set magic
-set mouse=a
-set mps+=«:»,“:”
-set number
-set ruler
-set scrolloff=2
-set shiftwidth=4
-set shortmess=filmnrxsToOI
-set showcmd
-set showmatch
-set smarttab
-set softtabstop=0
-set tabstop=4
-set timeoutlen=1000 " for @sarnthil
+
+" OPTIONS
+set nocp                        " turn off Vi-compatibility
+set ai                          " automatically indent if necessary
+set bs=2                        " backspace over lines
+set bdir=~/.vim/backup          " write backupfiles to central dir
+" set cul                       " highlight cursor line. Taken out: lag
+set enc=utf-8                   " UTf-8 always, everywhere
+set noeb vb t_vb=               " shut up
+set et                          " no literal tab characters
+set fdm=manual                  " fold when I want to
+set cc=80                       " color column 80
+set hls is                      " search immediately and highlight
+set nojs                        " single space after .!?
+set ls=2                        " necessary for lightline
+set lz                          " don't redraw screen during macros
+set list                        " show whitespace with special chars:
+set lcs=tab:▶\ ,trail:·,nbsp:⎵  " these.
+set magic                       " default to magic mode in regex
+set mouse=a                     " always enable mouse
+set mps+=«:»,“:”                " additional matching pairs for %
+set nu                          " show line numbers
+set ru                          " show line and col number of cursor
+set so=2                        " always show 2 lines of extra context
+set sw=4 ts=4 sts=0             " indentation with 4 spaces
+set shm=filmnrxsToOI            " shorter messages for some prompts
+set sc                          " show command in last line
+set sm                          " briefly jump to matching paren
+set sta                         " tab and untab sw spaces
 if &term =~ '^screen'
     " tmux knows the extended mouse mode
-    set ttymouse=xterm2
+    set ttym=xterm2
 endif
-set ttimeoutlen=10
-set tm=500
-set undofile
-set visualbell
-set t_vb=
-set wildignore=*.o,*~,*.pyc
-set wildmenu
-set wildmode=list:longest,full
+set udf                                 " write persistent undo file
+set wig=*.o,*~,*.pyc                    " ignore in wild menu
+set wmnu                                " enable wild menu
+set wim=list:longest,full               " how to suggest in wild menu
 
-filetype off                  " required
+colorscheme solarized
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'bling/vim-airline'
-Plugin 'ervandew/supertab'
-Plugin 'junegunn/fzf'
-Plugin 'w0rp/ale'
-Plugin 'mattn/emmet-vim'
-Plugin 'michaeljsmith/vim-indent-object'
-Plugin 'oblitum/rainbow'
-Plugin 'scrooloose/nerdtree'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-fugitive' " git stuff
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-surround'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'matze/vim-move'
-Plugin 'shinokada/dragvisuals.vim'
-Plugin 'tommcdo/vim-exchange'
-Plugin 'drzel/vim-line-no-indicator'
-call vundle#end()            " required
+" PLUGINS
+call plug#begin('~/.vim/plugged')
+Plug 'airblade/vim-gitgutter'
+Plug 'lfv89/vim-interestingwords'
+Plug 'altercation/vim-colors-solarized'
+Plug 'ervandew/supertab'
+Plug 'junegunn/fzf', {'on': 'FZF', 'do': 'yes \| ./install' }
+Plug 'w0rp/ale', {'for': 'python'}
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'oblitum/rainbow'
+Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive' " git stuff
+Plug 'mileszs/ack.vim'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'easymotion/vim-easymotion'
+Plug 'matze/vim-move'
+Plug 'shinokada/dragvisuals.vim'
+Plug 'tommcdo/vim-exchange'
+Plug 'drzel/vim-line-no-indicator'
+Plug 'itchyny/lightline.vim'
+call plug#end()
 filetype plugin indent on    " required
 syntax on
 
-" highlight trailing spaces in annoying red
-highlight ExtraWhitespace ctermbg=1 guibg=red
-match ExtraWhitespace /\s\+$/
 
-let g:airline#extensions#tabline#left_sep = ''
-let g:airline#extensions#tabline#right_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = ''
-let g:airline#extensions#hunks#non_zero_only = 1
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_mode_map = {
-  \ '__' : '-',
-  \ 'n'  : '𝐍',
-  \ 'i'  : '𝐈',
-  \ 'R'  : '𝐑',
-  \ 'c'  : '𝐂',
-  \ 'v'  : '𝐕',
-  \ 'V'  : '𝐕𝐋',
-  \ '' : '𝐕𝐁',
-  \ 's'  : '𝐒',
-  \ 'S'  : '𝐒𝐋',
-  \ '' : '𝐒𝐁',
+" ASSIGNMENTS (mostly for plugins)
+
+let g:lightline = {
+  \ 'colorscheme': 'solarized',
+  \ 'active': {
+  \   'right': [ [ 'lineinfo', 'linenoindicator' ],
+  \              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] ]
+  \ },
+  \ 'component': {
+  \   'charvaluehex': '0x%B',
+  \   'linenoindicator': '%{LineNoIndicator()}'
+  \ },
   \ }
-let g:airline_section_z = '%{LineNoIndicator()} %l:%c'
+
+let g:ackprg = 'ag --vimgrep'
 let g:gitgutter_sign_added = '⊕'
 let g:gitgutter_sign_removed = '⊖'
 let g:gitgutter_sign_modified = '⊙'
-let g:mapleader = ","
+let g:mapleader = " "
 let g:move_key_modifier = 'C'
 let g:rainbow_active = 1
+let g:DVB_TrimWS = 1
+let g:line_no_indicator_chars = [' ', '⠁', '⠉', '⠋', '⠛', '⠟', '⠿', '⡿', '⣿']
 
-" let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-" let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let hostname = substitute(system('hostname'), '\n', '', '')
-let mapleader = ","
 
-if exists('+colorcolumn')
-    set colorcolumn=80
-endif
-
-function SwitchBuffer()
-    b#
-endfunction
+let g:matchparen_timeout = 2
+let g:matchparen_insert_timeout = 2
 
 
 " ex command for toggling hex mode - define mapping if desired
@@ -163,29 +140,23 @@ function ToggleHex()
     let &modifiable=l:oldmodifiable
 endfunction
 
-let mouse_mode = 1
-func! Toggle_mouse()
-    if g:mouse_mode == 0
-        set mouse=a
-        let g:mouse_mode = 1
-    else
-        set mouse=h
-        let g:mouse_mode = 0
-    endif
-    return
-endfunc
+function AckAg()
+    call inputsave()
+    let search = input('> ')
+    call inputrestore()
+    execute 'Ack!' search
+endfunction
 
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+
+" AUTOCMDS
+
 autocmd BufWinEnter *.* silent loadview
 autocmd BufWinLeave * call clearmatches()
 autocmd BufWinLeave *.* mkview
-
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-
 autocmd filetype crontab setlocal nobackup nowritebackup
 
-colorscheme solarized
+
+" MAPPINGS
 
 map <C-c> ~
 map <Down> <Nop>
@@ -193,18 +164,14 @@ map <silent> <Left> :bprevious<cr>
 map <silent> <Right> :bnext<cr>
 map <Up> <Nop>
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
-map <leader>l Lzt
-map <leader>h Hzb
-map <silent> <leader>f :FZF<cr>
-map <silent> <leader>T :NERDTreeClose<cr>
-map <silent> <leader>m :call Toggle_mouse()<cr>
-map <silent> <leader>M :MinimapToggle<cr>
 map <leader>p "+p
 map Q @q
 map T ^
 map Y y$
-nmap <Tab> :call SwitchBuffer()<CR>
-nmap <F1> <nop>
+map <F1> <nop>
+nmap cxgv `<cx`>
+nmap s ys
+nmap S yss
 cmap w!! w !sudo tee % > /dev/null
 vmap <expr> <left> DVB_Drag('left')
 vmap <expr> <right> DVB_Drag('right')
@@ -212,9 +179,6 @@ vmap <expr> <up> DVB_Drag('up')
 vmap <expr> <down> DVB_Drag('down')
 vmap <expr> D DVB_Duplicate()
 vmap cx <esc>cxgv
-let g:DVB_TrimWS = 1
-
-imap <F1> <nop>
 
 nnoremap ' `
 nnoremap + <C-A>
@@ -226,6 +190,12 @@ nnoremap <silent> <Space> za
 nnoremap <silent> <leader><cr> :nohl<cr>
 nnoremap <silent> <leader>H :Hexmode<CR>
 nnoremap <silent> <leader>t :NERDTree<cr>
+nnoremap <silent> <leader>n :ALENextWrap<cr>
+nnoremap <silent> <leader>N :ALEPreviousWrap<cr>
+nnoremap <silent> <leader>f :FZF<cr>
+nnoremap <silent> <leader>F :call AckAg()<cr>
+nnoremap <silent> <leader>T :NERDTreeClose<cr>
+nnoremap <silent> <leader>M :MinimapToggle<cr>
 nnoremap YQ ZQ
 nnoremap YY ZZ
 nnoremap ö [
@@ -236,11 +206,8 @@ nnoremap ü :
 nnoremap Ü ;
 " quick rot13 all
 nnoremap ?? ggg?G``
-nmap cxgv `<cx`>
 
 cnoremap <C-A> <Home>
 cnoremap <C-E> <End>
 
-vnoremap <Space> zf
 vnoremap <leader>s :sort<cr>
-let g:airline#extensions#ale#enabled = 1
