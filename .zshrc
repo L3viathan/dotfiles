@@ -20,7 +20,7 @@ alias ls='exa --group-directories-first'
 alias l='exa --group-directories-first --git -ahl'
 alias such='git' very='git' many='git' so='git' wow='git status' ql="quick-look"
 alias yolo='git commit -am "DEAL WITH IT" && git push -f origin master'
-alias -9="kill -9" c="cat" rf="rm -rf" v="vim" s="ssh" o="open"
+alias -9="kill -9" c="cat" rf="rm -rf" v="vim" s="ssh" o="open" t="tig"
 alias :q="exit"
 alias ≤="git pull" ≥="git push"
 alias youtube-dl='youtube-dl -o "%(title)s.%(ext)s" --restrict-filenames'

@@ -1,0 +1,25 @@
+[user]
+    name = L3viathan
+    email = git@l3vi.de
+[push]
+    default = simple
+[alias]
+    co = checkout
+    c = commit
+    a = add
+    d = diff
+    br = branch
+[filter "media"]
+    required = true
+    clean = git media clean %f
+    smudge = git media smudge %f
+[core]
+    editor = /usr/bin/vim
+    editor = vim
+[init]
+    templatedir = ~/.git_template
+[merge]
+    tool = vimdiff
+    conflictstyle = diff3
+[mergetool]
+    prompt = false

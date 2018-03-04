@@ -32,36 +32,37 @@ if &term =~ '^screen'
     " tmux knows the extended mouse mode
     set ttym=xterm2
 endif
-set udf                                 " write persistent undo file
-set wig=*.o,*~,*.pyc                    " ignore in wild menu
-set wmnu                                " enable wild menu
-set wim=list:longest,full               " how to suggest in wild menu
+set udf udir=~/.vim/undo        " write persistent undo file
+set wig=*.o,*~,*.pyc            " ignore in wild menu
+set wmnu                        " enable wild menu
+set wim=list:longest,full       " how to suggest in wild menu
 
 colorscheme solarized
 
 " PLUGINS
 call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
-Plug 'lfv89/vim-interestingwords'
 Plug 'altercation/vim-colors-solarized'
+Plug 'drzel/vim-line-no-indicator'
+Plug 'easymotion/vim-easymotion'
 Plug 'ervandew/supertab'
+Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', {'on': 'FZF', 'do': 'yes \| ./install' }
-Plug 'w0rp/ale', {'for': 'python'}
+Plug 'lfv89/vim-interestingwords'
+Plug 'matze/vim-move'
 Plug 'michaeljsmith/vim-indent-object'
+Plug 'mileszs/ack.vim'
 Plug 'oblitum/rainbow'
+Plug 'rhysd/committia.vim'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
+Plug 'shinokada/dragvisuals.vim'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive' " git stuff
-Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'easymotion/vim-easymotion'
-Plug 'matze/vim-move'
-Plug 'shinokada/dragvisuals.vim'
-Plug 'tommcdo/vim-exchange'
-Plug 'drzel/vim-line-no-indicator'
-Plug 'itchyny/lightline.vim'
+Plug 'w0rp/ale', {'for': 'python'}
 call plug#end()
 filetype plugin indent on    " required
 syntax on
