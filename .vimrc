@@ -73,8 +73,8 @@ syntax on
 let g:lightline = {
   \ 'colorscheme': 'solarized',
   \ 'active': {
-  \   'right': [ [ 'lineinfo', 'linenoindicator' ],
-  \              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] ]
+  \   'right': [ [ 'charvaluehex', 'lineinfo', 'linenoindicator' ],
+  \              [ 'fileformat', 'fileencoding', 'filetype'] ]
   \ },
   \ 'component': {
   \   'charvaluehex': '0x%B',
@@ -94,11 +94,6 @@ let g:line_no_indicator_chars = [' ', '⠁', '⠉', '⠋', '⠛', '⠟', '⠿', 
 
 let hostname = substitute(system('hostname'), '\n', '', '')
 
-let g:matchparen_timeout = 2
-let g:matchparen_insert_timeout = 2
-
-
-" ex command for toggling hex mode - define mapping if desired
 command -bar Hexmode call ToggleHex()
 
 " helper function to toggle hex mode
@@ -161,54 +156,52 @@ autocmd filetype crontab setlocal nobackup nowritebackup
 
 map <C-c> ~
 map <Down> <Nop>
-map <silent> <Left> :bprevious<cr>
-map <silent> <Right> :bnext<cr>
+map <F1> <nop>
 map <Up> <Nop>
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 map <leader>p "+p
+map <silent> <Left> :bprevious<cr>
+map <silent> <Right> :bnext<cr>
 map Q @q
-map T ^
 map Y y$
-map <F1> <nop>
+
+cmap w!! w !sudo tee % > /dev/null
+cnoremap <C-A> <Home>
+cnoremap <C-E> <End>
+
+nmap S yss
 nmap cxgv `<cx`>
 nmap s ys
-nmap S yss
-cmap w!! w !sudo tee % > /dev/null
-vmap <expr> <left> DVB_Drag('left')
-vmap <expr> <right> DVB_Drag('right')
-vmap <expr> <up> DVB_Drag('up')
-vmap <expr> <down> DVB_Drag('down')
-vmap <expr> D DVB_Duplicate()
-vmap cx <esc>cxgv
-
 nnoremap ' `
 nnoremap + <C-A>
 nnoremap - <C-X>
 nnoremap <C-P> :!python3 %<cr>
 nnoremap <C-j> 3<C-e>
 nnoremap <C-k> 3<C-y>
-nnoremap <silent> <Space> za
 nnoremap <silent> <leader><cr> :nohl<cr>
-nnoremap <silent> <leader>H :Hexmode<CR>
-nnoremap <silent> <leader>t :NERDTree<cr>
-nnoremap <silent> <leader>n :ALENextWrap<cr>
-nnoremap <silent> <leader>N :ALEPreviousWrap<cr>
-nnoremap <silent> <leader>f :FZF<cr>
 nnoremap <silent> <leader>F :call AckAg()<cr>
-nnoremap <silent> <leader>T :NERDTreeClose<cr>
+nnoremap <silent> <leader>H :Hexmode<CR>
 nnoremap <silent> <leader>M :MinimapToggle<cr>
-nnoremap YQ ZQ
-nnoremap YY ZZ
-nnoremap ö [
-nnoremap ä ]
-nnoremap Ö {
-nnoremap Ä }
-nnoremap ü :
-nnoremap Ü ;
+nnoremap <silent> <leader>N :ALEPreviousWrap<cr>
+nnoremap <silent> <leader>T :NERDTreeClose<cr>
+nnoremap <silent> <leader>f :FZF<cr>
+nnoremap <silent> <leader>n :ALENextWrap<cr>
+nnoremap <silent> <leader>t :NERDTree<cr>
 " quick rot13 all
 nnoremap ?? ggg?G``
+nnoremap YQ ZQ
+nnoremap YY ZZ
+nnoremap Ä }
+nnoremap Ö {
+nnoremap Ü ;
+nnoremap ä ]
+nnoremap ö [
+nnoremap ü :
 
-cnoremap <C-A> <Home>
-cnoremap <C-E> <End>
-
-vnoremap <leader>s :sort<cr>
+vmap <expr> <down> DVB_Drag('down')
+vmap <expr> <left> DVB_Drag('left')
+vmap <expr> <right> DVB_Drag('right')
+vmap <expr> <up> DVB_Drag('up')
+vmap <expr> D DVB_Duplicate()
+vmap cx <esc>cxgv
+vnoremap <silent> <leader>s :sort<cr>
