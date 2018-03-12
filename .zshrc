@@ -11,7 +11,7 @@ source $ZSH/oh-my-zsh.sh
 #</oh-my-zsh_stuff>
 
 # PATH adjustments: add scripts and wd
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_102.jdk/Contents/Home"
+# export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_102.jdk/Contents/Home"
 
 unset MAILCHECK
 
@@ -33,14 +33,9 @@ alias howami="curl -L api.l3vi.de/mood.json 2>/dev/null | jq -r '.mood'"
 alias lati="curl -L api.l3vi.de/location.json 2>/dev/null | jq .lat"
 alias lon="curl -L api.l3vi.de/location.json 2>/dev/null | jq .lon"
 alias whereami="curl -L http://api.l3vi.de/location.json 2>/dev/null| jq -r '.address'"
-alias jsc='/System/Library/Frameworks/JavaScriptCore.framework/Versions/Current/Resources/jsc'
-alias play="mpc play" pause="mpc pause" next="mpc next" prev="mpc prev"
-alias wifi-on="networksetup -setairportpower en0 on" wifi-off="networksetup -setairportpower en0 off" wifi-fix="networksetup -setairportpower en0 off && sleep 5 && networksetup -setairportpower en0 on" wifi-brechstange="while true;do;networksetup -setairportpower en0 on;networksetup -setairportpower en0 off;sleep 1;done"
 alias oneline='while read -r line;do;echo -n "\r$line";done'
 alias ccat='pygmentize -g'
 alias l3vi='mosh l3vi -- tmux attach -d'
-alias rosay='say -v Ioana' uksay='say -v Daniel' desay='say -v Anna'
-alias lock='/System/Library/CoreServices/"Menu Extras"/User.menu/Contents/Resources/CGSession -suspend'
 alias mplayer=mpv vi=vim
 alias -g °='~/.zshrc' √='~/.vimrc'
 
@@ -56,8 +51,6 @@ maybe(){if [ $(($RANDOM%2)) -eq 1 ]
 then
     $*
 fi}
-vol() {osascript -e "set volume $1"}
-show() {osascript -e "tell application \"$1\" to activate"}
 mkcd() {echo "Use take instead"}
 compdef srsly='sudo' #autocompletion like sudo
 compdef shutup='sudo' #autocompletion like sudo
@@ -88,14 +81,9 @@ alias -s mid="timidity"
 
 avaliable(){whois $* |grep AVAILABLE }
 alias please='sudo $(fc -ln -1)'
+alias crep='grep --color=yes'
 
 alias whendidirunthelastcommand='date -r$(tail -n 2 ~/.zsh_history|head -n 1 | cut -d ":" -f 2 | tr -d " ")'
-alias crep='grep --color=yes'
-alias a='open -a'
-alias socks1234='ssh -fND 1234 root@5.45.107.241'
-alias pbpush='pbpaste | ssh vizuina "cat | pbcopy"'
-alias pbpull='ssh vizuina "pbpaste" | pbcopy'
-alias bu='brew upgrade && brew cleanup'
 
 p() {
     if [ -z "$*" ]
@@ -105,3 +93,13 @@ p() {
         python3 -q $*
     fi
 }
+
+export hostname=$(hostname)
+export uname=$(uname)
+
+if [ -f ~/.zshrc.$uname ]; then
+    source ~/.zshrc.$uname
+fi
+if [ -f ~/.zshrc.$hostname ]; then
+    source ~/.zshrc.$hostname
+fi

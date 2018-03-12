@@ -1,0 +1,3 @@
+alias socks1234='ssh -fND 1234 root@5.45.107.241'
+alias pbpush='pbpaste | ssh vizuina "cat | pbcopy"'
+alias pbpull='ssh vizuina "pbpaste" | pbcopy'
