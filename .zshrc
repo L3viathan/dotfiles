@@ -1,6 +1,6 @@
 #<oh-my-zsh_stuff>
 ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="l3vi2"
+ZSH_THEME="agnoster"
 CASE_SENSITIVE="true"
 export EDITOR="vim"
 export VISUAL="vim"

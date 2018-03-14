@@ -37,8 +37,6 @@ set wig=*.o,*~,*.pyc            " ignore in wild menu
 set wmnu                        " enable wild menu
 set wim=list:longest,full       " how to suggest in wild menu
 
-colorscheme solarized
-
 " PLUGINS
 call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
@@ -205,3 +203,5 @@ vmap <expr> <up> DVB_Drag('up')
 vmap <expr> D DVB_Duplicate()
 vmap cx <esc>cxgv
 vnoremap <silent> <leader>s :sort<cr>
+
+colorscheme solarized
