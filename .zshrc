@@ -6,7 +6,7 @@ export EDITOR="vim"
 export VISUAL="vim"
 COMPLETION_WAITING_DOTS="true"
 unsetopt correct_all #disable auto correction
-plugins=(git python osx battery zsh-syntax-highlighting pip mosh sublime zshmarks dirhistory)
+plugins=(git python osx battery zsh-syntax-highlighting pip mosh sublime zshmarks dirhistory fzf-zsh)
 source $ZSH/oh-my-zsh.sh
 #</oh-my-zsh_stuff>
 
@@ -16,8 +16,6 @@ source $ZSH/oh-my-zsh.sh
 unset MAILCHECK
 
 # Aliasses and custom functions
-alias ls='exa --group-directories-first'
-alias l='exa --group-directories-first --git -ahl'
 alias such='git' very='git' many='git' so='git' wow='git status' ql="quick-look"
 alias yolo='git commit -am "DEAL WITH IT" && git push -f origin master'
 alias -9="kill -9" c="cat" rf="rm -rf" v="vim" s="ssh" o="open" t="tig"
