@@ -16,6 +16,7 @@ source $ZSH/oh-my-zsh.sh
 unset MAILCHECK
 
 # Aliasses and custom functions
+alias ls='exa' ll='ls -lh --git' l='ls -lah --git'
 alias such='git' very='git' many='git' so='git' wow='git status' ql="quick-look"
 alias yolo='git commit -am "DEAL WITH IT" && git push -f origin master'
 alias -9="kill -9" c="cat" rf="rm -rf" v="vim" s="ssh" o="open" t="tig"
@@ -91,6 +92,8 @@ p() {
         python3 -q $*
     fi
 }
+
+export FZF_DEFAULT_COMMAND='ag -g ""'
 
 export hostname=$(hostname)
 export uname=$(uname)

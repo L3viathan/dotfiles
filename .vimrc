@@ -163,7 +163,7 @@ map <silent> <Right> :bnext<cr>
 map Q @q
 map Y y$
 
-cmap w!! w !sudo tee % > /dev/null
+cmap W!! w !sudo tee % > /dev/null
 cnoremap <C-A> <Home>
 cnoremap <C-E> <End>
 
