@@ -5,6 +5,7 @@ set nocp                        " turn off Vi-compatibility
 set ai                          " automatically indent if necessary
 set bs=2                        " backspace over lines
 set bdir=~/.vim/backup          " write backupfiles to central dir
+set bg=dark
 " set cul                       " highlight cursor line. Taken out: lag
 set enc=utf-8                   " UTf-8 always, everywhere
 set noeb vb t_vb=               " shut up
@@ -27,6 +28,7 @@ set sw=4 ts=4 sts=0             " indentation with 4 spaces
 set shm=filmnrxsToOI            " shorter messages for some prompts
 set sc                          " show command in last line
 set sm                          " briefly jump to matching paren
+set nosmd                       " don't show mode (because lightline shows it)
 set sta                         " tab and untab sw spaces
 if &term =~ '^screen'
     " tmux knows the extended mouse mode
@@ -78,6 +80,19 @@ let g:lightline = {
   \   'charvaluehex': '0x%B',
   \   'linenoindicator': '%{LineNoIndicator()}'
   \ },
+  \ 'mode_map': {
+  \   'n': '𝐍',
+  \   'i': '𝐈',
+  \   'R': '𝐑',
+  \   'c': '𝐂',
+  \   'v': '𝐕',
+  \   'V': '𝐕𝐋',
+  \   '\<C-v>': '𝐕𝐁',
+  \   's': '𝐒',
+  \   'S': '𝐒𝐋',
+  \   '\<C-s>': '𝐒𝐁',
+  \   't': '𝐓',
+  \ },
   \ }
 
 let g:ackprg = 'ag --vimgrep'
@@ -87,6 +102,7 @@ let g:gitgutter_sign_modified = '⊙'
 let g:mapleader = " "
 let g:move_key_modifier = 'C'
 let g:rainbow_active = 1
+let g:rainbow_ctermfgs = [1, 2, 3, 4, 5, 6, 7, 9]
 let g:DVB_TrimWS = 1
 let g:line_no_indicator_chars = [' ', '⠁', '⠉', '⠋', '⠛', '⠟', '⠿', '⡿', '⣿']
 
