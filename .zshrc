@@ -82,6 +82,8 @@ avaliable(){whois $* |grep AVAILABLE }
 alias please='sudo $(fc -ln -1)'
 alias crep='grep --color=yes'
 
+alias tmux='tmux -2'
+
 alias whendidirunthelastcommand='date -r$(tail -n 2 ~/.zsh_history|head -n 1 | cut -d ":" -f 2 | tr -d " ")'
 
 p() {
