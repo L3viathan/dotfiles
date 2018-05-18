@@ -42,7 +42,7 @@ set wim=list:longest,full       " how to suggest in wild menu
 " PLUGINS
 call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
-Plug 'altercation/vim-colors-solarized'
+Plug 'romainl/flattened'
 Plug 'drzel/vim-line-no-indicator'
 Plug 'easymotion/vim-easymotion'
 Plug 'ervandew/supertab'
@@ -186,6 +186,7 @@ cnoremap <C-E> <End>
 nmap S yss
 nmap cxgv `<cx`>
 nmap s ys
+nnoremap <silent> K */\(def \\|class \)\@<=/<cr>
 nnoremap ' `
 nnoremap + <C-A>
 nnoremap - <C-X>
@@ -220,4 +221,4 @@ vmap <expr> D DVB_Duplicate()
 vmap cx <esc>cxgv
 vnoremap <silent> <leader>s :sort<cr>
 
-colorscheme solarized
+colorscheme flattened_dark
