@@ -95,7 +95,7 @@ let g:lightline = {
   \ },
   \ }
 
-let g:ackprg = 'ag --vimgrep'
+let g:ackprg = 'rg --vimgrep'
 let g:gitgutter_sign_added = '⊕'
 let g:gitgutter_sign_removed = '⊖'
 let g:gitgutter_sign_modified = '⊙'
