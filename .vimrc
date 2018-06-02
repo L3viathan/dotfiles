@@ -129,6 +129,9 @@ let g:ale_set_balloons = 0  " fixes an issue that occurs when ttymouse=xterm2
 let g:ackprg = 'rg --vimgrep'
 let g:autoswap_detect_tmux = 1
 let g:black_linelength = 80
+let g:ale_linters = {
+\   'python': ['pylint'],
+\}
 let g:gitgutter_sign_added = '⊕'
 let g:gitgutter_sign_removed = '⊖'
 let g:gitgutter_sign_modified = '⊙'
