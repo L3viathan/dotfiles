@@ -63,6 +63,7 @@ Plug 'tpope/vim-fugitive' " git stuff
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'w0rp/ale', {'for': 'python'}
+Plug 'L3viathan/black', {'for': 'python'}
 call plug#end()
 filetype plugin indent on    " required
 syntax on
