@@ -82,6 +82,7 @@ alias -s mid="timidity"
 avaliable(){whois $* |grep AVAILABLE }
 alias please='sudo $(fc -ln -1)'
 alias crep='grep --color=yes'
+alias gdm='git diff master'
 
 alias tmux='tmux -2'
 
