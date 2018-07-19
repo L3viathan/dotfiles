@@ -64,6 +64,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'w0rp/ale', {'for': 'python'}
 Plug 'L3viathan/black', {'for': 'python'}
+Plug 'FooSoft/vim-argwrap'
 call plug#end()
 filetype plugin indent on    " required
 syntax on
@@ -96,7 +97,9 @@ let g:lightline = {
   \ },
   \ }
 
+let g:argwrap_tail_comma = 1  " trailing commas are good
 let g:ackprg = 'rg --vimgrep'
+let g:black_linelength = 80
 let g:gitgutter_sign_added = '⊕'
 let g:gitgutter_sign_removed = '⊖'
 let g:gitgutter_sign_modified = '⊙'
@@ -203,6 +206,7 @@ nnoremap <silent> <leader>T :NERDTreeClose<cr>
 nnoremap <silent> <leader>f :FZF<cr>
 nnoremap <silent> <leader>n :ALENextWrap<cr>
 nnoremap <silent> <leader>t :NERDTree<cr>
+nnoremap <silent> <leader>w :ArgWrap<cr>
 " quick rot13 all
 nnoremap ?? ggg?G``
 nnoremap YQ ZQ
