@@ -164,7 +164,7 @@ endfunction
 
 
 function SetTrailing()
-    if &ft =~ 'json'
+    if &ft == 'json'
         let b:argwrap_tail_comma = 0
     else
         let b:argwrap_tail_comma = 1
