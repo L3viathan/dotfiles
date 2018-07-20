@@ -7,12 +7,12 @@ set bs=2                        " backspace over lines
 set bdir=~/.vim/backup          " write backupfiles to central dir
 set bg=dark
 " set cul                       " highlight cursor line. Taken out: lag
-set enc=utf-8                   " UTf-8 always, everywhere
+set enc=utf-8                   " UTF-8 always, everywhere
 set noeb vb t_vb=               " shut up
 set et                          " no literal tab characters
 set fdm=manual                  " fold when I want to
-set cc=80                       " color column 80
-set hls is                      " search immediately and highlight
+set cc=80,81,82,83,84,85,86,87,88,89  " colourcolumn
+set incsearch hlsearch          " search immediately and highlight
 set nojs                        " single space after .!?
 set ls=2                        " necessary for lightline
 set lz                          " don't redraw screen during macros
@@ -65,6 +65,7 @@ Plug 'tpope/vim-surround'
 Plug 'w0rp/ale', {'for': 'python'}
 Plug 'L3viathan/black', {'for': 'python'}
 Plug 'FooSoft/vim-argwrap'
+Plug 'christoomey/vim-sort-motion'
 call plug#end()
 filetype plugin indent on    " required
 syntax on
@@ -162,12 +163,22 @@ function AckAg()
 endfunction
 
 
+function SetTrailing()
+    if &ft =~ 'json'
+        let b:argwrap_tail_comma = 0
+    else
+        let b:argwrap_tail_comma = 1
+    endif
+endfun
+
+
 " AUTOCMDS
 
 autocmd BufWinEnter *.* silent loadview
 autocmd BufWinLeave * call clearmatches()
 autocmd BufWinLeave *.* mkview
 autocmd filetype crontab setlocal nobackup nowritebackup
+autocmd BufRead * call SetTrailing()
 
 
 " MAPPINGS
