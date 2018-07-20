@@ -98,7 +98,7 @@ let g:lightline = {
   \ },
   \ }
 
-let g:argwrap_tail_comma = 1  " trailing commas are good
+let g:ale_set_balloons = 0  " fixes an issue that occurs when ttymouse=xterm2
 let g:ackprg = 'rg --vimgrep'
 let g:black_linelength = 80
 let g:gitgutter_sign_added = '⊕'
