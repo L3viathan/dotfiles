@@ -98,6 +98,7 @@ let g:lightline = {
   \ },
   \ }
 
+let g:ale_fixers = ['pylint']
 let g:ale_set_balloons = 0  " fixes an issue that occurs when ttymouse=xterm2
 let g:ackprg = 'rg --vimgrep'
 let g:black_linelength = 80
@@ -189,6 +190,8 @@ map <F1> <nop>
 map <Up> <Nop>
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 map <leader>p "+p
+map <leader>P "+P
+map <leader>y "+y
 map <silent> <Left> :bprevious<cr>
 map <silent> <Right> :bnext<cr>
 map Q @q
@@ -211,7 +214,6 @@ nnoremap <C-k> 3<C-y>
 nnoremap <silent> <leader><cr> :nohl<cr>
 nnoremap <silent> <leader>F :call AckAg()<cr>
 nnoremap <silent> <leader>H :Hexmode<CR>
-nnoremap <silent> <leader>M :MinimapToggle<cr>
 nnoremap <silent> <leader>N :ALEPreviousWrap<cr>
 nnoremap <silent> <leader>T :NERDTreeClose<cr>
 nnoremap <silent> <leader>f :FZF<cr>
