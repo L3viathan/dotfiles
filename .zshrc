@@ -91,7 +91,7 @@ alias whendidirunthelastcommand='date -r$(tail -n 2 ~/.zsh_history|head -n 1 | c
 p() {
     if [ -z "$*" ]
     then
-        ptpython3
+        python3 -m bpython
     else
         python3 -q $*
     fi

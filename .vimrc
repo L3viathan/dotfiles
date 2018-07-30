@@ -184,20 +184,20 @@ autocmd BufRead * call SetTrailing()
 
 " MAPPINGS
 
-map <C-c> ~
-map <Down> <Nop>
-map <F1> <nop>
-map <Up> <Nop>
-map <leader>cd :cd %:p:h<cr>:pwd<cr>
-map <leader>p "+p
-map <leader>P "+P
-map <leader>y "+y
-map <silent> <Left> :bprevious<cr>
-map <silent> <Right> :bnext<cr>
-map Q @q
-map Y y$
+noremap <C-c> ~
+noremap <Down> <Nop>
+noremap <F1> <nop>
+noremap <Up> <Nop>
+noremap <leader>cd :cd %:p:h<cr>:pwd<cr>
+noremap <leader>p "+p
+noremap <leader>P "+P
+noremap <leader>y "+y
+noremap <silent> <Left> :bprevious<cr>
+noremap <silent> <Right> :bnext<cr>
+noremap Q @q
+noremap Y y$
 
-cmap W!! w !sudo tee % > /dev/null
+cnoremap W!! w !sudo tee % > /dev/null
 cnoremap <C-A> <Home>
 cnoremap <C-E> <End>
 
@@ -220,6 +220,7 @@ nnoremap <silent> <leader>f :FZF<cr>
 nnoremap <silent> <leader>n :ALENextWrap<cr>
 nnoremap <silent> <leader>t :NERDTree<cr>
 nnoremap <silent> <leader>w :ArgWrap<cr>
+nnoremap <silent> <leader>v :vsplit $MYVIMRC<cr>
 " quick rot13 all
 nnoremap ?? ggg?G``
 nnoremap YQ ZQ
@@ -231,12 +232,12 @@ nnoremap ä ]
 nnoremap ö [
 nnoremap ü :
 
-vmap <expr> <down> DVB_Drag('down')
-vmap <expr> <left> DVB_Drag('left')
-vmap <expr> <right> DVB_Drag('right')
-vmap <expr> <up> DVB_Drag('up')
-vmap <expr> D DVB_Duplicate()
-vmap cx <esc>cxgv
+vnoremap <expr> <down> DVB_Drag('down')
+vnoremap <expr> <left> DVB_Drag('left')
+vnoremap <expr> <right> DVB_Drag('right')
+vnoremap <expr> <up> DVB_Drag('up')
+vnoremap <expr> D DVB_Duplicate()
+vnoremap cx <esc>cxgv
 vnoremap <silent> <leader>s :sort<cr>
 
 colorscheme flattened_dark
