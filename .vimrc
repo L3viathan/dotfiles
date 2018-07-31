@@ -66,6 +66,7 @@ Plug 'w0rp/ale', {'for': 'python'}
 Plug 'L3viathan/black', {'for': 'python'}
 Plug 'FooSoft/vim-argwrap'
 Plug 'christoomey/vim-sort-motion'
+Plug 'Olical/vim-enmasse'
 call plug#end()
 filetype plugin indent on    " required
 syntax on
@@ -174,12 +175,15 @@ endfun
 
 
 " AUTOCMDS
-
-autocmd BufWinEnter *.* silent loadview
-autocmd BufWinLeave * call clearmatches()
-autocmd BufWinLeave *.* mkview
-autocmd filetype crontab setlocal nobackup nowritebackup
-autocmd BufRead * call SetTrailing()
+augroup vimrc
+    autocmd!
+    autocmd BufWinEnter *.* silent loadview
+    autocmd BufWinLeave * call clearmatches()
+    autocmd BufWinLeave *.* mkview
+    autocmd filetype crontab setlocal nobackup nowritebackup
+    autocmd BufRead * call SetTrailing()
+    autocmd filetype qf nnoremap M :EnMasse<cr>
+augroup END
 
 
 " MAPPINGS
@@ -221,6 +225,7 @@ nnoremap <silent> <leader>n :ALENextWrap<cr>
 nnoremap <silent> <leader>t :NERDTree<cr>
 nnoremap <silent> <leader>w :ArgWrap<cr>
 nnoremap <silent> <leader>v :vsplit $MYVIMRC<cr>
+nnoremap <silent> <leader>s :source $MYVIMRC<cr>
 " quick rot13 all
 nnoremap ?? ggg?G``
 nnoremap YQ ZQ
