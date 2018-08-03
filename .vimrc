@@ -115,10 +115,10 @@ let g:line_no_indicator_chars = [' ', '⠁', '⠉', '⠋', '⠛', '⠟', '⠿', 
 
 let hostname = substitute(system('hostname'), '\n', '', '')
 
-command -bar Hexmode call ToggleHex()
+command! -bar Hexmode call ToggleHex()
 
 " helper function to toggle hex mode
-function ToggleHex()
+function! ToggleHex()
     " hex mode should be considered a read-only operation
     " save values for modified and read-only for restoration later,
     " and clear the read-only flag for now
@@ -157,7 +157,7 @@ function ToggleHex()
     let &modifiable=l:oldmodifiable
 endfunction
 
-function AckAg()
+function! AckAg()
     call inputsave()
     let search = input('> ')
     call inputrestore()
@@ -165,12 +165,22 @@ function AckAg()
 endfunction
 
 
-function SetTrailing()
+function! SetTrailing()
     if &ft == 'json'
         let b:argwrap_tail_comma = 0
     else
         let b:argwrap_tail_comma = 1
     endif
+endfun
+
+function! RunTests()
+    let number_of_panes = str2nr(system('tmux list-panes | wc -l'))
+    if number_of_panes ==# 1
+        call system('tmux split-window -h -c "#{pane_current_path}"')
+        call system('tmux select-pane -t left')
+        call system('tmux send-keys -t right "cd $(git rev-parse --show-toplevel)" C-m C-l')
+    endif
+    call system('tmux send-keys -t right "py.test test" C-m')
 endfun
 
 
@@ -219,13 +229,13 @@ nnoremap <silent> <leader><cr> :nohl<cr>
 nnoremap <silent> <leader>F :call AckAg()<cr>
 nnoremap <silent> <leader>H :Hexmode<CR>
 nnoremap <silent> <leader>N :ALEPreviousWrap<cr>
-nnoremap <silent> <leader>T :NERDTreeClose<cr>
 nnoremap <silent> <leader>f :FZF<cr>
 nnoremap <silent> <leader>n :ALENextWrap<cr>
 nnoremap <silent> <leader>t :NERDTree<cr>
 nnoremap <silent> <leader>w :ArgWrap<cr>
 nnoremap <silent> <leader>v :vsplit $MYVIMRC<cr>
 nnoremap <silent> <leader>s :source $MYVIMRC<cr>
+nnoremap <silent> <leader>T :call RunTests()<cr>
 " quick rot13 all
 nnoremap ?? ggg?G``
 nnoremap YQ ZQ
