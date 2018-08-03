@@ -1,43 +1,43 @@
 " .vimrc
 
 " OPTIONS
-set nocp                        " turn off Vi-compatibility
-set ai                          " automatically indent if necessary
-set bs=2                        " backspace over lines
-set bdir=~/.vim/backup          " write backupfiles to central dir
-set bg=dark
-" set cul                       " highlight cursor line. Taken out: lag
-set enc=utf-8                   " UTF-8 always, everywhere
-set noeb vb t_vb=               " shut up
-set et                          " no literal tab characters
-set fdm=manual                  " fold when I want to
-set cc=80,81,82,83,84,85,86,87,88,89  " colourcolumn
+set nocompatible                " turn off Vi-compatibility
+set autoindent                  " automatically indent if necessary
+set backspace=2                 " backspace over lines
+set backupdir=~/.vim/backup     " write backupfiles to central dir
+set background=dark
+" set cursorline                " highlight cursor line. Taken out: lag
+set encoding=utf-8              " UTF-8 always, everywhere
+set noerrorbells visualbell t_vb=  " shut up
+set expandtab                   " no literal tab characters
+set foldmethod=manual           " fold when I want to
+set colorcolumn=80,81,82,83,84,85,86,87,88,89
 set incsearch hlsearch          " search immediately and highlight
-set nojs                        " single space after .!?
-set ls=2                        " necessary for lightline
-set lz                          " don't redraw screen during macros
+set nojoinspaces                " single space after .!?
+set laststatus=2                " necessary for lightline
+set lazyredraw                  " don't redraw screen during macros
 set list                        " show whitespace with special chars:
-set lcs=tab:▶\ ,trail:·,nbsp:⎵  " these.
+set listchars=tab:▶\ ,trail:·,nbsp:⎵   " these.
 set magic                       " default to magic mode in regex
 set mouse=a                     " always enable mouse
-set mps+=«:»,“:”                " additional matching pairs for %
-set nu                          " show line numbers
-set ru                          " show line and col number of cursor
-set so=2                        " always show 2 lines of extra context
-set sw=4 ts=4 sts=0             " indentation with 4 spaces
-set shm=filmnrxsToOI            " shorter messages for some prompts
-set sc                          " show command in last line
-set sm                          " briefly jump to matching paren
-set nosmd                       " don't show mode (because lightline shows it)
-set sta                         " tab and untab sw spaces
+set matchpairs+=«:»,“:”         " additional matching pairs for %
+set number                      " show line numbers
+set ruler                       " show line and col number of cursor
+set scrolloff=2                 " always show 2 lines of extra context
+set shiftwidth=4 tabstop=4 softtabstop=0  " indentation with 4 spaces
+set shortmess=filmnrxsToOI      " shorter messages for some prompts
+set showcmd                     " show command in last line
+set showmatch                   " briefly jump to matching paren
+set noshowmode                  " don't show mode (because lightline shows it)
+set smarttab                    " tab and untab sw spaces
 if &term =~ '^screen'
     " tmux knows the extended mouse mode
-    set ttym=xterm2
+    set ttymouse=xterm2
 endif
-set udf udir=~/.vim/undo        " write persistent undo file
-set wig=*.o,*~,*.pyc            " ignore in wild menu
-set wmnu                        " enable wild menu
-set wim=list:longest,full       " how to suggest in wild menu
+set undofile undodir=~/.vim/undo  " write persistent undo file
+set wildignore=*.o,*~,*.pyc     " ignore in wild menu
+set wildmenu                    " enable wild menu
+set wildmode=list:longest,full  " how to suggest in wild menu
 
 " PLUGINS
 call plug#begin('~/.vim/plugged')
