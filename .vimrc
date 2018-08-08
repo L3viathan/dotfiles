@@ -68,6 +68,7 @@ Plug 'L3viathan/black', {'for': 'python'}
 Plug 'FooSoft/vim-argwrap'
 Plug 'christoomey/vim-sort-motion'
 Plug 'Olical/vim-enmasse'
+Plug 'gioele/vim-autoswap'
 call plug#end()
 filetype plugin indent on    " required
 syntax on
@@ -103,6 +104,7 @@ let g:lightline = {
 let g:ale_fixers = ['pylint']
 let g:ale_set_balloons = 0  " fixes an issue that occurs when ttymouse=xterm2
 let g:ackprg = 'rg --vimgrep'
+let g:autoswap_detect_tmux = 1
 let g:black_linelength = 80
 let g:gitgutter_sign_added = '⊕'
 let g:gitgutter_sign_removed = '⊖'
