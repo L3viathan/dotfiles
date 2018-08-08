@@ -42,7 +42,7 @@ set wildmode=list:longest,full  " how to suggest in wild menu
 " PLUGINS
 call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
-Plug 'romainl/flattened'
+Plug 'L3viathan/flattened'
 Plug 'drzel/vim-line-no-indicator'
 Plug 'easymotion/vim-easymotion'
 Plug 'ervandew/supertab'
@@ -58,6 +58,7 @@ Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'shinokada/dragvisuals.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tommcdo/vim-exchange'
+Plug 'tpope/vim-apathy'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive' " git stuff
 Plug 'tpope/vim-repeat'
