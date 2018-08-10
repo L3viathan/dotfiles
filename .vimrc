@@ -186,6 +186,18 @@ function! RunTests()
     call system('tmux send-keys -t right "py.test test" C-m')
 endfun
 
+function! ToggleBreakpoint()
+    " 1. get text of current line
+    let line = getline('.')
+    if line =~# 'pdb.set_trace'
+        " remove line
+        delete
+    else
+        " add line
+        normal oimport pdb; pdb.set_trace()
+    endif
+endfun
+
 
 " AUTOCMDS
 augroup vimrc
@@ -239,6 +251,7 @@ nnoremap <silent> <leader>w :ArgWrap<cr>
 nnoremap <silent> <leader>v :vsplit $MYVIMRC<cr>
 nnoremap <silent> <leader>s :source $MYVIMRC<cr>
 nnoremap <silent> <leader>T :call RunTests()<cr>
+nnoremap <silent> <leader>b :call ToggleBreakpoint()<cr>
 " quick rot13 all
 nnoremap ?? ggg?G``
 nnoremap YQ ZQ
