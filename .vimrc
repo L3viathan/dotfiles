@@ -68,7 +68,7 @@ Plug 'L3viathan/black', {'for': 'python'}
 Plug 'FooSoft/vim-argwrap'
 Plug 'christoomey/vim-sort-motion'
 Plug 'Olical/vim-enmasse'
-Plug 'gioele/vim-autoswap'
+Plug 'L3viathan/vim-autoswap'
 call plug#end()
 filetype plugin indent on    " required
 syntax on
@@ -238,8 +238,6 @@ nnoremap ' `
 nnoremap + <C-A>
 nnoremap - <C-X>
 nnoremap <C-P> :!python3 %<cr>
-nnoremap <C-j> 3<C-e>
-nnoremap <C-k> 3<C-y>
 nnoremap <silent> <leader><cr> :nohl<cr>
 nnoremap <silent> <leader>F :call AckAg()<cr>
 nnoremap <silent> <leader>H :Hexmode<CR>
