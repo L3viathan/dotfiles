@@ -17,7 +17,7 @@ unset MAILCHECK
 
 # Aliasses and custom functions
 alias ls='exa' ll='ls -lh --git' l='ls -lah --git'
-alias such='git' very='git' many='git' so='git' wow='git status' ql="quick-look"
+alias such='git' very='git' many='git' so='git' much='git' wow='git status'
 alias yolo='git commit -am "DEAL WITH IT" && git push -f origin master'
 alias -9="kill -9" c="cat" rf="rm -rf" v="vim" s="ssh" o="open" t="tig"
 alias :q="exit"
