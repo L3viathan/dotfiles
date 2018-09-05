@@ -59,8 +59,8 @@ Plug 'shinokada/dragvisuals.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-apathy'
+Plug 'lambdalisue/gina.vim'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive' " git stuff
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'w0rp/ale', {'for': 'python'}
