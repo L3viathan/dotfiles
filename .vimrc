@@ -41,14 +41,23 @@ set wildmode=list:longest,full  " how to suggest in wild menu
 
 " PLUGINS
 call plug#begin('~/.vim/plugged')
-Plug 'airblade/vim-gitgutter'
+Plug 'FooSoft/vim-argwrap'
+Plug 'L3viathan/black', {'for': 'python'}
 Plug 'L3viathan/flattened'
+Plug 'L3viathan/vim-autoswap'
+Plug 'Olical/vim-enmasse'
+Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-rooter'
+Plug 'christoomey/vim-sort-motion'
 Plug 'drzel/vim-line-no-indicator'
 Plug 'easymotion/vim-easymotion'
 Plug 'ervandew/supertab'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', {'on': 'FZF', 'do': 'yes \| ./install' }
+Plug 'justinmk/vim-dirvish'
+Plug 'lambdalisue/gina.vim'
 Plug 'lfv89/vim-interestingwords'
+Plug 'markonm/traces.vim'
 Plug 'matze/vim-move'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'mileszs/ack.vim'
@@ -59,16 +68,12 @@ Plug 'shinokada/dragvisuals.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-apathy'
-Plug 'lambdalisue/gina.vim'
+Plug 'tpope/vim-apathy'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
 Plug 'w0rp/ale', {'for': 'python'}
-Plug 'L3viathan/black', {'for': 'python'}
-Plug 'FooSoft/vim-argwrap'
-Plug 'christoomey/vim-sort-motion'
-Plug 'Olical/vim-enmasse'
-Plug 'L3viathan/vim-autoswap'
 call plug#end()
 filetype plugin indent on    " required
 syntax on
@@ -115,6 +120,7 @@ let g:rainbow_active = 1
 let g:rainbow_ctermfgs = [1, 2, 3, 4, 5, 6, 7, 9]
 let g:DVB_TrimWS = 1
 let g:line_no_indicator_chars = [' ', '⠁', '⠉', '⠋', '⠛', '⠟', '⠿', '⡿', '⣿']
+let g:rooter_silent_chdir = 1
 
 let hostname = substitute(system('hostname'), '\n', '', '')
 
