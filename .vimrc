@@ -106,7 +106,7 @@ let g:lightline = {
   \ },
   \ }
 
-let g:ale_fixers = ['pylint']
+let g:ale_linters = {'python': ['pylint']}
 let g:ale_set_balloons = 0  " fixes an issue that occurs when ttymouse=xterm2
 let g:ackprg = 'rg --vimgrep'
 let g:autoswap_detect_tmux = 1
@@ -266,6 +266,7 @@ nnoremap Ü ;
 nnoremap ä ]
 nnoremap ö [
 nnoremap ü :
+nnoremap ß "_
 
 vnoremap <expr> <down> DVB_Drag('down')
 vnoremap <expr> <left> DVB_Drag('left')

@@ -108,3 +108,5 @@ fi
 if [ -f ~/.zshrc.$hostname ]; then
     source ~/.zshrc.$hostname
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
