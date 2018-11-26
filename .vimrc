@@ -54,6 +54,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'ervandew/supertab'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', {'on': 'FZF', 'do': 'yes \| ./install' }
+Plug 'junegunn/vim-easy-align'
 Plug 'justinmk/vim-dirvish'
 Plug 'lambdalisue/gina.vim'
 Plug 'lfv89/vim-interestingwords'
@@ -239,6 +240,7 @@ cnoremap <C-E> <End>
 nmap S yss
 nmap cxgv `<cx`>
 nmap s ys
+nmap ga <Plug>(EasyAlign)
 nnoremap <silent> K */\(def \\|class \)\@<=/<cr>
 nnoremap ' `
 nnoremap + <C-A>
@@ -275,5 +277,7 @@ vnoremap <expr> <up> DVB_Drag('up')
 vnoremap <expr> D DVB_Duplicate()
 vnoremap cx <esc>cxgv
 vnoremap <silent> <leader>s :sort<cr>
+
+xmap ga <Plug>(EasyAlign)
 
 colorscheme flattened_dark
