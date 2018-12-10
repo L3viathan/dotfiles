@@ -50,7 +50,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'airblade/vim-rooter'
 Plug 'christoomey/vim-sort-motion'
 Plug 'drzel/vim-line-no-indicator'
-Plug 'easymotion/vim-easymotion'
 Plug 'ervandew/supertab'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', {'on': 'FZF', 'do': 'yes \| ./install' }
@@ -64,7 +63,6 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'mileszs/ack.vim'
 Plug 'oblitum/rainbow'
 Plug 'rhysd/committia.vim'
-Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'shinokada/dragvisuals.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tommcdo/vim-exchange'
@@ -75,6 +73,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'w0rp/ale', {'for': 'python'}
+Plug 'vim-scripts/ReplaceWithRegister'
 call plug#end()
 filetype plugin indent on    " required
 syntax on
@@ -241,7 +240,7 @@ nmap S yss
 nmap cxgv `<cx`>
 nmap s ys
 nmap ga <Plug>(EasyAlign)
-nnoremap <silent> K */\(def \\|class \)\@<=/<cr>
+nnoremap <silent> K <C-]>
 nnoremap ' `
 nnoremap + <C-A>
 nnoremap - <C-X>
@@ -252,10 +251,10 @@ nnoremap <silent> <leader>H :Hexmode<CR>
 nnoremap <silent> <leader>N :ALEPreviousWrap<cr>
 nnoremap <silent> <leader>f :FZF<cr>
 nnoremap <silent> <leader>n :ALENextWrap<cr>
-nnoremap <silent> <leader>t :NERDTree<cr>
 nnoremap <silent> <leader>w :ArgWrap<cr>
 nnoremap <silent> <leader>v :vsplit $MYVIMRC<cr>
 nnoremap <silent> <leader>s :source $MYVIMRC<cr>
+nnoremap <silent> <leader>t :!ctags -R --languages=python .<cr>
 nnoremap <silent> <leader>T :call RunTests()<cr>
 nnoremap <silent> <leader>b :call ToggleBreakpoint()<cr>
 " quick rot13 all
