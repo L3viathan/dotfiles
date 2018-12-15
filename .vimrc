@@ -297,13 +297,6 @@ nnoremap <silent> <leader>= :Black<cr>
 nnoremap <leader>? ggg?G``
 nnoremap YQ ZQ
 nnoremap YY ZZ
-nnoremap Ä }
-nnoremap Ö {
-nnoremap Ü ;
-nnoremap ä ]
-nnoremap ö [
-nnoremap ü :
-nnoremap ß "_
 
 vnoremap <expr> <down> DVB_Drag('down')
 vnoremap <expr> <left> DVB_Drag('left')
@@ -316,5 +309,7 @@ vnoremap <silent> <leader>s :sort<cr>
 xmap ga <Plug>(EasyAlign)
 
 command! W w
+
+iabbr inim if __name__ == '__main__':
 
 colorscheme flattened_dark
