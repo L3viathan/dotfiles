@@ -55,6 +55,7 @@ Plug 'ervandew/supertab'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', {'on': 'FZF', 'do': 'yes \| ./install' }
 Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/vim-peekaboo'
 Plug 'justinmk/vim-dirvish'
 Plug 'lfv89/vim-interestingwords'
 Plug 'markonm/traces.vim'
@@ -120,6 +121,7 @@ let g:rainbow_ctermfgs = [1, 2, 3, 4, 5, 6, 7, 9]
 let g:DVB_TrimWS = 1
 let g:line_no_indicator_chars = [' ', '⠁', '⠉', '⠋', '⠛', '⠟', '⠿', '⡿', '⣿']
 let g:rooter_silent_chdir = 1
+let g:SuperTabDefaultCompletionType = 'context'
 
 let hostname = substitute(system('hostname'), '\n', '', '')
 
