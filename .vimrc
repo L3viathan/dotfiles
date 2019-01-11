@@ -242,7 +242,6 @@ nmap cxgv `<cx`>
 nmap s ys
 nmap ga <Plug>(EasyAlign)
 nnoremap <silent> K <C-]>
-nnoremap ' `
 nnoremap + <C-A>
 nnoremap - <C-X>
 nnoremap <C-P> :!python3 %<cr>
@@ -259,7 +258,7 @@ nnoremap <silent> <leader>t :!ctags -R --languages=python .<cr>
 nnoremap <silent> <leader>T :call RunTests()<cr>
 nnoremap <silent> <leader>b :call ToggleBreakpoint()<cr>
 " quick rot13 all
-nnoremap ?? ggg?G``
+nnoremap <leader>? ggg?G``
 nnoremap YQ ZQ
 nnoremap YY ZZ
 nnoremap Ä }
