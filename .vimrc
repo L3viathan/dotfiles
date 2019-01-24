@@ -22,6 +22,7 @@ set magic                       " default to magic mode in regex
 set mouse=a                     " always enable mouse
 set matchpairs+=«:»,“:”         " additional matching pairs for %
 set number                      " show line numbers
+set relativenumber              " show relative line numbers
 set ruler                       " show line and col number of cursor
 set scrolloff=2                 " always show 2 lines of extra context
 set shiftwidth=4 tabstop=4 softtabstop=0  " indentation with 4 spaces
@@ -53,7 +54,8 @@ Plug 'christoomey/vim-sort-motion'
 Plug 'drzel/vim-line-no-indicator'
 Plug 'ervandew/supertab'
 Plug 'itchyny/lightline.vim'
-Plug 'junegunn/fzf', {'on': 'FZF', 'do': 'yes \| ./install' }
+Plug 'junegunn/fzf', {'do': 'yes \| ./install' }
+Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/vim-peekaboo'
 Plug 'justinmk/vim-dirvish'
@@ -183,16 +185,6 @@ function! SetTrailing()
     endif
 endfun
 
-function! RunTests()
-    let number_of_panes = str2nr(system('tmux list-panes | wc -l'))
-    if number_of_panes ==# 1
-        call system('tmux split-window -h -c "#{pane_current_path}"')
-        call system('tmux select-pane -t left')
-        call system('tmux send-keys -t right "cd $(git rev-parse --show-toplevel)" C-m C-l')
-    endif
-    call system('tmux send-keys -t right "py.test test" C-m')
-endfun
-
 function! ToggleBreakpoint()
     " 1. get text of current line
     let line = getline('.')
@@ -255,8 +247,15 @@ nnoremap <silent> <leader>w :ArgWrap<cr>
 nnoremap <silent> <leader>v :vsplit $MYVIMRC<cr>
 nnoremap <silent> <leader>s :source $MYVIMRC<cr>
 nnoremap <silent> <leader>t :!ctags -R --languages=python .<cr>
-nnoremap <silent> <leader>T :call RunTests()<cr>
+nnoremap <silent> <leader>gt :Tags<cr>
+nnoremap <silent> <leader>gT :BTags<cr>
+nnoremap <silent> <leader>gb :Buffers<cr>
+nnoremap <silent> <leader>gf :Files<cr>
+nnoremap <silent> <leader>gg :GFiles<cr>
+nnoremap <silent> <leader>gl :Lines<cr>
+nnoremap <silent> <leader>gm :Marks<cr>
 nnoremap <silent> <leader>b :call ToggleBreakpoint()<cr>
+nnoremap <silent> <leader>= :Black<cr>
 " quick rot13 all
 nnoremap <leader>? ggg?G``
 nnoremap YQ ZQ
@@ -278,5 +277,7 @@ vnoremap cx <esc>cxgv
 vnoremap <silent> <leader>s :sort<cr>
 
 xmap ga <Plug>(EasyAlign)
+
+command W w
 
 colorscheme flattened_dark
