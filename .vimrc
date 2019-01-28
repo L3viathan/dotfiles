@@ -74,7 +74,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'w0rp/ale', {'for': 'python'}
+Plug 'w0rp/ale', {'for': ['python', 'sh']}
 Plug 'vim-scripts/ReplaceWithRegister'
 call plug#end()
 filetype plugin indent on    " required
