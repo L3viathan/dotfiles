@@ -6,7 +6,7 @@ export EDITOR="vim"
 export VISUAL="vim"
 COMPLETION_WAITING_DOTS="true"
 unsetopt correct_all #disable auto correction
-plugins=(git python osx battery zsh-syntax-highlighting pip mosh sublime zshmarks dirhistory fzf-zsh)
+plugins=(git zsh-syntax-highlighting pip mosh zshmarks dirhistory fzf-zsh)
 source $ZSH/oh-my-zsh.sh
 #</oh-my-zsh_stuff>
 
