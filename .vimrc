@@ -236,6 +236,8 @@ nmap ga <Plug>(EasyAlign)
 nnoremap <silent> K <C-]>
 nnoremap + <C-A>
 nnoremap - <C-X>
+nnoremap <silent> <C-X> :bd<cr>
+nnoremap <silent> <C-A> :only<cr>
 nnoremap <C-P> :!python3 %<cr>
 nnoremap <silent> <leader><cr> :nohl<cr>
 nnoremap <silent> <leader>F :call AckAg()<cr>
