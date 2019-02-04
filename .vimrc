@@ -205,6 +205,16 @@ function! SetTrailing()
     endif
 endfun
 
+
+function! TrimTrailing()
+    let curpos = getpos(".")
+    let oldsearch = @/
+    %s/\v\s+$//e
+    nohlsearch
+    let @/ = oldsearch
+    call setpos(".", curpos)
+endfun
+
 function! ToggleBreakpoint()
     " 1. get text of current line
     let line = getline('.')
@@ -264,6 +274,7 @@ nnoremap <silent> <leader>F :call AckAg()<cr>
 nnoremap <silent> <leader>H :Hexmode<CR>
 nnoremap <silent> <leader>N :ALEPreviousWrap<cr>
 nnoremap <silent> <leader>f :FZF<cr>
+nnoremap <silent> <leader>l :call TrimTrailing()<cr>
 nnoremap <silent> <leader>n :ALENextWrap<cr>
 nnoremap <silent> <leader>w :ArgWrap<cr>
 nnoremap <silent> <leader>v :vsplit $MYVIMRC<cr>
