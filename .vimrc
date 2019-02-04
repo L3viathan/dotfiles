@@ -54,6 +54,7 @@ Plug 'christoomey/vim-sort-motion'
 Plug 'drzel/vim-line-no-indicator'
 Plug 'ervandew/supertab'
 Plug 'itchyny/lightline.vim'
+Plug 'maximbaz/lightline-ale'
 Plug 'junegunn/fzf', {'do': 'yes \| ./install' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
@@ -86,12 +87,27 @@ syntax on
 let g:lightline = {
   \ 'colorscheme': 'solarized',
   \ 'active': {
-  \   'right': [ [ 'charvaluehex', 'lineinfo', 'linenoindicator' ],
-  \              [ 'fileformat', 'fileencoding', 'filetype'] ]
+  \   'right': [
+  \     [ 'charvaluehex', 'lineinfo', 'linenoindicator' ],
+  \     [ 'fileformat', 'fileencoding', 'filetype'],
+  \     [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
+  \   ]
   \ },
   \ 'component': {
   \   'charvaluehex': '0x%B',
-  \   'linenoindicator': '%{LineNoIndicator()}'
+  \   'linenoindicator': '%{LineNoIndicator()}',
+  \ },
+  \ 'component_expand': {
+  \   'linter_checking': 'lightline#ale#checking',
+  \   'linter_warnings': 'lightline#ale#warnings',
+  \   'linter_errors': 'lightline#ale#errors',
+  \   'linter_ok': 'lightline#ale#ok',
+  \ },
+  \ 'component_type': {
+  \   'linter_checking': 'left',
+  \   'linter_warnings': 'warning',
+  \   'linter_errors': 'error',
+  \   'linter_ok': 'left',
   \ },
   \ 'mode_map': {
   \   'n': '𝐍',
@@ -116,6 +132,10 @@ let g:black_linelength = 80
 let g:gitgutter_sign_added = '⊕'
 let g:gitgutter_sign_removed = '⊖'
 let g:gitgutter_sign_modified = '⊙'
+let g:lightline#ale#indicator_checking = "\uf110"
+let g:lightline#ale#indicator_warnings = "\uf071"
+let g:lightline#ale#indicator_errors = "\uf05e"
+let g:lightline#ale#indicator_ok = "\uf00c"
 let g:mapleader = " "
 let g:move_key_modifier = 'C'
 let g:rainbow_active = 1
@@ -280,6 +300,6 @@ vnoremap <silent> <leader>s :sort<cr>
 
 xmap ga <Plug>(EasyAlign)
 
-command W w
+command! W w
 
 colorscheme flattened_dark
