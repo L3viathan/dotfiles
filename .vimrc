@@ -269,6 +269,7 @@ nnoremap - <C-X>
 nnoremap <silent> <C-X> :bd<cr>
 nnoremap <silent> <C-A> :only<cr>
 nnoremap <C-P> :!python3 %<cr>
+nnoremap g/ /\</\><cr>
 nnoremap <silent> <leader><cr> :nohl<cr>
 nnoremap <silent> <leader>F :call AckAg()<cr>
 nnoremap <silent> <leader>H :Hexmode<CR>
