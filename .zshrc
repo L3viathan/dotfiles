@@ -97,7 +97,7 @@ p() {
     fi
 }
 
-export FZF_DEFAULT_COMMAND='ag -g ""'
+export FZF_DEFAULT_COMMAND='fd --type f'
 
 export hostname=$(hostname)
 export uname=$(uname)
