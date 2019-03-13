@@ -10,6 +10,7 @@ set background=dark
 set encoding=utf-8              " UTF-8 always, everywhere
 set noerrorbells visualbell t_vb=  " shut up
 set expandtab                   " no literal tab characters
+set conceallevel=2              " turn on full conceal mode
 set foldmethod=manual           " fold when I want to
 set colorcolumn=80,81,82,83,84,85,86,87,88,89
 set incsearch hlsearch          " search immediately and highlight
@@ -75,6 +76,9 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
+Plug 'cespare/vim-toml'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
 Plug 'w0rp/ale', {'for': ['python', 'sh']}
 Plug 'vim-scripts/ReplaceWithRegister'
 call plug#end()
