@@ -221,12 +221,12 @@ endfun
 function! ToggleBreakpoint()
     " 1. get text of current line
     let line = getline('.')
-    if line =~# 'pdb.set_trace'
+    if line =~# 'ipdb.set_trace'
         " remove line
         delete
     else
         " add line
-        normal oimport pdb; pdb.set_trace()
+        normal oimport ipdb; ipdb.set_trace()
     endif
 endfun
 
@@ -234,9 +234,9 @@ endfun
 " AUTOCMDS
 augroup vimrc
     autocmd!
-    autocmd BufWinEnter *.* silent loadview
+    " autocmd BufWinEnter *.* silent loadview
     autocmd BufWinLeave * call clearmatches()
-    autocmd BufWinLeave *.* mkview
+    " autocmd BufWinLeave *.* mkview
     autocmd filetype crontab setlocal nobackup nowritebackup
     autocmd BufRead * call SetTrailing()
     autocmd filetype qf nnoremap M :EnMasse<cr>
