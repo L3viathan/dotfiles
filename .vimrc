@@ -288,8 +288,8 @@ nnoremap <silent> <leader>w :ArgWrap<cr>
 nnoremap <silent> <leader>v :vsplit $MYVIMRC<cr>
 nnoremap <silent> <leader>s :source $MYVIMRC<cr>
 nnoremap <silent> <leader>t :!ctags -R --languages=python .<cr>
-nnoremap <silent> <leader>gt :Tags<cr>
-nnoremap <silent> <leader>gT :BTags<cr>
+nnoremap <silent> <leader>gT :Tags<cr>
+nnoremap <silent> <leader>gt :BTags<cr>
 nnoremap <silent> <leader>gb :Buffers<cr>
 nnoremap <silent> <leader>gf :Files<cr>
 nnoremap <silent> <leader>gg :GFiles<cr>
