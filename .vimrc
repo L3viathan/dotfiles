@@ -82,8 +82,6 @@ Plug 'plasticboy/vim-markdown'
 Plug 'w0rp/ale', {'for': ['python', 'sh']}
 Plug 'vim-scripts/ReplaceWithRegister'
 call plug#end()
-filetype plugin indent on    " required
-syntax on
 
 
 " ASSIGNMENTS (mostly for plugins)
