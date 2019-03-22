@@ -63,6 +63,7 @@ Plug 'junegunn/vim-peekaboo'
 Plug 'justinmk/vim-dirvish'
 Plug 'lfv89/vim-interestingwords'
 Plug 'markonm/traces.vim'
+Plug 'zivyangll/git-blame.vim'
 Plug 'matze/vim-move'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'mileszs/ack.vim'
@@ -294,6 +295,7 @@ nnoremap <silent> <leader>gg :GFiles<cr>
 nnoremap <silent> <leader>gl :Lines<cr>
 nnoremap <silent> <leader>gm :Marks<cr>
 nnoremap <silent> <leader>b :call ToggleBreakpoint()<cr>
+nnoremap <silent> <leader>B :<C-u>call gitblame#echo()<CR>
 nnoremap <silent> <leader>= :Black<cr>
 " quick rot13 all
 nnoremap <leader>? ggg?G``
