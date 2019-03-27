@@ -237,9 +237,9 @@ endfun
 " AUTOCMDS
 augroup vimrc
     autocmd!
-    " autocmd BufWinEnter *.* silent loadview
+    autocmd BufWinEnter *.* silent loadview
     autocmd BufWinLeave * call clearmatches()
-    " autocmd BufWinLeave *.* mkview
+    autocmd BufWinLeave *.* mkview
     autocmd filetype crontab setlocal nobackup nowritebackup
     autocmd BufRead * call SetTrailing()
     autocmd filetype qf nnoremap M :EnMasse<cr>
@@ -286,7 +286,7 @@ nnoremap <silent> <leader>n :ALENextWrap<cr>
 nnoremap <silent> <leader>w :ArgWrap<cr>
 nnoremap <silent> <leader>v :vsplit $MYVIMRC<cr>
 nnoremap <silent> <leader>s :source $MYVIMRC<cr>
-nnoremap <silent> <leader>t :!ctags -R --languages=python .<cr>
+nnoremap <silent> <leader>t :silent !ctags -R --languages=python .<cr>
 nnoremap <silent> <leader>gT :Tags<cr>
 nnoremap <silent> <leader>gt :BTags<cr>
 nnoremap <silent> <leader>gb :Buffers<cr>
