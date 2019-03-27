@@ -1,4 +1,3 @@
-alias bu='brew upgrade && brew cleanup'
 alias a='open -a'
 vol() {osascript -e "set volume $1"}
 show() {osascript -e "tell application \"$1\" to activate"}
