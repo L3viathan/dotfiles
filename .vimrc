@@ -233,6 +233,17 @@ function! ToggleBreakpoint()
     endif
 endfun
 
+function! Blackify(type, ...)
+    let sel_save = &selection
+    let &selection = "inclusive"
+    let reg_save = @@
+
+    silent exe "'[,']!black --quiet -"
+
+    let &selection = sel_save
+    let @@ = reg_save
+endfun
+
 
 " AUTOCMDS
 augroup vimrc
@@ -296,7 +307,8 @@ nnoremap <silent> <leader>gl :Lines<cr>
 nnoremap <silent> <leader>gm :Marks<cr>
 nnoremap <silent> <leader>b :call ToggleBreakpoint()<cr>
 nnoremap <silent> <leader>B :<C-u>call gitblame#echo()<CR>
-nnoremap <silent> <leader>= :Black<cr>
+nnoremap <silent> <leader>== :Black<cr>
+nnoremap <silent> <leader>= :set opfunc=Blackify<cr>g@
 " quick rot13 all
 nnoremap <leader>? ggg?G``
 nnoremap YQ ZQ
@@ -309,6 +321,7 @@ vnoremap <expr> <up> DVB_Drag('up')
 vnoremap <expr> D DVB_Duplicate()
 vnoremap cx <esc>cxgv
 vnoremap <silent> <leader>s :sort<cr>
+vnoremap <silent> <leader>= :!black --quiet -<cr>
 
 xmap ga <Plug>(EasyAlign)
 
