@@ -238,7 +238,50 @@ function! Blackify(type, ...)
     let &selection = "inclusive"
     let reg_save = @@
 
-    silent exe "'[,']!black --quiet -"
+    if a:type == 'line'
+        exe "normal! :'[,']!black --quiet -<cr>"
+    else
+        exe "normal! :`[,`]!black --quiet -<cr>"
+    endif
+
+    let &selection = sel_save
+    let @@ = reg_save
+endfun
+
+function! CamelCase(type, ...)
+    let sel_save = &selection
+    let &selection = "inclusive"
+    let reg_save = @@
+
+    if a:type == 'line'
+        silent exe "'[,']s#\\(\\%(\\<\\l\\+\\)\\%(_\\)\@=\\)\\|_\\(\\l\\)#\\u\\1\\2#g"
+    else
+        normal `[v`]y
+        let text = @@
+        let text = substitute(text, '\(_\|\<\)\(\w\)', '\u\2', 'g')
+        let @@ = text
+        normal `[v`]p`[
+    endif
+
+    let &selection = sel_save
+    let @@ = reg_save
+endfun
+
+function! SnakeCase(type, ...)
+    let sel_save = &selection
+    let &selection = "inclusive"
+    let reg_save = @@
+
+    if a:type == 'line'
+        silent exe "'[,']s#\\(\\<\\u\\l\\+\\|\\l\\+\\)\\(\\u\\)#\\l\\1_\\l\\2#g"
+    else
+        normal `[v`]y
+        let text = @@
+        let text = substitute(text, '\<\(.\)', '\l\1', 'g')
+        let text = substitute(text, '\(\u\)', '_\l\1', 'g')
+        let @@ = text
+        normal `[v`]p`[
+    endif
 
     let &selection = sel_save
     let @@ = reg_save
@@ -309,6 +352,8 @@ nnoremap <silent> <leader>b :call ToggleBreakpoint()<cr>
 nnoremap <silent> <leader>B :<C-u>call gitblame#echo()<CR>
 nnoremap <silent> <leader>== :Black<cr>
 nnoremap <silent> <leader>= :set opfunc=Blackify<cr>g@
+noremap <leader>cs :set opfunc=SnakeCase<cr>g@
+noremap <leader>cc :set opfunc=CamelCase<cr>g@
 " quick rot13 all
 nnoremap <leader>? ggg?G``
 nnoremap YQ ZQ
