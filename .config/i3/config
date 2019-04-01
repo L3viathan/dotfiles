@@ -117,7 +117,7 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
 # lock
-bindsym $mod+Shift+Return exec i3lock
+bindsym $mod+Shift+Return exec ~/i3lock-fancy/lock
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
