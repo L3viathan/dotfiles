@@ -256,7 +256,7 @@ function! CamelCase(type, ...)
     let reg_save = @@
 
     if a:type == 'line'
-        silent exe "'[,']s#\\(\\%(\\<\\l\\+\\)\\%(_\\)\@=\\)\\|_\\(\\l\\)#\\u\\1\\2#g"
+        silent exe "normal! :'[,']s#\\(\\%(\\<\\l\\+\\)\\%(_\\)\@=\\)\\|_\\(\\l\\)#\\u\\1\\2#g<cr>"
     else
         normal `[v`]y
         let text = @@
@@ -275,7 +275,7 @@ function! SnakeCase(type, ...)
     let reg_save = @@
 
     if a:type == 'line'
-        silent exe "'[,']s#\\(\\<\\u\\l\\+\\|\\l\\+\\)\\(\\u\\)#\\l\\1_\\l\\2#g"
+        silent exe "normal! :'[,']s#\\(\\<\\u\\l\\+\\|\\l\\+\\)\\(\\u\\)#\\l\\1_\\l\\2#g<cr>"
     else
         normal `[v`]y
         let text = @@
