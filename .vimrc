@@ -352,8 +352,8 @@ nnoremap <silent> <leader>b :call ToggleBreakpoint()<cr>
 nnoremap <silent> <leader>B :<C-u>call gitblame#echo()<CR>
 nnoremap <silent> <leader>== :Black<cr>
 nnoremap <silent> <leader>= :set opfunc=Blackify<cr>g@
-noremap <leader>cs :set opfunc=SnakeCase<cr>g@
-noremap <leader>cc :set opfunc=CamelCase<cr>g@
+nnoremap <silent> <leader>cs :set opfunc=SnakeCase<cr>g@
+nnoremap <silent> <leader>cc :set opfunc=CamelCase<cr>g@
 " quick rot13 all
 nnoremap <leader>? ggg?G``
 nnoremap YQ ZQ
