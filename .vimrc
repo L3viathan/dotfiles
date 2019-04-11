@@ -37,6 +37,7 @@ if &term =~ '^screen'
     set ttymouse=xterm2
 endif
 set undofile undodir=~/.vim/undo  " write persistent undo file
+set viewoptions=cursor,folds    " don't save options on mkview
 set wildignore=*.o,*~,*.pyc     " ignore in wild menu
 set wildmenu                    " enable wild menu
 set wildmode=list:longest,full  " how to suggest in wild menu
