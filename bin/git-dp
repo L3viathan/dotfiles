@@ -1,0 +1,2 @@
+#!/bin/bash
+git diff $(git reflog | grep 'checkout: moving from' | head -n 1 | cut -f6 -d' ')
