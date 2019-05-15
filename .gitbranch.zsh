@@ -3,12 +3,11 @@
 if [[ $- == *i* ]]; then
 # CTRL-B - Paste the selected branch into the command line
 fzf-branch-widget() {
-  local selected num
   setopt localoptions noglobsubst noposixbuiltins pipefail 2> /dev/null
   selected="$(git branch | tr -d '* ' |
-    FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort $FZF_CTRL_R_OPTS +m" $(__fzfcmd))"
+    FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS -n2..,.. --tiebreak=index --multi --bind=ctrl-r:toggle-sort $FZF_CTRL_R_OPTS +m" $(__fzfcmd))"
   local ret=$?
-  echo "$selected"
+  LBUFFER=${LBUFFER}${selected}
   zle reset-prompt
   return $ret
 }
