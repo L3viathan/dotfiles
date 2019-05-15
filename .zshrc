@@ -84,6 +84,7 @@ alias please='sudo $(fc -ln -1)'
 alias crep='grep --color=yes'
 alias gdm='git diff master'
 alias grc='git rebase --continue'
+alias rgp='rg -t py'
 
 alias tmux='tmux -2'
 
