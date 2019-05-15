@@ -111,3 +111,4 @@ if [ -f ~/.zshrc.$hostname ]; then
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.gitbranch.zsh ] && source ~/.gitbranch.zsh
