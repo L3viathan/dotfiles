@@ -46,7 +46,7 @@ set timeoutlen=1000 ttimeoutlen=0
 " PLUGINS
 call plug#begin('~/.vim/plugged')
 Plug 'FooSoft/vim-argwrap'
-Plug 'L3viathan/black', {'for': 'python'}
+Plug 'python/black', {'for': 'python'}
 Plug 'L3viathan/flattened'
 Plug 'L3viathan/vim-autoswap'
 Plug 'Olical/vim-enmasse'
@@ -224,13 +224,10 @@ function! TrimTrailing()
 endfun
 
 function! ToggleBreakpoint()
-    " 1. get text of current line
     let line = getline('.')
     if line =~# 'ipdb.set_trace'
-        " remove line
         delete
     else
-        " add line
         normal oimport ipdb; ipdb.set_trace()
     endif
 endfun
@@ -377,3 +374,4 @@ command! W w
 iabbr inim if __name__ == '__main__':
 
 colorscheme flattened_dark
+highlight Comment ctermbg=Black ctermfg=DarkRed
