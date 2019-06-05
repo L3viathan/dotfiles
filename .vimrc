@@ -352,7 +352,10 @@ nnoremap <silent> <leader>B :<C-u>call gitblame#echo()<CR>
 nnoremap <silent> <leader>== :Black<cr>
 nnoremap <silent> <leader>= :set opfunc=Blackify<cr>g@
 nnoremap <silent> <leader>cs :set opfunc=SnakeCase<cr>g@
+nnoremap <silent> <leader>css :set opfunc=SnakeCase<cr>0g@$
+nnoremap <silent> <leader>cscs :set opfunc=SnakeCase<cr>0g@$
 nnoremap <silent> <leader>cc :set opfunc=CamelCase<cr>g@
+nnoremap <silent> <leader>ccc :set opfunc=CamelCase<cr>0g@$
 " quick rot13 all
 nnoremap <leader>? ggg?G``
 nnoremap YQ ZQ
