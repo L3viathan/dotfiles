@@ -3,10 +3,10 @@ theme = "solarized-dark"
 [icons]
 name = "awesome"
 
-[[block]]
-block = "custom"
-command = "echo "
-on_click = '/usr/bin/call'
+# [[block]]
+# block = "custom"
+# command = "echo "
+# on_click = '/usr/bin/call'
 
 [[block]]
 block = "focused_window"
