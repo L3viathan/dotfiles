@@ -301,8 +301,14 @@ augroup vimrc
     autocmd filetype python let b:switch_custom_definitions =
     \ [
     \    ['True', 'False', 'None'],
+    \    ['return', 'yield'],
+    \    ['.debug', '.info', '.warning', '.error', '.exception', '.critical'],
     \    ['@property', '@staticmethod', '@classmethod'],
     \    ['foo', 'bar', 'bat', 'baz', 'spam', 'ham', 'eggs', 'bacon'],
+    \    {
+    \      '\v^from ([^ ]+) import ([^ ]+)$': 'import \1.\2',
+    \      '\v^import ([^ ]+)\.([^ .]+)$': 'from \1 import \2',
+    \    }
     \ ]
 augroup END
 
