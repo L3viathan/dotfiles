@@ -84,6 +84,7 @@ Plug 'plasticboy/vim-markdown'
 Plug 'w0rp/ale', {'for': ['python', 'sh']}
 Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'ap/vim-buftabline'
+Plug 'AndrewRadev/switch.vim'
 call plug#end()
 
 
@@ -152,6 +153,7 @@ let g:DVB_TrimWS = 1
 let g:line_no_indicator_chars = [' ', '⠁', '⠉', '⠋', '⠛', '⠟', '⠿', '⡿', '⣿']
 let g:rooter_silent_chdir = 1
 let g:SuperTabDefaultCompletionType = 'context'
+let g:switch_mapping = '\'
 
 let hostname = substitute(system('hostname'), '\n', '', '')
 
@@ -296,6 +298,12 @@ augroup vimrc
     autocmd filetype crontab setlocal nobackup nowritebackup
     autocmd BufRead * call SetTrailing()
     autocmd filetype qf nnoremap M :EnMasse<cr>
+    autocmd filetype python let b:switch_custom_definitions =
+    \ [
+    \    ['True', 'False', 'None'],
+    \    ['@property', '@staticmethod', '@classmethod'],
+    \    ['foo', 'bar', 'bat', 'baz', 'spam', 'ham', 'eggs', 'bacon'],
+    \ ]
 augroup END
 
 
