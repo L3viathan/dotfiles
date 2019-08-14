@@ -357,7 +357,7 @@ nnoremap <silent> <leader>n :ALENextWrap<cr>
 nnoremap <silent> <leader>w :ArgWrap<cr>
 nnoremap <silent> <leader>v :vsplit $MYVIMRC<cr>
 nnoremap <silent> <leader>s :source $MYVIMRC<cr>
-nnoremap <silent> <leader>t :silent !ctags -R --languages=python .<cr>
+nnoremap <silent> <leader>t :silent !ctags -R --languages=python .<cr>:redraw!<cr>
 nnoremap <silent> <leader>gT :Tags<cr>
 nnoremap <silent> <leader>gt :BTags<cr>
 nnoremap <silent> <leader>gb :Buffers<cr>
