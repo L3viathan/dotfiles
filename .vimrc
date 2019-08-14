@@ -44,6 +44,10 @@ set wildmode=list:longest,full  " how to suggest in wild menu
 set timeoutlen=1000 ttimeoutlen=0
 
 " PLUGINS
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent execute "!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+    autocmd VimEnter * PlugInstall | source $MYVIMRC
+endif
 call plug#begin('~/.vim/plugged')
 Plug 'FooSoft/vim-argwrap'
 Plug 'python/black', {'for': 'python'}
