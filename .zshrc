@@ -38,6 +38,7 @@ alias l3vi='mosh l3vi -- tmux attach -d'
 alias mplayer=mpv vi=vim
 alias -g °='~/.zshrc' √='~/.vimrc'
 alias gs="(cd ~/GIT/solute && git standup -sm 3)"
+alias wr="wormhole receive" ws="wormhole send"
 
 # custom functions
 +(){while true; do; say "ping" && ping -oc 100000 8.8.8.8 > /dev/null && say "pong"; done}
