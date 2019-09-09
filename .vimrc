@@ -299,10 +299,10 @@ augroup vimrc
     autocmd BufWinEnter *.* silent loadview
     autocmd BufWinLeave * call clearmatches()
     autocmd BufWinLeave *.* mkview
-    autocmd filetype crontab setlocal nobackup nowritebackup
+    autocmd FileType crontab setlocal nobackup nowritebackup
     autocmd BufRead * call SetTrailing()
-    autocmd filetype qf nnoremap M :EnMasse<cr>
-    autocmd filetype python let b:switch_custom_definitions =
+    autocmd FileType qf nnoremap M :EnMasse<cr>
+    autocmd FileType python let b:switch_custom_definitions =
     \ [
     \    ['True', 'False', 'None'],
     \    ['return', 'yield'],
