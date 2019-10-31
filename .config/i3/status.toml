@@ -39,7 +39,7 @@ format = "{1m}"
 
 [[block]]
 block = "net"
-device = "wlp5s0"
+device = "wlo1"
 ssid = false
 ip = true
 speed_up = false

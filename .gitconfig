@@ -9,6 +9,7 @@
     a = add
     d = diff
     br = branch
+	pfusch = push --force-with-lease
 [filter "media"]
     required = true
     clean = git media clean %f
@@ -23,3 +24,5 @@
     conflictstyle = diff3
 [mergetool]
     prompt = false
+[rerere]
+	enabled = true
