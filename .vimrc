@@ -89,6 +89,7 @@ Plug 'w0rp/ale', {'for': ['python', 'sh']}
 Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'ap/vim-buftabline'
 Plug 'AndrewRadev/switch.vim'
+Plug 'lervag/vimtex', {'for': 'latex'}
 call plug#end()
 
 
@@ -138,7 +139,6 @@ let g:ale_linters = {'python': ['pylint']}
 let g:ale_set_balloons = 0  " fixes an issue that occurs when ttymouse=xterm2
 let g:ackprg = 'rg --vimgrep'
 let g:autoswap_detect_tmux = 1
-let g:black_linelength = 80
 let g:ale_linters = {
 \   'python': ['pylint'],
 \}
@@ -158,6 +158,22 @@ let g:line_no_indicator_chars = [' ', '⠁', '⠉', '⠋', '⠛', '⠟', '⠿', 
 let g:rooter_silent_chdir = 1
 let g:SuperTabDefaultCompletionType = 'context'
 let g:switch_mapping = '\'
+let g:vimtex_compiler_latexmk = {
+        \ 'backend' : 'jobs',
+        \ 'background' : 1,
+        \ 'build_dir' : '',
+        \ 'callback' : 1,
+        \ 'continuous' : 1,
+        \ 'executable' : 'latexmk',
+        \ 'hooks' : [],
+        \ 'options' : [
+        \   '-verbose',
+        \   '-xelatex',
+        \   '-file-line-error',
+        \   '-synctex=1',
+        \   '-interaction=nonstopmode',
+        \ ],
+        \}
 
 let hostname = substitute(system('hostname'), '\n', '', '')
 
@@ -355,7 +371,7 @@ nnoremap <silent> <leader>f :FZF<cr>
 nnoremap <silent> <leader>l :call TrimTrailing()<cr>
 nnoremap <silent> <leader>n :ALENextWrap<cr>
 nnoremap <silent> <leader>w :ArgWrap<cr>
-nnoremap <silent> <leader>v :vsplit $MYVIMRC<cr>
+nnoremap <silent> <leader>v :split $MYVIMRC<cr>
 nnoremap <silent> <leader>s :source $MYVIMRC<cr>
 nnoremap <silent> <leader>t :silent !ctags -R --languages=python .<cr>:redraw!<cr>
 nnoremap <silent> <leader>gT :Tags<cr>
@@ -396,3 +412,5 @@ iabbr inim if __name__ == '__main__':
 
 colorscheme flattened_dark
 highlight Comment ctermbg=Black ctermfg=DarkRed
+set makeprg=latexmk\ -f\ -xelatex\ -interaction=nonstopmode\ %
+nnoremap <silent> <localleader>ll :make<cr>
