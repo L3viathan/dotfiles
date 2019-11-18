@@ -413,4 +413,4 @@ iabbr inim if __name__ == '__main__':
 colorscheme flattened_dark
 highlight Comment ctermbg=Black ctermfg=DarkRed
 set makeprg=latexmk\ -f\ -xelatex\ -interaction=nonstopmode\ %
-nnoremap <silent> <localleader>ll :make<cr>
+nnoremap <silent> <leader>ll :make<cr>
