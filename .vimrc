@@ -368,6 +368,7 @@ nmap S yss
 nmap cxgv `<cx`>
 nmap s ys
 nmap ga <Plug>(EasyAlign)
+nmap gR gr$
 nnoremap <silent> K <C-]>
 nnoremap + <C-A>
 nnoremap - <C-X>
