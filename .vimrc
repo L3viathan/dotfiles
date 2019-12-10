@@ -90,6 +90,7 @@ Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'ap/vim-buftabline'
 Plug 'AndrewRadev/switch.vim'
 Plug 'lervag/vimtex', {'for': 'latex'}
+Plug 'chaoren/vim-wordmotion'
 call plug#end()
 
 
@@ -174,6 +175,17 @@ let g:vimtex_compiler_latexmk = {
         \   '-interaction=nonstopmode',
         \ ],
         \}
+
+let g:wordmotion_mappings = {
+        \ 'w' : ',w',
+        \ 'b' : ',b',
+        \ 'e' : ',e',
+        \ 'ge' : 'g,e',
+        \ 'aw' : 'a,w',
+        \ 'iw' : 'i,w',
+        \ '<C-R><C-W>' : '<C-R>,<C-W>'
+        \ }
+
 
 let hostname = substitute(system('hostname'), '\n', '', '')
 
