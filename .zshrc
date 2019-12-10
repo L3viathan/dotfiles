@@ -19,7 +19,7 @@ unset MAILCHECK
 alias ls='exa' ll='ls -lh --git' l='ls -lah --git'
 alias such='git' very='git' many='git' so='git' much='git' wow='git status'
 alias yolo='git commit -am "DEAL WITH IT" && git push -f origin master'
-alias -9="kill -9" c="crun" rf="rm -rf" v="vim" s="ssh" o="open" t="tig"
+alias -9="kill -9" c="crun" rf="rm -rf" v="vim" s="ssh" o="open" t="tig" m="make"
 alias :q="exit"
 alias ≤="git pull" ≥="git push"
 alias youtube-dl='youtube-dl -o "%(title)s.%(ext)s" --restrict-filenames'
