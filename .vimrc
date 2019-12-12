@@ -50,7 +50,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 call plug#begin('~/.vim/plugged')
 Plug 'FooSoft/vim-argwrap'
-Plug 'python/black', {'for': 'python'}
+Plug 'psf/black', {'for': 'python'}
 Plug 'L3viathan/flattened'
 Plug 'L3viathan/vim-autoswap'
 Plug 'Olical/vim-enmasse'
@@ -91,6 +91,7 @@ Plug 'ap/vim-buftabline'
 Plug 'AndrewRadev/switch.vim'
 Plug 'lervag/vimtex', {'for': 'latex'}
 Plug 'chaoren/vim-wordmotion'
+Plug 'zah/nim.vim'
 call plug#end()
 
 
