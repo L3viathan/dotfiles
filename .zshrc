@@ -13,6 +13,7 @@ source $ZSH/oh-my-zsh.sh
 # PATH adjustments: add scripts and wd
 # export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_102.jdk/Contents/Home"
 
+export VIRTUAL_ENV_DISABLE_PROMPT=1
 unset MAILCHECK
 
 # Aliasses and custom functions
