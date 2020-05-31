@@ -180,13 +180,9 @@ prompt_virtualenv() {
 # - am I root
 # - are there background jobs?
 prompt_status() {
-  local symbols
-  symbols=()
-  [[ $RETVAL -ne 0 ]] && symbols+="$RETVAL"
-  [[ $UID -eq 0 ]] && symbols+="⚡"
-  [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="⧖"
-
-  [[ -n "$symbols" ]] && prompt_segment default red "$symbols"
+  [[ $RETVAL -ne 0 ]] && prompt_segment default red "$RETVAL"
+  [[ $UID -eq 0 ]] && prompt_segment default yellow "⚡"
+  [[ $(jobs -l | wc -l) -gt 0 ]] && prompt_segment default white "⚙️"
 }
 
 prompt_l3vi() {

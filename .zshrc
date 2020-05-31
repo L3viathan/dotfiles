@@ -10,35 +10,25 @@ plugins=(git zsh-syntax-highlighting pip mosh zshmarks dirhistory fzf-zsh z)
 source $ZSH/oh-my-zsh.sh
 #</oh-my-zsh_stuff>
 
-# PATH adjustments: add scripts and wd
-# export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_102.jdk/Contents/Home"
-
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 unset MAILCHECK
 
 # Aliasses and custom functions
-alias ls='exa' ll='ls -lh --git' l='ls -lah --git'
-alias such='git' very='git' many='git' so='git' much='git' wow='git status'
-alias yolo='git commit -am "DEAL WITH IT" && git push -f origin master'
-alias -9="kill -9" c="crun" rf="rm -rf" v="vim" s="ssh" o="open" t="tig" m="make"
+which exa >/dev/null && alias ls='exa' ll='ls -lh --git' l='ls -lah --git'
+which exa >/dev/null || alias ll='ls -lh' l='ls -lah'
+alias wow='git status'
+alias c="crun" rf="rm -rf" v="vim" s="ssh" t="tig" m="make"
 alias :q="exit"
-alias ≤="git pull" ≥="git push"
 alias youtube-dl='youtube-dl -o "%(title)s.%(ext)s" --restrict-filenames'
 alias livestreamer='livestreamer --http-header Client-ID=jzkbprff40iqj646a697cyrvl0zt2m6 --player /usr/local/bin/mpv'
 alias lg='ls -l| egrep --color=never'
 alias ly='ls| egrep --color=never "(mp4|webm|flv|m4v|3gp|mkv|avi)$"'
 alias lm='ls| egrep --color=never "(mp3|ogg|flac|wav|m4a|wma)$"'
 alias lsd='ls -F| grep /'
-alias howami="curl -L api.l3vi.de/mood.json 2>/dev/null | jq -r '.mood'"
-alias lati="curl -L api.l3vi.de/location.json 2>/dev/null | jq .lat"
-alias lon="curl -L api.l3vi.de/location.json 2>/dev/null | jq .lon"
-alias whereami="curl -L http://api.l3vi.de/location.json 2>/dev/null| jq -r '.address'"
-alias oneline='while read -r line;do;echo -n "\r$line";done'
+alias oneline='while read -r line;do;echo -n "\r$line";done;echo'
 alias ccat='pygmentize -g'
 alias l3vi='mosh l3vi -- tmux attach -d'
 alias mplayer=mpv vi=vim
-alias -g °='~/.zshrc' √='~/.vimrc'
-alias gs="(cd ~/GIT/solute && git standup -sm 3)"
 alias wr="wormhole receive" ws="wormhole send"
 
 # custom functions
