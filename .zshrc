@@ -1,6 +1,6 @@
 #<oh-my-zsh_stuff>
 ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="agnoster"
+ZSH_THEME="l3vi2"
 CASE_SENSITIVE="true"
 export EDITOR="vim"
 export VISUAL="vim"
@@ -102,6 +102,7 @@ p() {
 }
 
 export FZF_DEFAULT_COMMAND='fd --type f'
+export DEFAULT_USER="l3viathan"
 
 export hostname=$(hostname)
 export uname=$(uname)
