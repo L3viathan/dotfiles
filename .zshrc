@@ -115,3 +115,4 @@ fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.gitbranch.zsh ] && source ~/.gitbranch.zsh
+eval "$(pyenv init -)"

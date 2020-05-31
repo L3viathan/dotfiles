@@ -50,7 +50,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 call plug#begin('~/.vim/plugged')
 Plug 'FooSoft/vim-argwrap'
-Plug 'psf/black', {'for': 'python'}
+Plug 'psf/black', {'for': 'python', 'tag': '*'}
 Plug 'L3viathan/flattened'
 Plug 'L3viathan/vim-autoswap'
 Plug 'Olical/vim-enmasse'
@@ -141,9 +141,7 @@ let g:ale_linters = {'python': ['pylint']}
 let g:ale_set_balloons = 0  " fixes an issue that occurs when ttymouse=xterm2
 let g:ackprg = 'rg --vimgrep'
 let g:autoswap_detect_tmux = 1
-let g:ale_linters = {
-\   'python': ['pylint'],
-\}
+" let g:black_linelength = 80
 let g:gitgutter_sign_added = '⊕'
 let g:gitgutter_sign_removed = '⊖'
 let g:gitgutter_sign_modified = '⊙'
