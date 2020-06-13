@@ -91,6 +91,8 @@ p() {
     fi
 }
 
+function twitch() {livestreamer --http-header Client-ID=jzkbprff40iqj646a697cyrvl0zt2m6 --player /usr/local/bin/mpv "https://www.twitch.tv/$1" 720p}
+
 export FZF_DEFAULT_COMMAND='fd --type f'
 export DEFAULT_USER="l3viathan"
 

@@ -138,6 +138,7 @@ let g:lightline = {
   \ }
 
 let g:ale_linters = {'python': ['pylint']}
+let g:ale_fixers = {'python': ['black', 'reorder-python-imports', 'trim_whitespace', 'remove_trailing_lines']}
 let g:ale_set_balloons = 0  " fixes an issue that occurs when ttymouse=xterm2
 let g:ackprg = 'rg --vimgrep'
 let g:autoswap_detect_tmux = 1
@@ -395,7 +396,7 @@ nnoremap <silent> <leader>gl :Lines<cr>
 nnoremap <silent> <leader>gm :Marks<cr>
 nnoremap <silent> <leader>b :call ToggleBreakpoint()<cr>
 nnoremap <silent> <leader>B :<C-u>call gitblame#echo()<CR>
-nnoremap <silent> <leader>== :Black<cr>
+nnoremap <silent> <leader>== :ALEFix<cr>
 nnoremap <silent> <leader>= :set opfunc=Blackify<cr>g@
 nnoremap <silent> <leader>cs :set opfunc=SnakeCase<cr>g@
 nnoremap <silent> <leader>css :set opfunc=SnakeCase<cr>0g@$
