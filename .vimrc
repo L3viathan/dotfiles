@@ -89,6 +89,7 @@ Plug 'w0rp/ale', {'for': ['python', 'sh']}
 Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'ap/vim-buftabline'
 Plug 'AndrewRadev/switch.vim'
+Plug 'mattn/emmet-vim', {'for': 'html'}
 Plug 'lervag/vimtex', {'for': 'latex'}
 Plug 'chaoren/vim-wordmotion'
 Plug 'zah/nim.vim'
@@ -397,6 +398,7 @@ nnoremap <silent> <leader>gm :Marks<cr>
 nnoremap <silent> <leader>b :call ToggleBreakpoint()<cr>
 nnoremap <silent> <leader>B :<C-u>call gitblame#echo()<CR>
 nnoremap <silent> <leader>== :ALEFix<cr>
+nnoremap <silent> <leader>00 :Black<cr>
 nnoremap <silent> <leader>= :set opfunc=Blackify<cr>g@
 nnoremap <silent> <leader>cs :set opfunc=SnakeCase<cr>g@
 nnoremap <silent> <leader>css :set opfunc=SnakeCase<cr>0g@$
