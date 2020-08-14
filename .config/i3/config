@@ -172,6 +172,7 @@ bar {
 
 for_window [class=".*"] border pixel 1
 for_window [window_type="dialog|utility|toolbar|splash|menu|dropdown_menu|popup_menu|tooltip|notification"] border pixel 10
+for_window [floating] border pixel 10
 smart_gaps on
 smart_borders on
 hide_edge_borders smart_no_gaps
@@ -179,4 +180,4 @@ hide_edge_borders smart_no_gaps
 gaps inner 10
 
 exec_always "xrandr --output DP-2-1 --mode 1920x1200 --pos 0x376 --rotate normal --output DP-2-2 --mode 1920x1200 --pos 1920x0 --rotate left --output DP-2-3 --off --output eDP-1 --primary --mode 1920x1080 --pos 3120x840 --rotate normal --output HDMI-2 --off --output HDMI-1 --off --output DP-3 --off --output DP-2 --off --output DP-1 --off"
-exec_always "feh --bg-fill /home/jonathan/Downloads/windows-xp-desktop-background-wallpaper-windows-xp-800x600.jpg"
+exec_always "feh --bg-fill /home/jonathan/Downloads/win31full.png"

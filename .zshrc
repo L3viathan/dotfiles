@@ -29,6 +29,8 @@ alias oneline='while read -r line;do;echo -n "\r$line";done;echo'
 alias ccat='pygmentize -g'
 alias l3vi='mosh l3vi -- tmux attach -d'
 alias mplayer=mpv vi=vim
+alias -g °='~/.zshrc' √='~/.vimrc'
+alias gs="(cd ~/git && git standup -sm 3)"
 alias wr="wormhole receive" ws="wormhole send"
 
 # custom functions
@@ -44,6 +46,7 @@ then
     $*
 fi}
 mkcd() {echo "Use take instead"}
+alias unzero='perl -pe ''s/\0/\t/\'' | sed -e \''$a\'''
 compdef srsly='sudo' #autocompletion like sudo
 compdef shutup='sudo' #autocompletion like sudo
 compdef maybe='sudo' #autocompletion like sudo
@@ -77,6 +80,9 @@ alias crep='grep --color=yes'
 alias gdm='git diff master'
 alias grc='git rebase --continue'
 alias rgp='rg -t py'
+alias rgi='rg --no-ignore'
+alias rgip='rg --no-ignore -t py'
+alias rgpi='rg --no-ignore -t py'
 
 alias tmux='tmux -2'
 
@@ -98,6 +104,8 @@ export DEFAULT_USER="l3viathan"
 
 export hostname=$(hostname)
 export uname=$(uname)
+export HISTSIZE=1000000
+export HISTFILESIZE=10000000
 
 if [ -f ~/.zshrc.$uname ]; then
     source ~/.zshrc.$uname
@@ -109,3 +117,5 @@ fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.gitbranch.zsh ] && source ~/.gitbranch.zsh
 eval "$(pyenv init -)"
+
+export BETTER_EXCEPTIONS=1

@@ -13,6 +13,7 @@ set expandtab                   " no literal tab characters
 set conceallevel=2              " turn on full conceal mode
 set foldmethod=manual           " fold when I want to
 set colorcolumn=80,81,82,83,84,85,86,87,88,89
+set hidden                      " allow switching buffers with unsaved changes
 set incsearch hlsearch          " search immediately and highlight
 set nojoinspaces                " single space after .!?
 set laststatus=2                " necessary for lightline
@@ -69,12 +70,11 @@ Plug 'justinmk/vim-dirvish'
 Plug 'lfv89/vim-interestingwords'
 Plug 'markonm/traces.vim'
 Plug 'zivyangll/git-blame.vim'
-Plug 'matze/vim-move'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'mileszs/ack.vim'
 Plug 'oblitum/rainbow'
 Plug 'rhysd/committia.vim'
-Plug 'shinokada/dragvisuals.vim'
+Plug 'gavinbeatty/dragvisuals.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-apathy'
@@ -82,7 +82,8 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'cespare/vim-toml'
+Plug 'cespare/vim-toml', {'for': 'toml'}
+Plug 'tpope/vim-abolish'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'w0rp/ale', {'for': ['python', 'sh']}
@@ -93,6 +94,7 @@ Plug 'mattn/emmet-vim', {'for': 'html'}
 Plug 'lervag/vimtex', {'for': 'latex'}
 Plug 'chaoren/vim-wordmotion'
 Plug 'zah/nim.vim'
+Plug 'vim-scripts/vis'
 call plug#end()
 
 
@@ -330,7 +332,7 @@ augroup vimrc
     autocmd BufWinLeave *.* mkview
     autocmd FileType crontab setlocal nobackup nowritebackup
     autocmd BufRead * call SetTrailing()
-    autocmd FileType qf nnoremap M :EnMasse<cr>
+    autocmd FileType qf nnoremap <leader>M :EnMasse<cr>
     autocmd FileType python let b:switch_custom_definitions =
     \ [
     \    ['True', 'False', 'None'],
@@ -348,7 +350,7 @@ augroup END
 
 " MAPPINGS
 
-noremap <C-c> ~
+" noremap <C-c> ~
 noremap <Down> <Nop>
 noremap <F1> <nop>
 noremap <Up> <Nop>
@@ -374,7 +376,6 @@ nnoremap <silent> K <C-]>
 nnoremap + <C-A>
 nnoremap - <C-X>
 nnoremap <silent> <C-X> :bd<cr>
-nnoremap <silent> <C-A> :only<cr>
 nnoremap <C-P> :!python3 %<cr>
 nnoremap g/ /\</\><cr>
 nnoremap <silent> <leader><cr> :nohl<cr>
