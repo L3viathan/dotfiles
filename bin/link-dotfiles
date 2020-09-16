@@ -1,0 +1,13 @@
+#!/bin/sh
+
+DOTFILE_PATH="$HOME/dotfiles"
+
+for dir in $(fd -H -E .git -td . "$DOTFILE_PATH")
+do
+    mkdir -p "$HOME/$(realpath --relative-to="$DOTFILE_PATH" "$dir")"
+done
+
+for file in $(fd -H -E .git -tf . "$DOTFILE_PATH")
+do
+    ln -s "$file" "$HOME/$(realpath --relative-to="$DOTFILE_PATH" "$file")" 2>/dev/null && echo "Linked $file" || true
+done
