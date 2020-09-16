@@ -1,4 +1,3 @@
-alias a='open -a'
 vol() {osascript -e "set volume $1"}
 show() {osascript -e "tell application \"$1\" to activate"}
 alias lock='/System/Library/CoreServices/"Menu Extras"/User.menu/Contents/Resources/CGSession -suspend'
