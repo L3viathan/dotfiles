@@ -117,5 +117,6 @@ fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.gitbranch.zsh ] && source ~/.gitbranch.zsh
 eval "$(pyenv init -)"
+export PATH="$PATH:~/bin"
 
 export BETTER_EXCEPTIONS=1
