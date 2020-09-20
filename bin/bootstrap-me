@@ -64,7 +64,7 @@ if [ "$OS" = "Linux" ]; then
     [ -e /usr/bin/fd ] || asroot ln -s $(which fdfind) /usr/bin/fd
 fi
 BREW_INSTALL fd pyenv
-INSTALL zsh vim python3 tmux
+INSTALL zsh vim python3 tmux tig
 if which pyenv; then
     :
 else
