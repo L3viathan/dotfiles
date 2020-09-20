@@ -79,7 +79,9 @@ fi
 ###########
 [ -e ~/.oh-my-zsh ] || sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-[ -e ~/.oh-mz-zsh/custom/plugins/fzf ] || git clone https://github.com/junegunn/fzf.git ~/.oh-my-zsh/custom/plugins/fzf && ~/.oh-my-zsh/custom/plugins/fzf/install --bin
+if ! [ -e ~/.oh-mz-zsh/custom/plugins/fzf ]; then
+    git clone https://github.com/junegunn/fzf.git ~/.oh-my-zsh/custom/plugins/fzf && ~/.oh-my-zsh/custom/plugins/fzf/install --bin
+fi
 [ -e ~/.oh-my-zsh/custom/plugins/fzf-zsh ] || git clone https://github.com/Treri/fzf-zsh.git ~/.oh-my-zsh/custom/plugins/fzf-zsh
 [ -e ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting ] || git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 [ -e ~/.oh-my-zsh/custom/plugins/zshmarks ] || git clone https://github.com/jocelynmallon/zshmarks.git ~/.oh-my-zsh/custom/plugins/zshmarks
