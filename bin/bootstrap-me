@@ -40,6 +40,7 @@ if [ "$OS" = "Linux" ]; then
 elif [ "$OS" = "Darwin" ]; then
     # Homebrew
     which brew || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+    brew upgrade
     function INSTALL() {
         brew install "$@"
     }
