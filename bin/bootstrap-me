@@ -18,37 +18,21 @@ fi
 function asroot() {
     if ! [ $(id -u) = 0 ]; then
        sudo $@
-    else
-        $@
+    elif ! $@; then  # try anyways
+        echo "Please execute the following with elevated permissions, then continue bootstrapping by calling fg:"
+        echo $@
+        kill -TSTP $$
     fi
 }
-
-echo -n "Testing for root... "
-if asroot echo success ; then
-    CAN_SUDO="yes"
-else
-    echo failed
-    CAN_SUDO="no"
-fi
 
 OS="$(uname -s)"
 HOSTNAME="$(hostname -s)"
 if [ "$OS" = "Linux" ]; then
     function APT_INSTALL() {
-        if [ "$CAN_SUDO" ]; then
-            asroot apt-get install -yqq "$@"
-        else
-            echo "Please manually install $* or make sure it is installed, then type fg"
-            kill -TSTP $$
-        fi
+        asroot apt-get install -yqq "$@"
     }
     function INSTALL() {
-        if [ "$CAN_SUDO" ]; then
-            asroot apt install -yqq "$@"
-        else
-            echo "Please manually install $* or make sure it is installed, then type fg"
-            kill -TSTP $$
-        fi
+        asroot apt-get install -yqq "$@"
     }
     function BREW_INSTALL() {
         true
@@ -79,9 +63,14 @@ APT_INSTALL git fd-find
 if [ "$OS" = "Linux" ]; then
     [ -e /usr/bin/fd ] || asroot ln -s $(which fdfind) /usr/bin/fd
 fi
-BREW_INSTALL fd
+BREW_INSTALL fd pyenv
 INSTALL zsh vim python3 tmux
-
+if which pyenv; then
+    :
+else
+    git clone git://github.com/pyenv/pyenv.git ~/.pyenv
+    asroot ln -s ~/.pyenv/bin/pyenv /usr/bin/pyenv
+fi
 
 
 ###########
