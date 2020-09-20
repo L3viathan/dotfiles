@@ -39,7 +39,7 @@ if [ "$OS" = "Linux" ]; then
     }
 elif [ "$OS" = "Darwin" ]; then
     # Homebrew
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    which brew || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
     function INSTALL() {
         brew install "$@"
     }
