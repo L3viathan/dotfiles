@@ -1,0 +1,146 @@
+#!/bin/bash
+
+#############################
+# DOWNLOAD AND REPLACE SELF #
+#############################
+# This helps with the kill -TSTP $$, I believe
+ME=$(basename "$0")
+if [ "$ME" = "bash" ]; then
+    curl https://raw.githubusercontent.com/L3viathan/dotfiles/master/bin/bootstrap-me >~/bootstrap.sh
+    chmod +x ~/bootstrap.sh
+    exec ~/bootstrap.sh
+fi
+
+#################
+# INITIAL SETUP #
+#################
+
+function asroot() {
+    if ! [ $(id -u) = 0 ]; then
+       sudo $@
+    else
+        $@
+    fi
+}
+
+echo -n "Testing for root... "
+if asroot echo success ; then
+    CAN_SUDO="yes"
+else
+    echo failed
+    CAN_SUDO="no"
+fi
+
+OS="$(uname -s)"
+HOSTNAME="$(hostname -s)"
+if [ "$OS" = "Linux" ]; then
+    function APT_INSTALL() {
+        if [ "$CAN_SUDO" ]; then
+            asroot apt-get install -yqq "$@"
+        else
+            echo "Please manually install $* or make sure it is installed, then type fg"
+            kill -TSTP $$
+        fi
+    }
+    function INSTALL() {
+        if [ "$CAN_SUDO" ]; then
+            asroot apt install -yqq "$@"
+        else
+            echo "Please manually install $* or make sure it is installed, then type fg"
+            kill -TSTP $$
+        fi
+    }
+    function BREW_INSTALL() {
+        true
+    }
+elif [ "$OS" = "Darwin" ]; then
+    # Homebrew
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    function INSTALL() {
+        brew install "$@"
+    }
+
+    function BREW_INSTALL() {
+        brew install "$@"
+    }
+    function APT_INSTALL() {
+        true
+    }
+else
+    echo "unknown OS"
+    exit 1
+fi
+
+############
+# PACKAGES #
+############
+# Homebrew installs git already
+APT_INSTALL git fd-find
+if [ "$OS" = "Linux" ]; then
+    [ -e /usr/bin/fd ] || asroot ln -s $(which fdfind) /usr/bin/fd
+fi
+BREW_INSTALL fd
+INSTALL zsh vim python3 tmux
+
+
+
+###########
+# OHMYZSH #
+###########
+[ -e ~/.oh-my-zsh ] || sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+[ -e ~/.oh-mz-zsh/custom/plugins/fzf ] || git clone https://github.com/junegunn/fzf.git ~/.oh-my-zsh/custom/plugins/fzf && ~/.oh-my-zsh/custom/plugins/fzf/install --bin
+[ -e ~/.oh-my-zsh/custom/plugins/fzf-zsh ] || git clone https://github.com/Treri/fzf-zsh.git ~/.oh-my-zsh/custom/plugins/fzf-zsh
+[ -e ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting ] || git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+[ -e ~/.oh-my-zsh/custom/plugins/zshmarks ] || git clone https://github.com/jocelynmallon/zshmarks.git ~/.oh-my-zsh/custom/plugins/zshmarks
+
+
+############
+# DOTFILES #
+############
+if [ -e ~/dotfiles ]; then
+    (cd ~/dotfiles && git pull)
+else
+    git clone https://github.com/L3viathan/dotfiles.git ~/dotfiles && git -C ~/dotfiles remote set-url origin git@github.com:L3viathan/dotfiles.git
+    rm -f ~/.zshrc ~/.vimrc ~/.tmux.conf ~/.tigrc ~/.gitconfig
+fi
+
+~/dotfiles/bin/link-dotfiles
+
+
+#############
+# VIM SETUP #
+#############
+[ -e ~/.vim/autoload/plug.vim ] || curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+mkdir -p ~/.vim/backup ~/.vim/colors
+[ -e ~/.vim/colors/flattened_dark.vim ] || curl -fLo ~/.vim/colors/flattened_dark.vim https://raw.githubusercontent.com/romainl/flattened/master/colors/flattened_dark.vim
+vim +PlugInstall +qall
+
+
+##############
+# TMUX SETUP #
+##############
+if [ -e ~/.tmux/plugins/tpm ]; then
+    :
+else
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    tmux new-session -s bootstrap -d
+    ~/.tmux/plugins/tpm/bindings/install_plugins
+    tmux kill-session -t bootstrap
+fi
+
+#############
+# FINISHING #
+#############
+
+if [ -e ~/.ssh/id_ed25519 ]; then
+    :
+else
+    ssh-keygen -t ed25519 -a 100 -f ~/.ssh/id_ed25519 -N ""
+    echo Remember to upload the public key to Github/Gitlab/...
+fi
+
+[ "$SHELL" = "/bin/zsh" ] || chsh -s /bin/zsh
+
+[ -e ~/bootstrap.sh ] && rm ~/bootstrap.sh
+echo All done. Close and reopen this shell and things should work.
