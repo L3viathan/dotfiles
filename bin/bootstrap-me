@@ -1,13 +1,24 @@
 #!/bin/bash
 
+####################
+# HELPER FUNCTIONS #
+####################
+function perror() { printf "\033[0;31m>> ERROR |\033[0m %s \n" "$*" ; }
+function pwarn()  { printf "\033[0;31m>> WARN  |\033[0m %s \n" "$*" ; }
+function pinfo()  { printf "\033[0;31m>> INFO  |\033[0m %s \n" "$*" ; }
+function pdebug() { printf "\033[0;31m>> DEBUG |\033[0m %s \n" "$*" ; }
+function pplain() { printf ">>       | %s \n" "$*" ; }
+
 #############################
 # DOWNLOAD AND REPLACE SELF #
 #############################
 # This helps with the kill -TSTP $$, I believe
 ME=$(basename "$0")
 if [ "$ME" = "bash" ]; then
+    pdebug "Detected curl-pipe-bash situation, redownloading to enable TSTP"
     curl https://raw.githubusercontent.com/L3viathan/dotfiles/master/bin/bootstrap-me >~/bootstrap.sh
     chmod +x ~/bootstrap.sh
+    pdebug "execing redownloaded self"
     exec ~/bootstrap.sh
 fi
 
@@ -17,10 +28,11 @@ fi
 
 function asroot() {
     if ! [ $(id -u) = 0 ]; then
-       sudo $@
+       sudo "$@"
     elif ! $@; then  # try anyways
-        echo "Please execute the following with elevated permissions, then continue bootstrapping by calling fg:"
-        echo $@
+        pinfo "Please execute the following with elevated permissions,"
+        pinfo "  then continue bootstrapping by calling fg:"
+        pplain "$@"
         kill -TSTP $$
     fi
 }
@@ -28,6 +40,7 @@ function asroot() {
 OS="$(uname -s)"
 HOSTNAME="$(hostname -s)"
 if [ "$OS" = "Linux" ]; then
+    pdebug "Detected OS: Linux"
     function APT_INSTALL() {
         asroot apt-get install -yqq "$@"
     }
@@ -38,6 +51,7 @@ if [ "$OS" = "Linux" ]; then
         true
     }
 elif [ "$OS" = "Darwin" ]; then
+    pdebug "Detected OS: macOS"
     # Homebrew
     which brew || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
     brew upgrade
@@ -52,7 +66,7 @@ elif [ "$OS" = "Darwin" ]; then
         true
     }
 else
-    echo "unknown OS"
+    perror "unknown OS"
     exit 1
 fi
 
@@ -60,15 +74,20 @@ fi
 # PACKAGES #
 ############
 # Homebrew installs git already
+pinfo "Installing required software"
 APT_INSTALL git fd-find
 if [ "$OS" = "Linux" ]; then
-    [ -e /usr/bin/fd ] || asroot ln -s $(which fdfind) /usr/bin/fd
+    if ! [ -e /usr/bin/fd ] ; then
+        pinfo "Linking fdfind as /usr/bin/fd"
+        asroot ln -s "$(which fdfind)" /usr/bin/fd
+    fi
 fi
 BREW_INSTALL fd pyenv
 INSTALL zsh vim python3 tmux tig
 if which pyenv; then
     :
 else
+    pinfo "pyenv not found. Installing via Git..."
     git clone https://github.com/pyenv/pyenv.git ~/.pyenv
     asroot ln -s ~/.pyenv/bin/pyenv /usr/bin/pyenv
 fi
@@ -77,35 +96,57 @@ fi
 ###########
 # OHMYZSH #
 ###########
-[ -e ~/.oh-my-zsh ] || sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+if ! [ -e ~/.oh-my-zsh ]; then
+    pinfo "Installing OhMyZSH"
+    sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+fi
 
 if ! [ -e ~/.oh-mz-zsh/custom/plugins/fzf ]; then
+    pinfo "Installing OhMyZSH plugin: fzf"
     git clone https://github.com/junegunn/fzf.git ~/.oh-my-zsh/custom/plugins/fzf && ~/.oh-my-zsh/custom/plugins/fzf/install --bin
 fi
-[ -e ~/.oh-my-zsh/custom/plugins/fzf-zsh ] || git clone https://github.com/Treri/fzf-zsh.git ~/.oh-my-zsh/custom/plugins/fzf-zsh
-[ -e ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting ] || git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-[ -e ~/.oh-my-zsh/custom/plugins/zshmarks ] || git clone https://github.com/jocelynmallon/zshmarks.git ~/.oh-my-zsh/custom/plugins/zshmarks
+if ! [ -e ~/.oh-my-zsh/custom/plugins/fzf-zsh ]; then
+    pinfo "Installing OhMyZSH plugin: fzf-zsh"
+    git clone https://github.com/Treri/fzf-zsh.git ~/.oh-my-zsh/custom/plugins/fzf-zsh
+fi
+if ! [ -e ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting ]; then
+    pinfo "Installing OhMyZSH plugin: zsh-syntax-highlighting"
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+fi
+if ! [ -e ~/.oh-my-zsh/custom/plugins/zshmarks ]; then
+    pinfo "Installing OhMyZSH plugin: zshmarks"
+    git clone https://github.com/jocelynmallon/zshmarks.git ~/.oh-my-zsh/custom/plugins/zshmarks
+fi
 
 
 ############
 # DOTFILES #
 ############
 if [ -e ~/dotfiles ]; then
-    (cd ~/dotfiles && git pull)
+    pinfo "Pulling dotfiles"
+    (cd ~/dotfiles && git pull >/dev/null)
 else
+    pinfo "Cloning dotfiles"
     git clone https://github.com/L3viathan/dotfiles.git ~/dotfiles && git -C ~/dotfiles remote set-url origin git@github.com:L3viathan/dotfiles.git
     rm -f ~/.zshrc ~/.vimrc ~/.tmux.conf ~/.tigrc ~/.gitconfig
 fi
 
+pinfo "Linking missing dotfiles"
 ~/dotfiles/bin/link-dotfiles
 
 
 #############
 # VIM SETUP #
 #############
-[ -e ~/.vim/autoload/plug.vim ] || curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+if ! [ -e ~/.vim/autoload/plug.vim ]; then
+    pinfo "Installing vim-plug"
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
 mkdir -p ~/.vim/backup ~/.vim/colors
-[ -e ~/.vim/colors/flattened_dark.vim ] || curl -fLo ~/.vim/colors/flattened_dark.vim https://raw.githubusercontent.com/romainl/flattened/master/colors/flattened_dark.vim
+if ! [ -e ~/.vim/colors/flattened_dark.vim ]; then
+    pinfo "Installing Vim colorscheme flattened_dark"
+    curl -fLo ~/.vim/colors/flattened_dark.vim https://raw.githubusercontent.com/romainl/flattened/master/colors/flattened_dark.vim
+fi
 vim +PlugInstall +qall
 
 
@@ -115,8 +156,10 @@ vim +PlugInstall +qall
 if [ -e ~/.tmux/plugins/tpm ]; then
     :
 else
+    pinfo "Cloning TMUX plugin manager"
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
     tmux new-session -s bootstrap -d
+    pinfo "Installing tpm plugins"
     ~/.tmux/plugins/tpm/bindings/install_plugins
     tmux kill-session -t bootstrap
 fi
@@ -128,11 +171,19 @@ fi
 if [ -e ~/.ssh/id_ed25519 ]; then
     :
 else
+    pinfo "Generating SSH key"
     ssh-keygen -t ed25519 -a 100 -f ~/.ssh/id_ed25519 -N ""
-    echo Remember to upload the public key to Github/Gitlab/...
+    pwarn "Remember to upload the public key to Github/Gitlab/..."
 fi
 
-[ "$SHELL" = "/bin/zsh" ] || chsh -s /bin/zsh
+if ! [ "$SHELL" = "/bin/zsh" ]; then
+    pwarn "Shell isn't ZSH, changing..."
+    chsh -s /bin/zsh
+fi
 
-[ -e ~/bootstrap.sh ] && rm ~/bootstrap.sh
-echo All done. Close and reopen this shell and things should work.
+if [ -e ~/bootstrap.sh ]; then
+    pinfo "Removing artifact: ~/bootstrap.sh"
+    pinfo "From now on, call \033[0;37mbootstrap-me\033[0m to refresh system state"
+    rm ~/bootstrap.sh
+fi
+pinfo "All done. Close and reopen this shell and things should work."
