@@ -4,9 +4,9 @@
 # HELPER FUNCTIONS #
 ####################
 function perror() { printf "\033[0;31m>> ERROR |\033[0m %s \n" "$*" ; }
-function pwarn()  { printf "\033[0;31m>> WARN  |\033[0m %s \n" "$*" ; }
-function pinfo()  { printf "\033[0;31m>> INFO  |\033[0m %s \n" "$*" ; }
-function pdebug() { printf "\033[0;31m>> DEBUG |\033[0m %s \n" "$*" ; }
+function pwarn()  { printf "\033[0;33m>> WARN  |\033[0m %s \n" "$*" ; }
+function pinfo()  { printf "\033[0;34m>> INFO  |\033[0m %s \n" "$*" ; }
+function pdebug() { printf "\033[0;35m>> DEBUG |\033[0m %s \n" "$*" ; }
 function pplain() { printf ">>       | %s \n" "$*" ; }
 
 #############################
@@ -42,10 +42,10 @@ HOSTNAME="$(hostname -s)"
 if [ "$OS" = "Linux" ]; then
     pdebug "Detected OS: Linux"
     function APT_INSTALL() {
-        asroot apt-get install -yqq "$@"
+        asroot apt-get install -yqq "$@" >/dev/null
     }
     function INSTALL() {
-        asroot apt-get install -yqq "$@"
+        asroot apt-get install -yqq "$@" >/dev/null
     }
     function BREW_INSTALL() {
         true
@@ -53,14 +53,18 @@ if [ "$OS" = "Linux" ]; then
 elif [ "$OS" = "Darwin" ]; then
     pdebug "Detected OS: macOS"
     # Homebrew
-    which brew || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-    brew upgrade
+    if ! which brew >/dev/null ; then
+        pinfo "Missing Homebrew, installing..."
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+    fi
+    pinfo "Upgrading Homebrew packages..."
+    brew upgrade 2>/dev/null
     function INSTALL() {
-        brew install "$@"
+        brew install "$@" 2>/dev/null
     }
 
     function BREW_INSTALL() {
-        brew install "$@"
+        brew install "$@" 2>/dev/null
     }
     function APT_INSTALL() {
         true
@@ -74,17 +78,17 @@ fi
 # PACKAGES #
 ############
 # Homebrew installs git already
-pinfo "Installing required software"
+pinfo "Installing required software..."
 APT_INSTALL git fd-find
 if [ "$OS" = "Linux" ]; then
     if ! [ -e /usr/bin/fd ] ; then
-        pinfo "Linking fdfind as /usr/bin/fd"
-        asroot ln -s "$(which fdfind)" /usr/bin/fd
+        pinfo "Linking fdfind as /usr/bin/fd..."
+        asroot ln -s "$(which fdfind >/dev/null)" /usr/bin/fd
     fi
 fi
 BREW_INSTALL fd pyenv
 INSTALL zsh vim python3 tmux tig
-if which pyenv; then
+if which pyenv >/dev/null ; then
     :
 else
     pinfo "pyenv not found. Installing via Git..."
@@ -97,24 +101,24 @@ fi
 # OHMYZSH #
 ###########
 if ! [ -e ~/.oh-my-zsh ]; then
-    pinfo "Installing OhMyZSH"
+    pinfo "Installing OhMyZSH..."
     sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi
 
 if ! [ -e ~/.oh-mz-zsh/custom/plugins/fzf ]; then
-    pinfo "Installing OhMyZSH plugin: fzf"
+    pinfo "Installing OhMyZSH plugin: fzf..."
     git clone https://github.com/junegunn/fzf.git ~/.oh-my-zsh/custom/plugins/fzf && ~/.oh-my-zsh/custom/plugins/fzf/install --bin
 fi
 if ! [ -e ~/.oh-my-zsh/custom/plugins/fzf-zsh ]; then
-    pinfo "Installing OhMyZSH plugin: fzf-zsh"
+    pinfo "Installing OhMyZSH plugin: fzf-zsh..."
     git clone https://github.com/Treri/fzf-zsh.git ~/.oh-my-zsh/custom/plugins/fzf-zsh
 fi
 if ! [ -e ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting ]; then
-    pinfo "Installing OhMyZSH plugin: zsh-syntax-highlighting"
+    pinfo "Installing OhMyZSH plugin: zsh-syntax-highlighting..."
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 fi
 if ! [ -e ~/.oh-my-zsh/custom/plugins/zshmarks ]; then
-    pinfo "Installing OhMyZSH plugin: zshmarks"
+    pinfo "Installing OhMyZSH plugin: zshmarks..."
     git clone https://github.com/jocelynmallon/zshmarks.git ~/.oh-my-zsh/custom/plugins/zshmarks
 fi
 
@@ -123,15 +127,15 @@ fi
 # DOTFILES #
 ############
 if [ -e ~/dotfiles ]; then
-    pinfo "Pulling dotfiles"
+    pinfo "Pulling dotfiles..."
     (cd ~/dotfiles && git pull >/dev/null)
 else
-    pinfo "Cloning dotfiles"
+    pinfo "Cloning dotfiles..."
     git clone https://github.com/L3viathan/dotfiles.git ~/dotfiles && git -C ~/dotfiles remote set-url origin git@github.com:L3viathan/dotfiles.git
     rm -f ~/.zshrc ~/.vimrc ~/.tmux.conf ~/.tigrc ~/.gitconfig
 fi
 
-pinfo "Linking missing dotfiles"
+pinfo "Linking missing dotfiles..."
 ~/dotfiles/bin/link-dotfiles
 
 
@@ -139,12 +143,12 @@ pinfo "Linking missing dotfiles"
 # VIM SETUP #
 #############
 if ! [ -e ~/.vim/autoload/plug.vim ]; then
-    pinfo "Installing vim-plug"
+    pinfo "Installing vim-plug..."
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 mkdir -p ~/.vim/backup ~/.vim/colors
 if ! [ -e ~/.vim/colors/flattened_dark.vim ]; then
-    pinfo "Installing Vim colorscheme flattened_dark"
+    pinfo "Installing Vim colorscheme flattened_dark..."
     curl -fLo ~/.vim/colors/flattened_dark.vim https://raw.githubusercontent.com/romainl/flattened/master/colors/flattened_dark.vim
 fi
 vim +PlugInstall +qall
@@ -156,10 +160,10 @@ vim +PlugInstall +qall
 if [ -e ~/.tmux/plugins/tpm ]; then
     :
 else
-    pinfo "Cloning TMUX plugin manager"
+    pinfo "Cloning TMUX plugin manager..."
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
     tmux new-session -s bootstrap -d
-    pinfo "Installing tpm plugins"
+    pinfo "Installing tpm plugins..."
     ~/.tmux/plugins/tpm/bindings/install_plugins
     tmux kill-session -t bootstrap
 fi
@@ -171,7 +175,7 @@ fi
 if [ -e ~/.ssh/id_ed25519 ]; then
     :
 else
-    pinfo "Generating SSH key"
+    pinfo "Generating SSH key..."
     ssh-keygen -t ed25519 -a 100 -f ~/.ssh/id_ed25519 -N ""
     pwarn "Remember to upload the public key to Github/Gitlab/..."
 fi
