@@ -105,7 +105,7 @@ if ! [ -e ~/.oh-my-zsh ]; then
     sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi
 
-if ! [ -e ~/.oh-mz-zsh/custom/plugins/fzf ]; then
+if ! [ -e ~/.oh-my-zsh/custom/plugins/fzf ]; then
     pinfo "Installing OhMyZSH plugin: fzf..."
     git clone https://github.com/junegunn/fzf.git ~/.oh-my-zsh/custom/plugins/fzf && ~/.oh-my-zsh/custom/plugins/fzf/install --bin
 fi
