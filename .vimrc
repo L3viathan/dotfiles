@@ -21,7 +21,7 @@ set lazyredraw                  " don't redraw screen during macros
 set list                        " show whitespace with special chars:
 set listchars=tab:▶\ ,trail:·,nbsp:⎵   " these.
 set magic                       " default to magic mode in regex
-set mouse=a                     " always enable mouse
+set mouse=
 set matchpairs+=«:»,“:”         " additional matching pairs for %
 set number                      " show line numbers
 set relativenumber              " show relative line numbers
@@ -51,7 +51,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 call plug#begin('~/.vim/plugged')
 Plug 'FooSoft/vim-argwrap'
-Plug 'psf/black', {'for': 'python', 'tag': '*'}
+Plug 'psf/black', {'for': 'python'}
 Plug 'L3viathan/flattened'
 Plug 'L3viathan/vim-autoswap'
 Plug 'Olical/vim-enmasse'
@@ -93,9 +93,11 @@ Plug 'ap/vim-buftabline'
 Plug 'AndrewRadev/switch.vim'
 Plug 'mattn/emmet-vim', {'for': 'html'}
 Plug 'lervag/vimtex', {'for': 'latex'}
-Plug 'chaoren/vim-wordmotion'
 Plug 'zah/nim.vim'
 Plug 'vim-scripts/vis'
+Plug 'posva/vim-vue'
+Plug 'Konfekt/FastFold'
+Plug 'lervag/wiki.vim'
 call plug#end()
 
 
@@ -180,16 +182,7 @@ let g:vimtex_compiler_latexmk = {
         \ ],
         \}
 
-let g:wordmotion_mappings = {
-        \ 'w' : ',w',
-        \ 'b' : ',b',
-        \ 'e' : ',e',
-        \ 'ge' : 'g,e',
-        \ 'aw' : 'a,w',
-        \ 'iw' : 'i,w',
-        \ '<C-R><C-W>' : '<C-R>,<C-W>'
-        \ }
-
+let g:wiki_root = '~/vimwiki'
 
 let hostname = substitute(system('hostname'), '\n', '', '')
 
@@ -237,7 +230,7 @@ endfunction
 
 function! AckAg()
     call inputsave()
-    let search = input('> ')
+    let search = "'" . input('> ') . "'"
     call inputrestore()
     execute 'Ack!' search
 endfunction
@@ -373,6 +366,8 @@ nmap cxgv `<cx`>
 nmap s ys
 nmap ga <Plug>(EasyAlign)
 nmap gR gr$
+nmap <leader>w<leader>n <Plug>(wiki-journal-next)
+nmap <leader>w<leader>p <Plug>(wiki-journal-prev)
 nnoremap <silent> K <C-]>
 nnoremap + <C-A>
 nnoremap - <C-X>
