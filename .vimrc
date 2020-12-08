@@ -67,7 +67,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/vim-peekaboo'
 Plug 'justinmk/vim-dirvish'
-Plug 'lfv89/vim-interestingwords'
+Plug 't9md/vim-quickhl'
 Plug 'markonm/traces.vim'
 Plug 'zivyangll/git-blame.vim'
 Plug 'matze/vim-move'
@@ -98,6 +98,7 @@ Plug 'vim-scripts/vis'
 Plug 'posva/vim-vue'
 Plug 'Konfekt/FastFold'
 Plug 'lervag/wiki.vim'
+Plug 'pechorin/any-jump.vim'
 call plug#end()
 
 
@@ -368,6 +369,8 @@ nmap ga <Plug>(EasyAlign)
 nmap gR gr$
 nmap <leader>w<leader>n <Plug>(wiki-journal-next)
 nmap <leader>w<leader>p <Plug>(wiki-journal-prev)
+nmap <leader>k <Plug>(quickhl-manual-this)
+nmap <leader>K <Plug>(quickhl-manual-reset)
 nnoremap <silent> K <C-]>
 nnoremap + <C-A>
 nnoremap - <C-X>
@@ -417,6 +420,8 @@ vnoremap <silent> <leader>s :sort<cr>
 vnoremap <silent> <leader>= :!black --quiet -<cr>
 
 xmap ga <Plug>(EasyAlign)
+xmap <leader>k <Plug>(quickhl-manual-this)
+xmap <leader>K <Plug>(quickhl-manual-reset)
 
 command! W w
 
