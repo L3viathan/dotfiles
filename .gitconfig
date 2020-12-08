@@ -23,3 +23,5 @@
     prompt = false
 [rerere]
     enabled = true
+[pull]
+	rebase = false
