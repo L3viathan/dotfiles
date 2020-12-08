@@ -96,6 +96,7 @@ Plug 'lervag/vimtex', {'for': 'latex'}
 Plug 'chaoren/vim-wordmotion'
 Plug 'zah/nim.vim'
 Plug 'vim-scripts/vis'
+Plug 'pechorin/any-jump.vim'
 call plug#end()
 
 
