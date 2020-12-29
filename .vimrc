@@ -99,6 +99,7 @@ Plug 'posva/vim-vue'
 Plug 'Konfekt/FastFold'
 Plug 'lervag/wiki.vim'
 Plug 'pechorin/any-jump.vim'
+Plug 'unblevable/quick-scope'
 call plug#end()
 
 
