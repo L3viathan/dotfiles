@@ -121,3 +121,19 @@ export PATH="$PATH:~/bin"
 export BETTER_EXCEPTIONS=1
 
 export PATH="$HOME/.poetry/bin:$PATH"
+
+# copied from https://codeberg.org/scy/dotfiles/commit/2931e367611d4d79590dcf01433291e881791b89:
+# ssh doesn't allow setting the TERM variable via SetEnv (in .ssh/config), see
+# <https://serverfault.com/q/986847/50937>. However, some of the machines I'm
+# connecting to don't have alacritty in their terminfo files. This is the
+# workaround I came up with: Set TERM to xterm for the ssh command invocation.
+ssh() {
+    case "$TERM" in
+        alacritty)
+            TERM=xterm-256color "$(type -P ssh)" "$@"
+            ;;
+        *)
+            "$(type -P ssh)" "$@"
+            ;;
+    esac
+}
