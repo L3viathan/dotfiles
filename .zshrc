@@ -137,3 +137,4 @@ ssh() {
             ;;
     esac
 }
+eval "$(pyenv init -)"
