@@ -130,10 +130,10 @@ export PATH="$HOME/.poetry/bin:$PATH"
 ssh() {
     case "$TERM" in
         alacritty)
-            TERM=xterm-256color "$(type -P ssh)" "$@"
+            TERM=xterm-256color command ssh "$@"
             ;;
         *)
-            "$(type -P ssh)" "$@"
+            command ssh "$@"
             ;;
     esac
 }
