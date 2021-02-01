@@ -120,7 +120,7 @@ export PATH="$PATH:~/bin"
 
 export BETTER_EXCEPTIONS=1
 
-export PATH="$HOME/.poetry/bin:$PATH"
+export PATH="$HOME/.poetry/bin:$HOME/.cargo/bin:$PATH"
 
 # copied from https://codeberg.org/scy/dotfiles/commit/2931e367611d4d79590dcf01433291e881791b89:
 # ssh doesn't allow setting the TERM variable via SetEnv (in .ssh/config), see
