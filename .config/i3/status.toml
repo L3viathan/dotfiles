@@ -28,9 +28,9 @@ display_type = "memory"
 format_mem = "{Mup}%"
 format_swap = "{SUp}%"
 
-[[block]]
-block = "cpu"
-interval = 1
+# [[block]]
+# block = "cpu"
+# interval = 1
 
 [[block]]
 block = "load"
@@ -39,7 +39,7 @@ format = "{1m}"
 
 [[block]]
 block = "net"
-device = "wlo1"
+device = "enp0s31f6"
 ssid = false
 ip = true
 speed_up = false
