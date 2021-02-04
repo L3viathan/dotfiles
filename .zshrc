@@ -119,6 +119,8 @@ fi
 export PATH="$PATH:~/bin"
 
 export BETTER_EXCEPTIONS=1
+# Fix for Vim's X11 functionality. Otherwise takes about a second to start (with +clipboard)
+export SESSION_MANAGER=
 
 export PATH="$HOME/.poetry/bin:$HOME/.cargo/bin:$PATH"
 
