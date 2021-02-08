@@ -100,6 +100,7 @@ Plug 'Konfekt/FastFold'
 Plug 'lervag/wiki.vim'
 Plug 'pechorin/any-jump.vim'
 Plug 'unblevable/quick-scope'
+Plug 'simnalamburt/vim-mundo'
 call plug#end()
 
 
