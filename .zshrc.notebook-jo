@@ -1,1 +1,2 @@
 source $HOME/.zshrc.solute-dev
+alias v=/usr/local/bin/vim vi=/usr/local/bin/vim vim=/usr/local/bin/vim

@@ -427,7 +427,7 @@ xmap <leader>K <Plug>(quickhl-manual-reset)
 
 command! W w
 
-iabbr inim if __name__ == '__main__':
+iabbr inim if __name__ == '__main__':<cr>    cli()
 
 colorscheme flattened_dark
 highlight Comment ctermbg=Black ctermfg=DarkRed
