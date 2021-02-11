@@ -24,6 +24,6 @@
 [rerere]
     enabled = true
 [pull]
-	rebase = false
+    rebase = false
 [init]
-	defaultBranch = master
+    defaultBranch = master
