@@ -3,11 +3,20 @@
 ####################
 # HELPER FUNCTIONS #
 ####################
-function perror() { printf "\033[0;31m>> ERROR |\033[0m %s \n" "$*" ; }
-function pwarn()  { printf "\033[0;33m>> WARN  |\033[0m %s \n" "$*" ; }
-function pinfo()  { printf "\033[0;34m>> INFO  |\033[0m %s \n" "$*" ; }
-function pdebug() { printf "\033[0;35m>> DEBUG |\033[0m %s \n" "$*" ; }
-function pplain() { printf ">>       | %s \n" "$*" ; }
+loglevel=3
+function perror() { ((loglevel >= 1)) && printf "\033[0;31m>> ERROR |\033[0m %s \n" "$*" ; }
+function pwarn()  { ((loglevel >= 2)) && printf "\033[0;33m>> WARN  |\033[0m %s \n" "$*" ; }
+function pinfo()  { ((loglevel >= 3)) && printf "\033[0;34m>> INFO  |\033[0m %s \n" "$*" ; }
+function pdebug() { ((loglevel >= 4)) && printf "\033[0;35m>> DEBUG |\033[0m %s \n" "$*" ; }
+function pplain() { ((loglevel >= 3)) && printf ">>       | %s \n" "$*" ; }
+
+while getopts 'vq' flag; do
+    case "${flag}" in
+        q) loglevel=$(($loglevel - 1)) ;;
+        v) loglevel=$(($loglevel + 1)) ;;
+        *) perror "Unknown option: $flag" && exit 1 ;;
+    esac
+done
 
 #############################
 # DOWNLOAD AND REPLACE SELF #
@@ -191,3 +200,4 @@ if [ -e ~/bootstrap.sh ]; then
     rm ~/bootstrap.sh
 fi
 pinfo "All done. Close and reopen this shell and things should work."
+true  # otherwise pinfo returns an exit code of 1 if the log level doesn't allow printing INFO level messages
