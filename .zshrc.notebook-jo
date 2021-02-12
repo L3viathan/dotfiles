@@ -1,2 +1,3 @@
 source $HOME/.zshrc.solute-dev
+[ -f ~/.dbconf.zsh ] && source ~/.dbconf.zsh
 alias v=/usr/local/bin/vim vi=/usr/local/bin/vim vim=/usr/local/bin/vim
