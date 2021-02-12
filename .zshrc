@@ -116,6 +116,7 @@ fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.gitbranch.zsh ] && source ~/.gitbranch.zsh
+[ -f ~/.dbconf.zsh ] && source ~/.dbconf.zsh
 export PATH="$PATH:~/bin"
 
 export BETTER_EXCEPTIONS=1
