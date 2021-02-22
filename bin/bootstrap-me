@@ -144,6 +144,11 @@ else
     rm -f ~/.zshrc ~/.vimrc ~/.tmux.conf ~/.tigrc ~/.gitconfig
 fi
 
+if ! [ -e ~/.gitconfig ]; then
+    echo "# use this file for your local git config (e.g. author email)" >~/.gitconfig
+    echo "[include]" >>~/.gitconfig
+    echo "    path = .gitconfig_l3vi" >>~/.gitconfig
+fi
 pinfo "Linking missing dotfiles..."
 ~/dotfiles/bin/link-dotfiles
 
