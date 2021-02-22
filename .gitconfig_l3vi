@@ -1,6 +1,3 @@
-[user]
-    name = L3viathan
-    email = git@l3vi.de
 [push]
     default = simple
 [alias]
