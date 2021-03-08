@@ -97,7 +97,7 @@ p() {
     fi
 }
 
-function twitch() {streamlink --http-header Client-ID=jzkbprff40iqj646a697cyrvl0zt2m6 --player /usr/local/bin/mpv --twitch-disable-ads "https://www.twitch.tv/$1" 720p}
+function twitch() {streamlink --http-header Client-ID=jzkbprff40iqj646a697cyrvl0zt2m6 --player /usr/local/bin/mpv --twitch-disable-ads "https://www.twitch.tv/$1" 720p60}
 
 export FZF_DEFAULT_COMMAND='fd --type f'
 
