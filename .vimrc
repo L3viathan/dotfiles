@@ -433,3 +433,9 @@ colorscheme flattened_dark
 highlight Comment ctermbg=Black ctermfg=DarkRed
 set makeprg=latexmk\ -f\ -xelatex\ -interaction=nonstopmode\ %
 nnoremap <silent> <leader>ll :make<cr>
+
+try
+    source ~/.vimrc.local
+catch
+    " 404
+endtry
