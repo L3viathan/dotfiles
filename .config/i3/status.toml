@@ -39,9 +39,19 @@ format = "{1m}"
 
 [[block]]
 block = "net"
-device = "wlp3s0"
+device = "tun0"
 ssid = false
 ip = true
+speed_up = false
+speed_down = false
+graph_up = false
+interval = 5
+
+[[block]]
+block = "net"
+device = "wlp3s0"
+ssid = true
+ip = false
 speed_up = false
 speed_down = false
 graph_up = false
