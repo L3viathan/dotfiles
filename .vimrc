@@ -102,6 +102,7 @@ Plug 'pechorin/any-jump.vim'
 Plug 'unblevable/quick-scope'
 Plug 'simnalamburt/vim-mundo'
 Plug 'L3viathan/jira.vim'
+Plug 'wellle/context.vim'
 call plug#end()
 
 
