@@ -1,14 +1,23 @@
-#<oh-my-zsh_stuff>
-ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="l3vi2"
-CASE_SENSITIVE="true"
-export EDITOR="vim"
-export VISUAL="vim"
-COMPLETION_WAITING_DOTS="true"
-unsetopt correct_all #disable auto correction
-plugins=(git zsh-syntax-highlighting pip mosh zshmarks dirhistory fzf-zsh z)
-source $ZSH/oh-my-zsh.sh
-#</oh-my-zsh_stuff>
+source ~/.zplug/init.zsh
+
+zplug "zplug/zplug", hook-build:"zplug --self-manage"  # zplugception
+zplug "~/dotfiles/.oh-my-zsh/themes", from:local, as:theme
+zplug "plugins/git", from:oh-my-zsh
+zplug "plugins/zshmarks", from:oh-my-zsh
+zplug "plugins/z", from:oh-my-zsh
+zplug "junegunn/fzf", hook-build:"install"
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "robbyrussell/oh-my-zsh", use:"lib/{directories.zsh,key-bindings.zsh,history.zsh}"
+if ! zplug check; then
+        zplug install
+fi
+zplug load
+
+setopt auto_cd
+
+function take() {
+    mkdir -p $@ && cd ${@:$#}
+}
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 unset MAILCHECK
