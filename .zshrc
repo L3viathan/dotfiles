@@ -9,7 +9,8 @@ zplug "~/dotfiles/.oh-my-zsh/themes", from:local, as:theme
 zplug "plugins/git", from:oh-my-zsh
 zplug "plugins/zshmarks", from:oh-my-zsh
 zplug "plugins/z", from:oh-my-zsh
-zplug "junegunn/fzf", hook-build:"install"
+zplug "L3viathan/fzf", use:"shell/*.zsh"
+zplug "junegunn/fzf", from:gh-r, as:command, use:fzf
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "robbyrussell/oh-my-zsh", use:"lib/{directories.zsh,key-bindings.zsh,history.zsh}"
 zstyle ":zplug:tag" depth 1
@@ -17,6 +18,8 @@ if ! zplug check; then
         zplug install
 fi
 zplug load
+source ~/.zplug/repos/L3viathan/fzf/shell/key-bindings.zsh
+source ~/.zplug/repos/L3viathan/fzf/shell/completion.zsh
 
 setopt auto_cd
 
@@ -127,7 +130,6 @@ if [ -f ~/.zshrc.$hostname ]; then
     source ~/.zshrc.$hostname
 fi
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.gitbranch.zsh ] && source ~/.gitbranch.zsh
 export PATH="$PATH:~/bin"
 
