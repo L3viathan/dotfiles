@@ -1,3 +1,7 @@
+if [ ! -d "$HOME/.zplug" ]
+then
+    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+fi
 source ~/.zplug/init.zsh
 
 zplug "zplug/zplug", hook-build:"zplug --self-manage"  # zplugception

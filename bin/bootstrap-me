@@ -106,32 +106,6 @@ else
 fi
 
 
-###########
-# OHMYZSH #
-###########
-if ! [ -e ~/.oh-my-zsh ]; then
-    pinfo "Installing OhMyZSH..."
-    sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-fi
-
-if ! [ -e ~/.oh-my-zsh/custom/plugins/fzf ]; then
-    pinfo "Installing OhMyZSH plugin: fzf..."
-    git clone https://github.com/junegunn/fzf.git ~/.oh-my-zsh/custom/plugins/fzf && ~/.oh-my-zsh/custom/plugins/fzf/install --bin
-fi
-if ! [ -e ~/.oh-my-zsh/custom/plugins/fzf-zsh ]; then
-    pinfo "Installing OhMyZSH plugin: fzf-zsh..."
-    git clone https://github.com/Treri/fzf-zsh.git ~/.oh-my-zsh/custom/plugins/fzf-zsh
-fi
-if ! [ -e ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting ]; then
-    pinfo "Installing OhMyZSH plugin: zsh-syntax-highlighting..."
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-fi
-if ! [ -e ~/.oh-my-zsh/custom/plugins/zshmarks ]; then
-    pinfo "Installing OhMyZSH plugin: zshmarks..."
-    git clone https://github.com/jocelynmallon/zshmarks.git ~/.oh-my-zsh/custom/plugins/zshmarks
-fi
-
-
 ############
 # DOTFILES #
 ############
