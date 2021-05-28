@@ -12,6 +12,7 @@ zplug "plugins/z", from:oh-my-zsh
 zplug "junegunn/fzf", hook-build:"install"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "robbyrussell/oh-my-zsh", use:"lib/{directories.zsh,key-bindings.zsh,history.zsh}"
+zstyle ":zplug:tag" depth 1
 if ! zplug check; then
         zplug install
 fi
