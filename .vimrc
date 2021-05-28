@@ -101,6 +101,7 @@ Plug 'lervag/wiki.vim'
 Plug 'pechorin/any-jump.vim'
 Plug 'unblevable/quick-scope'
 Plug 'simnalamburt/vim-mundo'
+Plug 'L3viathan/jira.vim'
 call plug#end()
 
 
@@ -186,6 +187,9 @@ let g:vimtex_compiler_latexmk = {
         \}
 
 let g:wiki_root = '~/vimwiki'
+
+let g:jira_host = 'https://jira.solute.de'
+let g:jira_user = 'jo'
 
 let hostname = substitute(system('hostname'), '\n', '', '')
 
