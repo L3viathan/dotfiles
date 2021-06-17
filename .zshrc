@@ -131,7 +131,7 @@ if [ -f ~/.zshrc.$hostname ]; then
 fi
 
 [ -f ~/.gitbranch.zsh ] && source ~/.gitbranch.zsh
-export PATH="$PATH:~/bin"
+export PATH="$PATH:$HOME/bin"
 
 export BETTER_EXCEPTIONS=1
 # Fix for Vim's X11 functionality. Otherwise takes about a second to start (with +clipboard)
