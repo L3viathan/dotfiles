@@ -326,6 +326,12 @@ function! SnakeCase(type, ...)
     let @@ = reg_save
 endfun
 
+" https://gist.github.com/romainl/3b8cdc6c3748a363da07b1a625cfc666
+function! BreakHere()
+    s/^\(\s*\)\(.\{-}\)\(\s*\)\(\%#\)\(\s*\)\(.*\)/\1\2\r\1\4\6
+    call histdel("/", -1)
+endfunction
+
 
 " AUTOCMDS
 augroup vimrc
@@ -413,6 +419,7 @@ nnoremap <silent> <leader>css :set opfunc=SnakeCase<cr>0g@$
 nnoremap <silent> <leader>cscs :set opfunc=SnakeCase<cr>0g@$
 nnoremap <silent> <leader>cc :set opfunc=CamelCase<cr>g@
 nnoremap <silent> <leader>ccc :set opfunc=CamelCase<cr>0g@$
+nnoremap <silent> <leader>J <C-u>call BreakHere()<cr>
 " quick rot13 all
 nnoremap <leader>? ggg?G``
 nnoremap YQ ZQ
