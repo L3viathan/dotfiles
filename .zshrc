@@ -108,7 +108,7 @@ alias whendidirunthelastcommand='date -r$(tail -n 2 ~/.zsh_history|head -n 1 | c
 p() {
     if [ -z "$*" ]
     then
-        ipython3
+        ipython
     else
         python3 -q $*
     fi
@@ -131,13 +131,12 @@ if [ -f ~/.zshrc.$hostname ]; then
 fi
 
 [ -f ~/.gitbranch.zsh ] && source ~/.gitbranch.zsh
-export PATH="$PATH:$HOME/bin"
 
 export BETTER_EXCEPTIONS=1
 # Fix for Vim's X11 functionality. Otherwise takes about a second to start (with +clipboard)
 export SESSION_MANAGER=
 
-export PATH="$HOME/.poetry/bin:$HOME/.cargo/bin:$PATH"
+export PATH="$(pyenv root)/shims:$HOME/.poetry/bin:$HOME/.cargo/bin:$PATH:$HOME/bin"
 
 # copied from https://codeberg.org/scy/dotfiles/commit/2931e367611d4d79590dcf01433291e881791b89:
 # ssh doesn't allow setting the TERM variable via SetEnv (in .ssh/config), see
@@ -154,3 +153,6 @@ ssh() {
             ;;
     esac
 }
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+eval "$(pyenv init -)"
