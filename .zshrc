@@ -49,6 +49,8 @@ alias mplayer=mpv vi=vim
 alias -g °='~/.zshrc' √='~/.vimrc'
 alias gs="(cd ~/git && git standup -sm 3)"
 alias wr="wormhole receive" ws="wormhole send"
+alias arm="exec arch -arm64 $SHELL --login"
+alias intel="exec arch -x86_64 $SHELL --login"
 
 # custom functions
 +(){while true; do; say "ping" && ping -oc 100000 8.8.8.8 > /dev/null && say "pong"; done}
