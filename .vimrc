@@ -1,7 +1,6 @@
 " .vimrc
 
 " OPTIONS
-set nocompatible                " turn off Vi-compatibility
 set autoindent                  " automatically indent if necessary
 set backspace=2                 " backspace over lines
 set backupdir=~/.vim/backup     " write backupfiles to central dir
