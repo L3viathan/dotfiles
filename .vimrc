@@ -26,12 +26,10 @@ set number                      " show line numbers
 set relativenumber              " show relative line numbers
 set ruler                       " show line and col number of cursor
 set scrolloff=2                 " always show 2 lines of extra context
-set shiftwidth=4 tabstop=4 softtabstop=0  " indentation with 4 spaces
 set shortmess=filmnrxsToOI      " shorter messages for some prompts
 set showcmd                     " show command in last line
 set showmatch                   " briefly jump to matching paren
 set noshowmode                  " don't show mode (because lightline shows it)
-set smarttab                    " tab and untab sw spaces
 if &term =~ '^screen'
     " tmux knows the extended mouse mode
     set ttymouse=xterm2
@@ -103,6 +101,7 @@ Plug 'simnalamburt/vim-mundo'
 Plug 'L3viathan/jira.vim'
 Plug 'wellle/context.vim'
 Plug 'wincent/terminus'
+Plug 'tpope/vim-sleuth'
 call plug#end()
 
 
