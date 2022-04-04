@@ -102,6 +102,7 @@ Plug 'L3viathan/jira.vim'
 Plug 'wellle/context.vim'
 Plug 'wincent/terminus'
 Plug 'tpope/vim-sleuth'
+Plug 'jakwings/vim-pony'
 call plug#end()
 
 
