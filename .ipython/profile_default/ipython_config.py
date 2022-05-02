@@ -513,7 +513,7 @@ c.InteractiveShell.quiet = True
 
 ## Autoformatter to reformat Terminal code. Can be `'black'` or `None`
 #  Default: None
-# c.TerminalInteractiveShell.autoformatter = None
+c.TerminalInteractiveShell.autoformatter = None
 
 ## 
 #  See also: InteractiveShell.autoindent
@@ -525,7 +525,7 @@ c.InteractiveShell.quiet = True
 
 ## The part of the banner to be printed before the profile
 #  See also: InteractiveShell.banner1
-# c.TerminalInteractiveShell.banner1 = "Python 3.8.5 (default, Jul 28 2020, 12:59:40) \nType 'copyright', 'credits' or 'license' for more information\nIPython 7.19.0 -- An enhanced Interactive Python. Type '?' for help.\n"
+c.TerminalInteractiveShell.banner1 = ""
 
 ## The part of the banner to be printed after the profile
 #  See also: InteractiveShell.banner2
@@ -561,7 +561,7 @@ c.TerminalInteractiveShell.confirm_exit = False
 #  documentation for more information.
 #  Choices: any of ['column', 'multicolumn', 'readlinelike']
 #  Default: 'multicolumn'
-# c.TerminalInteractiveShell.display_completions = 'multicolumn'
+c.TerminalInteractiveShell.autosuggestions_provider = None
 
 ## If True, anything that would be passed to the pager
 #  See also: InteractiveShell.display_page
