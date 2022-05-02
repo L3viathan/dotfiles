@@ -330,6 +330,16 @@ function! BreakHere()
     call histdel("/", -1)
 endfunction
 
+function! CountMinutes()
+    let old_reg=getreg("a")
+    let old_reg_type=getregtype("a")
+    let @a=''
+    silent! %s/[+-]\d\+\zemin/\=setreg('A', submatch(0))/gn
+    let minutes=eval(getreg("a"))
+    echo minutes . " minutes"
+    call setreg("a", old_reg, old_reg_type)
+endfunction
+
 
 " AUTOCMDS
 augroup vimrc
@@ -381,6 +391,7 @@ nmap ga <Plug>(EasyAlign)
 nmap gR gr$
 nmap <leader>w<leader>n <Plug>(wiki-journal-next)
 nmap <leader>w<leader>p <Plug>(wiki-journal-prev)
+nmap <leader>wc :call CountMinutes()<cr>
 nmap <leader>k <Plug>(quickhl-manual-this)
 nmap <leader>K <Plug>(quickhl-manual-reset)
 nnoremap <silent> K <C-]>
