@@ -5,3 +5,4 @@ alias rosay='say -v Ioana' uksay='say -v Daniel' desay='say -v Anna'
 alias wifi-on="networksetup -setairportpower en0 on" wifi-off="networksetup -setairportpower en0 off" wifi-fix="networksetup -setairportpower en0 off && sleep 5 && networksetup -setairportpower en0 on" wifi-brechstange="while true;do;networksetup -setairportpower en0 on;networksetup -setairportpower en0 off;sleep 1;done"
 alias jsc='/System/Library/Frameworks/JavaScriptCore.framework/Versions/Current/Resources/jsc'
 alias ql="qlmanage -p"
+export PATH="/opt/homebrew/bin:$PATH"
