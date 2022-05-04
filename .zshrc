@@ -102,6 +102,8 @@ alias rgp='rg -t py'
 alias rgi='rg --no-ignore'
 alias rgip='rg --no-ignore -t py'
 alias rgpi='rg --no-ignore -t py'
+alias V='. venv/bin/activate'
+alias C='asciinema play cast.cast'
 
 alias tmux='tmux -2'
 

@@ -102,7 +102,7 @@ Plug 'L3viathan/jira.vim'
 Plug 'wellle/context.vim'
 Plug 'wincent/terminus'
 Plug 'tpope/vim-sleuth'
-Plug 'jakwings/vim-pony'
+" Plug 'jakwings/vim-pony'
 call plug#end()
 
 
@@ -350,7 +350,6 @@ augroup vimrc
     autocmd BufWinLeave *.* mkview
     autocmd FileType crontab setlocal nobackup nowritebackup
     autocmd BufRead * call SetTrailing()
-    autocmd BufWritePost *.py call UpDownFive()
     autocmd FileType qf nnoremap <leader>M :EnMasse<cr>
     autocmd FileType python let b:switch_custom_definitions =
     \ [
@@ -463,37 +462,3 @@ try
 catch
     " 404
 endtry
-
-" PyConDE talk 2022:
-iabbrev c class
-iabbrev d def
-iabbrev F Field
-iabbrev C Condition
-iabbrev Q Query
-iabbrev M Model
-iabbrev T Talk
-iabbrev S Speaker
-iabbrev _i __init__
-iabbrev _it __iter__
-iabbrev _is __init_subclass__
-iabbrev _r __repr__
-iabbrev @c @classmethod
-iabbrev _a __annotations__
-inoremap II <Esc>0f,yt)o<Esc>p:s/,//g<cr>:s/\(\w\+\)/       self.\1 = \1\r/g<cr>:nohl<cr>i
-
-function! UpFive()
-    call system("tmux resize-pane -U 5")
-endfunction
-
-function! DownOne(timer)
-    call system("tmux resize-pane -D 1")
-endfunction
-
-function! UpDownFive()
-    call UpFive()
-    call timer_start(3000, 'DownOne', {'repeat': 1})
-    call timer_start(3050, 'DownOne', {'repeat': 1})
-    call timer_start(3100, 'DownOne', {'repeat': 1})
-    call timer_start(3200, 'DownOne', {'repeat': 1})
-    call timer_start(3350, 'DownOne', {'repeat': 1})
-endfunction
