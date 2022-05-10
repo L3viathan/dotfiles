@@ -1,0 +1,102 @@
+#!/usr/bin/env python3
+"""Episode Browser
+
+Run in a directory of movies, will play the first file. Next time, it will play
+the next one, and so on. Run it with some string to play the first matching
+file.
+
+Usage:
+    episode [OPTIONS] [EPISODE...]
+
+Options:
+    -h --help           Show this screen
+    --version           Show version
+    --dry-run           Show what would be played
+    --reset             Reset watch state
+    --player/-p PLAYER  Media player binary (default: mpv)
+
+"""
+import os
+import platform
+import sys
+import re
+from getopt import getopt  # can't stand argparse. docopt/click aren't builtin
+from glob import glob
+from pathlib import Path
+
+__version__ = "0.1.0"
+
+forbidden_ext = [".srt", ".txt", ".png"]
+hidden_data = Path(".last-episode-id")
+blacklist = ("HDTV", "720p", "1080p", "x264", "x265", "mkv", "mov", "mp4", "avi")
+
+opts, query = getopt(
+    sys.argv[1:], "hvp:", ["help", "version", "dry-run", "player=", "reset"]
+)
+episodes = sorted(
+    [fn for fn in glob("*.*") if not any(fn.endswith(x) for x in forbidden_ext)]
+)
+open_command = "mpv"
+actually = True
+
+for opt, value in opts:
+    if opt in ("-h", "--help"):
+        print(__doc__)
+        sys.exit(0)
+    if opt in ("-v", "--version"):
+        print(__version__)
+        sys.exit(0)
+    if opt == "--reset":
+        hidden_data.unlink(missing_ok=True)
+        sys.exit(0)
+    if opt in ("-p", "--player"):
+        open_command = value
+    if opt == "--dry-run":
+        actually = False
+
+
+def play(somefile):
+    print("Playing {}".format(format_episode(somefile)))
+    if actually:
+        os.system(open_command + ' "' + somefile + '" >/dev/null 2>&1')
+
+
+def format_episode(filename):
+    format1 = re.findall(r"S(\d+)E(\d+)\W+(.*)", filename)
+    format2 = re.findall(r"(\d+)x(\d+)\W+(.*)", filename)
+    match = (format1 or format2 or [None])[0]
+    if match:
+        parts = []
+        for part in match[2].split("."):
+            if part in blacklist:
+                break
+            parts.append(part)
+        if not parts:
+            return "season {}, episode {}".format(match[0], match[1])
+        return "season {}, episode {}: {}".format(match[0], match[1], " ".join(parts))
+    return filename
+
+
+if query:
+    for id_, episode in enumerate(episodes):
+        if all(word in episode.lower() for word in query.lower()):
+            this_episode = id_
+else:
+    try:
+        last_episode = int(hidden_data.read_text())
+    except FileNotFoundError:
+        last_episode = -1
+    this_episode = last_episode + 1
+
+try:
+    play(episodes[this_episode])
+    try:
+        print("Next up: {}".format(format_episode(episodes[this_episode + 1])))
+    except IndexError:
+        pass  # no next episode
+    if actually:
+        hidden_data.write_text(str(this_episode))
+except IndexError:
+    print("Out of episodes. Run again to start from the beginning.")
+    if actually:
+        hidden_data.unlink(missing_ok=True)
