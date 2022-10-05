@@ -56,7 +56,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'airblade/vim-rooter'
 Plug 'christoomey/vim-sort-motion'
 Plug 'drzel/vim-line-no-indicator'
-Plug 'ervandew/supertab'
+" Plug 'ervandew/supertab'
 Plug 'itchyny/lightline.vim'
 Plug 'maximbaz/lightline-ale'
 Plug 'junegunn/fzf', {'do': 'yes \| ./install' }
@@ -102,6 +102,7 @@ Plug 'L3viathan/jira.vim'
 Plug 'wellle/context.vim'
 Plug 'wincent/terminus'
 Plug 'tpope/vim-sleuth'
+Plug 'christoomey/vim-tmux-runner'
 " Plug 'jakwings/vim-pony'
 call plug#end()
 
@@ -186,6 +187,11 @@ let g:vimtex_compiler_latexmk = {
         \   '-interaction=nonstopmode',
         \ ],
         \}
+
+let g:VtrInitialCommand = 'python'
+let g:VtrStripLeadingWhitespace = 0
+let g:VtrAppendNewline = 1
+let g:VtrAutomaticReattachByName = 1
 
 let g:wiki_root = '~/vimwiki'
 
@@ -399,7 +405,9 @@ nnoremap <silent> K <C-]>
 nnoremap + <C-A>
 nnoremap - <C-X>
 nnoremap <silent> <C-X> :bd<cr>
-nnoremap <C-P> :!python3 %<cr>
+nnoremap <C-P> :!clear ; python3 %<cr>
+nnoremap g<C-P> :terminal ++close python3<cr>
+nnoremap g<C-I> :!clear ; pygmentize -g % ; python3 -i %<cr>
 nnoremap g/ /\</\><cr>
 nnoremap <silent> <leader><cr> :nohl<cr>
 nnoremap <silent> <leader>F :call AckAg()<cr>
@@ -434,6 +442,12 @@ nnoremap <silent> <leader>J <C-u>call BreakHere()<cr>
 nnoremap <leader>? ggg?G``
 nnoremap YQ ZQ
 nnoremap YY ZZ
+nnoremap <leader>ro :VtrOpenRunner<cr>
+nnoremap <leader>rr :VtrSendLinesToRunner<cr>j
+vnoremap <leader>rr :VtrSendLinesToRunner<cr>
+nnoremap <leader>rF :VtrFocusRunner<cr>
+nnoremap <leader>rf :VtrFocusRunner!<cr>
+nnoremap <leader>rc :VtrKillRunner<cr>
 
 vnoremap <expr> <down> DVB_Drag('down')
 vnoremap <expr> <left> DVB_Drag('left')
