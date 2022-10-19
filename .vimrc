@@ -347,6 +347,14 @@ function! CountMinutes()
     call setreg("a", old_reg, old_reg_type)
 endfunction
 
+function! GitBlameLine()
+  call printf("git blame -s -L %s,%s -- %s | head -c 8", line('.'), line('.'), expand('%'))
+        \ ->system()
+        \ ->printf("git log --stat -1 %s")
+        \ ->system()
+        \ ->split("\n")
+        \ ->popup_atcursor({ "padding": [0, 1, 1, 1] })
+endfunc
 
 " AUTOCMDS
 augroup vimrc
@@ -427,8 +435,9 @@ nnoremap <silent> <leader>gf :Files<cr>
 nnoremap <silent> <leader>gg :GFiles<cr>
 nnoremap <silent> <leader>gl :Lines<cr>
 nnoremap <silent> <leader>gm :Marks<cr>
+nnoremap <silent> <leader>Gb :call GitBlameLine()<cr>
 nnoremap <silent> <leader>b :call ToggleBreakpoint()<cr>
-nnoremap <silent> <leader>B :<C-u>call gitblame#echo()<CR>
+nnoremap <silent> <leader>B :<C-u>call gitblame#echo()<cr>
 nnoremap <silent> <leader>== :ALEFix<cr>
 nnoremap <silent> <leader>00 :Black<cr>
 nnoremap <silent> <leader>= :set opfunc=Blackify<cr>g@
