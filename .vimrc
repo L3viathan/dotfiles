@@ -101,8 +101,9 @@ Plug 'simnalamburt/vim-mundo'
 Plug 'L3viathan/jira.vim'
 Plug 'wellle/context.vim'
 Plug 'wincent/terminus'
-Plug 'tpope/vim-sleuth'
+" Plug 'tpope/vim-sleuth'
 Plug 'christoomey/vim-tmux-runner'
+Plug 'sheerun/vim-polyglot'
 " Plug 'jakwings/vim-pony'
 call plug#end()
 

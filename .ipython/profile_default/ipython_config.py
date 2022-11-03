@@ -561,7 +561,7 @@ c.TerminalInteractiveShell.confirm_exit = False
 #  documentation for more information.
 #  Choices: any of ['column', 'multicolumn', 'readlinelike']
 #  Default: 'multicolumn'
-c.TerminalInteractiveShell.autosuggestions_provider = None
+# c.TerminalInteractiveShell.autosuggestions_provider = None
 
 ## If True, anything that would be passed to the pager
 #  See also: InteractiveShell.display_page
