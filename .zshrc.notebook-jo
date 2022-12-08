@@ -4,3 +4,13 @@ source $HOME/.zshrc.solute-dev
 alias v=/usr/local/bin/vim vi=/usr/local/bin/vim vim=/usr/local/bin/vim
 export DEFAULT_USER=jo
 alias vpn='nmcli conn up new-vpn02a-UDP4-443-jo-config  --ask'
+solute-ssh() {
+    case "$TERM" in
+        alacritty)
+            TERM=xterm-256color command solute-ssh "$@"
+            ;;
+        *)
+            command solute-ssh "$@"
+            ;;
+    esac
+}
