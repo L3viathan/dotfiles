@@ -104,6 +104,7 @@ Plug 'wincent/terminus'
 " Plug 'tpope/vim-sleuth'
 Plug 'christoomey/vim-tmux-runner'
 Plug 'sheerun/vim-polyglot'
+Plug 'ludovicchabant/vim-gutentags'
 " Plug 'jakwings/vim-pony'
 call plug#end()
 
@@ -150,8 +151,8 @@ let g:lightline = {
   \ },
   \ }
 
-let g:ale_linters = {'python': ['pylint']}
-let g:ale_fixers = {'python': ['black', 'reorder-python-imports', 'trim_whitespace', 'remove_trailing_lines']}
+let g:ale_linters = {'python': ['ruff']}
+let g:ale_fixers = {'python': ['black', 'ruff']}
 let g:ale_set_balloons = 0  " fixes an issue that occurs when ttymouse=xterm2
 let g:ackprg = 'rg --vimgrep'
 let g:autoswap_detect_tmux = 1
@@ -271,10 +272,10 @@ endfun
 
 function! ToggleBreakpoint()
     let line = getline('.')
-    if line =~# 'ipdb.set_trace'
+    if line =~# 'breakpoint'
         delete
     else
-        normal oimport ipdb; ipdb.set_trace()
+        normal obreakpoint()
     endif
 endfun
 

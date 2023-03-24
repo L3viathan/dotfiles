@@ -2,7 +2,7 @@
 
 DOTFILE_PATH="$HOME/dotfiles"
 
-REALPATH=$((which realpath || which grealpath) | grep -v 'not found')
+REALPATH=$((which realpath || which grealpath ) | grep -v 'not found' )
 
 for dir in $(fd -H -E .git -td . "$DOTFILE_PATH")
 do
