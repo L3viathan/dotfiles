@@ -140,7 +140,7 @@ export BETTER_EXCEPTIONS=1
 # Fix for Vim's X11 functionality. Otherwise takes about a second to start (with +clipboard)
 export SESSION_MANAGER=
 
-export PATH="$($HOME/.pyenv/bin/pyenv root)/shims:$HOME/.pyenv/bin:$HOME/.poetry/bin:$HOME/.cargo/bin:$PATH:$HOME/bin"
+export PATH="$(pyenv root)/shims:$HOME/.poetry/bin:$HOME/.cargo/bin:$PATH:$HOME/bin"
 
 # copied from https://codeberg.org/scy/dotfiles/commit/2931e367611d4d79590dcf01433291e881791b89:
 # ssh doesn't allow setting the TERM variable via SetEnv (in .ssh/config), see
@@ -157,6 +157,5 @@ ssh() {
             ;;
     esac
 }
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval "$(pyenv init -)"

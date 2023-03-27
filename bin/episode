@@ -79,7 +79,7 @@ def format_episode(filename):
 
 if query:
     for id_, episode in enumerate(episodes):
-        if all(word in episode.lower() for word in query.lower()):
+        if all(word.lower() in episode.lower() for word in query):
             this_episode = id_
 else:
     try:
