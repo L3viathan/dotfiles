@@ -172,6 +172,7 @@ let g:DVB_TrimWS = 1
 let g:line_no_indicator_chars = [' ', '⠁', '⠉', '⠋', '⠛', '⠟', '⠿', '⡿', '⣿']
 let g:rooter_silent_chdir = 1
 let g:SuperTabDefaultCompletionType = 'context'
+let g:surround_92 = "\1literally: \1\r\1\1"  " surround with anything with backslash
 let g:switch_mapping = '\'
 let g:vimtex_compiler_latexmk = {
         \ 'backend' : 'jobs',
