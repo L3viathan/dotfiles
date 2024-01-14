@@ -34,80 +34,25 @@ unset MAILCHECK
 which exa >/dev/null && alias ls='exa' ll='ls -lh --git' l='ls -lah --git'
 which exa >/dev/null || alias ll='ls -lh' l='ls -lah'
 alias wow='git status'
-alias c="crun" rf="rm -rf" v="vim" s="ssh" t="tig" m="make"
-alias :q="exit"
-alias youtube-dl='youtube-dl -o "%(title)s.%(ext)s" --restrict-filenames'
+alias v="vim" t="tig"
 alias livestreamer='livestreamer --http-header Client-ID=jzkbprff40iqj646a697cyrvl0zt2m6 --player /usr/local/bin/mpv'
-alias lg='ls -l| egrep --color=never'
-alias ly='ls| egrep --color=never "(mp4|webm|flv|m4v|3gp|mkv|avi)$"'
-alias lm='ls| egrep --color=never "(mp3|ogg|flac|wav|m4a|wma)$"'
-alias lsd='ls -F| grep /'
-alias oneline='while read -r line;do;echo -n "\r$line";done;echo'
-alias ccat='pygmentize -g'
-alias l3vi='mosh l3vi -- tmux attach -d'
-alias mplayer=mpv vi=vim
-alias -g °='~/.zshrc' √='~/.vimrc'
-alias gs="(cd ~/git && git standup -sm 3)"
-alias wr="wormhole receive" ws="wormhole send"
-alias arm="exec arch -arm64 $SHELL --login"
-alias intel="exec arch -x86_64 $SHELL --login"
+alias vi=vim
 
 # custom functions
-+(){while true; do; say "ping" && ping -oc 100000 8.8.8.8 > /dev/null && say "pong"; done}
 srsly(){
     until $*
     do
         sleep 0.1
     done}
-shutup(){$* >/dev/null 2>&1}
-maybe(){if [ $(($RANDOM%2)) -eq 1 ]
-then
-    $*
-fi}
-mkcd() {echo "Use take instead"}
-alias unzero='perl -pe ''s/\0/\t/\'' | sed -e \''$a\'''
 compdef srsly='sudo' #autocompletion like sudo
-compdef shutup='sudo' #autocompletion like sudo
-compdef maybe='sudo' #autocompletion like sudo
 export MOSH_TITLE_NOPREFIX=1
 export MOSH_SERVER_NETWORK_TMOUT=604800
 lookup() {dig -x `dig +short $*`}
 export PYTHONPATH="./.pip:$PYTHONPATH:$HOME"
 
-#global aliases (substitution within command)
-alias -g H='| head'
-alias -g T='| tail'
-alias -g G='| grep'
-alias -g L='| less'
-alias -g NE="2>/dev/null"
-alias -g NUL=">/dev/null 2>&1"
-alias -g EO="2>&1"
-
-#What to do when "executing" filenames:
-
-alias -s pdf="open"
-#list archive contents
-alias -s zip="unzip -l"
-alias -s tar="tar tf"
-alias -s tar.gz="tar tfz"
-alias -s tgz="tar tfz"
-alias -s mid="timidity"
-
-avaliable(){whois $* |grep AVAILABLE }
-alias please='sudo $(fc -ln -1)'
-alias crep='grep --color=yes'
-alias gdm='git diff master'
 alias grc='git rebase --continue'
 alias rgp='rg -t py'
-alias rgi='rg --no-ignore'
-alias rgip='rg --no-ignore -t py'
-alias rgpi='rg --no-ignore -t py'
-alias V='. venv/bin/activate'
-alias C='asciinema play cast.cast'
-
 alias tmux='tmux -2'
-
-alias whendidirunthelastcommand='date -r$(tail -n 2 ~/.zsh_history|head -n 1 | cut -d ":" -f 2 | tr -d " ")'
 
 p() {
     if [ -z "$*" ]
@@ -117,8 +62,6 @@ p() {
         python3 -q $*
     fi
 }
-
-function twitch() {streamlink --http-header Client-ID=jzkbprff40iqj646a697cyrvl0zt2m6 --player /usr/local/bin/mpv --twitch-disable-ads "https://www.twitch.tv/$1" 720p60}
 
 export FZF_DEFAULT_COMMAND='fd --type f'
 
