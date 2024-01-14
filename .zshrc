@@ -1,26 +1,14 @@
-if [ ! -d "$HOME/.zplug" ]
+autoload -Uz compinit
+compinit
+if [ ! -d "$HOME/.antidote" ]
 then
-    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+    git clone --depth=1 https://github.com/mattmc3/antidote.git ~/.antidote
 fi
-source ~/.zplug/init.zsh
+source ~/.antidote/antidote.zsh
+antidote load
 
-zplug "zplug/zplug", hook-build:"zplug --self-manage"  # zplugception
-zplug "~/dotfiles/.oh-my-zsh/themes", from:local, as:theme
-zplug "plugins/git", from:oh-my-zsh
-zplug "plugins/zshmarks", from:oh-my-zsh
-zplug "plugins/z", from:oh-my-zsh
-zplug "L3viathan/fzf", use:"shell/*.zsh"
-zplug "junegunn/fzf", from:gh-r, as:command, use:"*"
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "robbyrussell/oh-my-zsh", use:"lib/{directories.zsh,key-bindings.zsh,history.zsh}"
-zstyle ":zplug:tag" depth 1
-# if ! zplug check; then
-#         zplug install
-# fi
-zplug load
-source ~/.zplug/repos/L3viathan/fzf/shell/key-bindings.zsh
-source ~/.zplug/repos/L3viathan/fzf/shell/completion.zsh
-
+source dotfiles/l3vi2.zsh-theme
+setopt promptsubst
 setopt auto_cd
 
 function take() {
