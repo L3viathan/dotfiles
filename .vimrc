@@ -63,7 +63,6 @@ Plug 'junegunn/fzf', {'do': 'yes \| ./install' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/vim-peekaboo'
-Plug 'justinmk/vim-dirvish'
 Plug 't9md/vim-quickhl'
 Plug 'markonm/traces.vim'
 Plug 'zivyangll/git-blame.vim'
@@ -104,7 +103,7 @@ Plug 'wincent/terminus'
 Plug 'christoomey/vim-tmux-runner'
 Plug 'sheerun/vim-polyglot'
 Plug 'ludovicchabant/vim-gutentags'
-" Plug 'jakwings/vim-pony'
+Plug 'vimsence/vimsence'
 call plug#end()
 
 

@@ -333,6 +333,8 @@ c.TerminalIPythonApp.display_banner = False
 #  Default: 'last_expr'
 # c.InteractiveShell.ast_node_interactivity = 'last_expr'
 
+c.InteractiveShell.warn_venv = False
+
 ## A list of ast.NodeTransformer subclass instances, which will be applied to
 #  user input before code is run.
 #  Default: []
