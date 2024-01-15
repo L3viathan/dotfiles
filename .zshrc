@@ -8,8 +8,7 @@ source ~/.antidote/antidote.zsh
 antidote load
 
 source dotfiles/l3vi2.zsh-theme
-setopt promptsubst
-setopt auto_cd
+setopt auto_cd interactive_comments promptsubst
 
 function take() {
     mkdir -p $@ && cd ${@:$#}

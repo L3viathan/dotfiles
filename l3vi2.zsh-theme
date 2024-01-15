@@ -135,3 +135,4 @@ build_rprompt() {
 
 PROMPT='%{%f%b%k%}$(build_prompt) '
 RPROMPT='%{%f%b%k%}$(build_rprompt)'
+ZSH_HIGHLIGHT_STYLES[comment]='fg=red'
