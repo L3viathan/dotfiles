@@ -66,7 +66,7 @@ export HISTFILESIZE=10000000
 export BETTER_EXCEPTIONS=1
 # Fix for Vim's X11 functionality. Otherwise takes about a second to start (with +clipboard)
 export SESSION_MANAGER=
-export PATH="$(pyenv root)/shims:$HOME/.poetry/bin:$HOME/.cargo/bin:$PATH:$HOME/bin"
+export PATH="$HOME/.pyenv/bin:$HOME/.pyenv/shims:$HOME/.poetry/bin:$HOME/.cargo/bin:$PATH:$HOME/bin"
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 if [ -f ~/.zshrc.$uname ]; then
