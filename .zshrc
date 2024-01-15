@@ -89,4 +89,4 @@ ssh() {
     esac
 }
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-eval "$(pyenv init -)"
+_evalcache pyenv init -

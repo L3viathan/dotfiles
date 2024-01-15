@@ -5,3 +5,4 @@ ohmyzsh/ohmyzsh path:lib/history.zsh
 ohmyzsh/ohmyzsh path:lib/git.zsh
 junegunn/fzf path:shell
 zsh-users/zsh-syntax-highlighting
+mroth/evalcache
