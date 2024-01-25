@@ -195,6 +195,7 @@ let g:VtrAppendNewline = 1
 let g:VtrAutomaticReattachByName = 1
 
 let g:wiki_root = '~/vimwiki'
+let g:wiki_filetypes = ['wiki']
 
 let g:jira_host = 'https://jira.solute.de'
 let g:jira_user = 'jo'
