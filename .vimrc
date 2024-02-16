@@ -81,7 +81,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'cespare/vim-toml', {'for': 'toml'}
 Plug 'tpope/vim-abolish'
-Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'w0rp/ale', {'for': ['python', 'sh']}
 Plug 'vim-scripts/ReplaceWithRegister'
@@ -103,7 +102,6 @@ Plug 'wincent/terminus'
 Plug 'christoomey/vim-tmux-runner'
 Plug 'sheerun/vim-polyglot'
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'vimsence/vimsence'
 call plug#end()
 
 
