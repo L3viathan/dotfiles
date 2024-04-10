@@ -21,6 +21,7 @@ alias grc='git rebase --continue'
 alias rgp='rg -t py'
 alias tmux='tmux -2'
 alias gd='git diff' gc='git commit'
+alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 # custom functions
 srsly(){
