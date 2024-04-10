@@ -6,7 +6,7 @@ then
 fi
 source ~/.antidote/antidote.zsh
 antidote load
-source ~/dotfiles/l3vi2.zsh-theme
+source ~/l3vi2.zsh-theme
 
 setopt auto_cd interactive_comments promptsubst
 
