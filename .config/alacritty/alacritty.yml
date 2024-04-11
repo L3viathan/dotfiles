@@ -321,10 +321,10 @@ colors:
 #   - (macOS) /bin/bash --login
 #   - (Linux/BSD) user login shell
 #   - (Windows) powershell
-shell:
-  program: /usr/bin/zsh
-  args:
-    - -l
+# shell:
+#   program: /usr/bin/zsh
+#   args:
+#     - -l
 
 # Startup directory
 #
