@@ -14,9 +14,7 @@ unset MAILCHECK
 
 # Aliasses
 alias ls='ls --color' alias ll='ls --color -lh' l='ls --color -lah'
-alias wow='git status'
 alias v=vim vi=vim t=tig
-alias livestreamer='livestreamer --http-header Client-ID=jzkbprff40iqj646a697cyrvl0zt2m6 --player /usr/local/bin/mpv'
 alias grc='git rebase --continue'
 alias rgp='rg -t py'
 alias tmux='tmux -2'
@@ -52,9 +50,9 @@ lookup() {dig -x `dig +short $*`}
 p() {
     if [ -z "$*" ]
     then
-        ipython
+        python -m IPython
     else
-        python3 -q $*
+        python -q $*
     fi
 }
 take() {
