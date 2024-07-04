@@ -12,6 +12,11 @@ setopt auto_cd interactive_comments promptsubst
 
 unset MAILCHECK
 
+# make ctrl-z undo the previous ctrl-z
+_zsh_cli_fg() { fg; }
+zle -N _zsh_cli_fg
+bindkey '^Z' _zsh_cli_fg
+
 # Aliasses
 alias ls='ls --color' alias ll='ls --color -lh' l='ls --color -lah'
 alias v=vim vi=vim t=tig
