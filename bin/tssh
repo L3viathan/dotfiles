@@ -1,0 +1,17 @@
+#!/bin/bash
+if (( $# > 6 )); then
+  layout=tiled
+else
+  layout=even-vertical
+fi
+hosts=( "$@" )
+tmux new-window
+tmux send-keys "ssh ${hosts[0]}"
+for i in $(seq 1 $((${#hosts[@]} - 1)))
+do
+  tmux split-window
+  tmux send-keys "ssh ${hosts[$i]}"
+  tmux select-layout $layout
+done
+tmux setw synchronize-panes
+tmux send-keys Enter
