@@ -2,11 +2,12 @@ export SOLUTE_DISABLE_NVM=true
 export PIP_REQUIRE_VIRTUALENV=0
 source $HOME/.zshrc.solute-dev
 [ -f ~/.dbconf.zsh ] && source ~/.dbconf.zsh
-alias v=/usr/local/bin/vim vi=/usr/local/bin/vim vim=/usr/local/bin/vim
 export DEFAULT_USER=jo
 export EDITOR=vim
+alias v=/usr/bin/vim vi=/usr/bin/vim
+alias fd=fdfind
 alias vpn='nmcli conn up new-vpn02a-UDP4-443-jo-config  --ask'
-export PATH=$PATH:/home/jo/.local/bin
+export PATH=/home/jo/.vim/plugged/fzf/bin/:$PATH:/home/jo/.local/bin
 solute-ssh() {
     case "$TERM" in
         alacritty)
