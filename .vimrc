@@ -40,6 +40,7 @@ set wildignore=*.o,*~,*.pyc     " ignore in wild menu
 set wildmenu                    " enable wild menu
 set wildmode=list:longest,full  " how to suggest in wild menu
 set timeoutlen=1000 ttimeoutlen=0
+set termguicolors
 
 " PLUGINS
 if empty(glob('~/.vim/autoload/plug.vim'))
