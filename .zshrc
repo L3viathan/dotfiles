@@ -43,7 +43,7 @@ compdef srsly='sudo' #autocompletion like sudo
 # workaround I came up with: Set TERM to xterm for the ssh command invocation.
 ssh() {
     case "$TERM" in
-        alacritty)
+        xterm-ghostty)
             TERM=xterm-256color command ssh "$@"
             ;;
         *)
