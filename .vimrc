@@ -103,6 +103,7 @@ Plug 'wincent/terminus'
 Plug 'christoomey/vim-tmux-runner'
 Plug 'sheerun/vim-polyglot'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'girishji/devdocs.vim'
 Plug 'itchyny/vim-gitbranch'
 call plug#end()
 
@@ -461,6 +462,7 @@ vnoremap <leader>rr :VtrSendLinesToRunner<cr>
 nnoremap <leader>rF :VtrFocusRunner<cr>
 nnoremap <leader>rf :VtrFocusRunner!<cr>
 nnoremap <leader>rc :VtrKillRunner<cr>
+noremap <leader>d :DevdocsFind<cr>
 
 vnoremap <expr> <down> DVB_Drag('down')
 vnoremap <expr> <left> DVB_Drag('left')
