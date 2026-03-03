@@ -200,6 +200,8 @@ let g:wiki_filetypes = ['wiki']
 let g:jira_host = 'https://jira.solute.de'
 let g:jira_user = 'jo'
 
+let g:TerminusMouse = 0
+
 let hostname = substitute(system('hostname'), '\n', '', '')
 
 command! -bar Hexmode call ToggleHex()
