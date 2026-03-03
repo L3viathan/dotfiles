@@ -103,6 +103,7 @@ Plug 'wincent/terminus'
 Plug 'christoomey/vim-tmux-runner'
 Plug 'sheerun/vim-polyglot'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'itchyny/vim-gitbranch'
 call plug#end()
 
 
