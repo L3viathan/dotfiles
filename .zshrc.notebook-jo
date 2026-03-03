@@ -8,13 +8,3 @@ alias v=/usr/bin/vim vi=/usr/bin/vim
 alias fd=fdfind
 alias vpn='nmcli conn up new-vpn02a-UDP4-443-jo-config  --ask'
 export PATH=/home/jo/.vim/plugged/fzf/bin/:$PATH:/home/jo/.local/bin
-solute-ssh() {
-    case "$TERM" in
-        alacritty)
-            TERM=xterm-256color command solute-ssh "$@"
-            ;;
-        *)
-            command solute-ssh "$@"
-            ;;
-    esac
-}
