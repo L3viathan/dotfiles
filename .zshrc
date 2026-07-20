@@ -25,6 +25,7 @@ alias rgp='rg -t py'
 alias tmux='tmux -2'
 alias gd='git diff' gc='git commit'
 alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias -g J='jq -C . | less -R'
 # git clone --bare ... $HOME/.cfg
 # config config --local status.showUntrackedFiles no
 # config checkout
