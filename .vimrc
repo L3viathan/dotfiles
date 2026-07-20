@@ -476,6 +476,8 @@ vnoremap <silent> <leader>= :!black --quiet -<cr>
 xmap ga <Plug>(EasyAlign)
 xmap <leader>k <Plug>(quickhl-manual-this)
 xmap <leader>K <Plug>(quickhl-manual-reset)
+xnoremap > >gv
+xnoremap < <gv
 
 command! W w
 
